@@ -3,6 +3,7 @@
 #include <SDL.h>
 
 Game::Game() {
+	isRunning = false;
 	std::cout << "It works!!" << std::endl;
 }
 
@@ -29,11 +30,12 @@ void Game::Inicialize() {
 		std::cerr << "Error creating SDL renderer." << std::endl;
 		return;
 	}
+	isRunning = true;
 }
 
 void Game::Run() {
 
-	while ( true ) {
+	while ( isRunning ) {
 		ProcessInput();
 		Update();
 		Render();
@@ -42,6 +44,22 @@ void Game::Run() {
 
 void Game::ProcessInput() {
 
+	SDL_Event sdlEvent;
+	while ( SDL_PollEvent( &sdlEvent ) ) {
+
+		switch ( sdlEvent.type ) {
+			case SDL_QUIT:
+				isRunning = false;
+				break;
+			case SDL_KEYDOWN:
+				if ( sdlEvent.key.keysym.sym == SDLK_ESCAPE ) {
+					isRunning = false;
+					break;
+				}
+			default:
+				break;
+		}
+	}
 }
 
 void Game::Update() {
