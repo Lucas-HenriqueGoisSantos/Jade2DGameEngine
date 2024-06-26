@@ -14,7 +14,7 @@ Game::~Game() {
 
 void Game::Inicialize() {
 
-	if ( SDL_Init(SDL_INIT_EVERYTHING) != 0 ) {
+	if ( SDL_Init( SDL_INIT_EVERYTHING ) != 0 ) {
 		std::cerr << "Error inicializing SDL." << std::endl;
 		return;
 	}
@@ -48,14 +48,17 @@ void Game::ProcessInput() {
 	while ( SDL_PollEvent( &sdlEvent ) ) {
 
 		switch ( sdlEvent.type ) {
+
 			case SDL_QUIT:
 				isRunning = false;
 				break;
+
 			case SDL_KEYDOWN:
 				if ( sdlEvent.key.keysym.sym == SDLK_ESCAPE ) {
 					isRunning = false;
-					break;
 				}
+				break;
+
 			default:
 				break;
 		}
@@ -67,7 +70,13 @@ void Game::Update() {
 }
 
 void Game::Render() {
+	SDL_SetRenderDrawColor( renderer, 14, 178, 66, 255);
 
+	SDL_RenderClear( renderer );
+
+	// Render objects here;
+
+	SDL_RenderPresent( renderer );
 }
 
 void Game::Destroy() {
