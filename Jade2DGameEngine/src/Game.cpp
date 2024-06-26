@@ -19,7 +19,20 @@ void Game::Inicialize() {
 		return;
 	}
 
-	window = SDL_CreateWindow( NULL, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_BORDERLESS );
+	// Sets the game to "fake" fullscreen
+	SDL_DisplayMode displayMode;
+	SDL_GetCurrentDisplayMode( 0, &displayMode );
+
+	windowWidth = displayMode.w;
+	windowHeight = displayMode.h;
+
+	window = SDL_CreateWindow( 
+		NULL, 
+		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
+		windowWidth, windowHeight, 
+		SDL_WINDOW_BORDERLESS 
+	);
+
 	if ( !window ) {
 		std::cerr << "Error creating SDL window." << std::endl;
 		return;
