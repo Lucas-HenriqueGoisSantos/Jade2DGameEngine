@@ -43,6 +43,10 @@ void Game::Inicialize() {
 		std::cerr << "Error creating SDL renderer." << std::endl;
 		return;
 	}
+
+	// Change video mode to fullscreen
+	SDL_SetWindowFullscreen( window, SDL_WINDOW_FULLSCREEN );
+	
 	isRunning = true;
 }
 
