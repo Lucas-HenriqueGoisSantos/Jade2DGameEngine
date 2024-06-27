@@ -14,15 +14,16 @@ public:
 	Game();
 	~Game();
 
-	void Inicialize();
+	void Setup();
 	void Run();
+	void Inicialize();
 	void ProcessInput();
 	void Update();
 	void Render();
 	void Destroy();
 
-	int windowWidth = 0;
-	int windowHeight = 0;
+	int windowWidth;
+	int windowHeight;
 
 };
 
