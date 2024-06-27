@@ -22,8 +22,8 @@ public:
 	void Render();
 	void Destroy();
 
-	int windowWidth;
-	int windowHeight;
+	int windowWidth = 800;
+	int windowHeight = 600;
 
 };
 

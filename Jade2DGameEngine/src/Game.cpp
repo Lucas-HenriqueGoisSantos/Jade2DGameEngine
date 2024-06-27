@@ -1,6 +1,9 @@
 #include "Game.h"
 #include <iostream>
 #include <SDL.h>
+#include <SDL_image.h>
+
+
 
 Game::Game() {
 	isRunning = false;
@@ -41,8 +44,8 @@ void Game::Inicialize() {
 	SDL_DisplayMode displayMode;
 	SDL_GetCurrentDisplayMode( 0, &displayMode );
 
-	windowWidth = 800; // displayMode.w;
-	windowHeight = 600; // displayMode.h;
+	//windowWidth = 800; // displayMode.w;
+	//windowHeight = 600; // displayMode.h;
 
 
 	window = SDL_CreateWindow( 
@@ -107,10 +110,26 @@ void Game::Render() {
 
 	// Render objects here;
 
+
 	// Render of a white rectangle
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-	SDL_Rect playerExemple = { 10, 10, 20, 30 };
-	SDL_RenderFillRect( renderer, &playerExemple );
+	//SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
+	//SDL_Rect playerExemple = { 10, 10, 20, 30 };
+	//SDL_RenderFillRect( renderer, &playerExemple );
+
+	//--------------------------------------------------------------------------------//
+	// Render PNG texture
+
+	// Load PNG from file
+	SDL_Surface* surface = IMG_Load( "./assSets/images/tank-tiger-right.png" );
+	SDL_Texture* texture = SDL_CreateTextureFromSurface( renderer, surface );
+	SDL_FreeSurface( surface );
+
+	// Destination and size in render
+	SDL_Rect dstRect = { 10, 10, 64, 64 };
+	// Copying to the renderer
+	SDL_RenderCopy( renderer, texture, NULL, &dstRect );
+	SDL_DestroyTexture( texture );
+	//--------------------------------------------------------------------------------//
 
 
 	SDL_RenderPresent( renderer );
