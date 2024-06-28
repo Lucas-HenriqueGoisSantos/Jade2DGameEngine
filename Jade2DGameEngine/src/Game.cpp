@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <iostream>
+#include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
 
@@ -15,9 +16,13 @@ Game::~Game() {
 }
 
 
+// FOR TESTING ONLY
+glm::vec2 playerPos;
+glm::vec2 playerVel;
 
 void Game::Setup() {
-	// Inicialize game objects
+	playerPos = glm::vec2( 10.0, 20.0 );
+	playerVel = glm::vec2( 1.0, 0.0 );
 }
 
 
@@ -25,7 +30,7 @@ void Game::Run() {
 
 	Setup();
 
-	while (isRunning) {
+	while ( isRunning ) {
 		ProcessInput();
 		Update();
 		Render();
@@ -100,7 +105,8 @@ void Game::ProcessInput() {
 }
 
 void Game::Update() {
-
+	playerPos.x += playerVel.x;
+	playerPos.y += playerVel.y;
 }
 
 void Game::Render() {
@@ -120,13 +126,16 @@ void Game::Render() {
 	// Render PNG texture
 
 	// Load PNG from file
-	SDL_Surface* surface = IMG_Load( "./assSets/images/tank-tiger-right.png" );
+	SDL_Surface* surface = IMG_Load( "./assets/images/tank-tiger-right.png" );
 	SDL_Texture* texture = SDL_CreateTextureFromSurface( renderer, surface );
 	SDL_FreeSurface( surface );
 
 	// Destination and size in render
-	SDL_Rect dstRect = { 10, 10, 64, 64 };
-	// Copying to the renderer
+	SDL_Rect dstRect = { 
+		static_cast<int>(playerPos.x), static_cast<int>(playerPos.y),
+		64, 64 
+	};
+	// Copying to the renderer. A NULL SDL_Rect will be interpreted as "get the entire texture / fill the entire window"
 	SDL_RenderCopy( renderer, texture, NULL, &dstRect );
 	SDL_DestroyTexture( texture );
 	//--------------------------------------------------------------------------------//
