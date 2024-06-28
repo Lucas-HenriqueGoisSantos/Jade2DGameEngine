@@ -105,6 +105,12 @@ void Game::ProcessInput() {
 }
 
 void Game::Update() {
+
+	// Capps the FPS to 60
+	while ( !SDL_TICKS_PASSED( SDL_GetTicks(), millisecondsPreviousFrame + MILLISECONDS_PER_FRAME ) );
+	// Store the current frame time
+	millisecondsPreviousFrame = SDL_GetTicks();
+
 	playerPos.x += playerVel.x;
 	playerPos.y += playerVel.y;
 }
