@@ -25,7 +25,7 @@ glm::vec2 playerVel;
 void Game::Setup() {
 
 	playerPos = glm::vec2( 10.0, 20.0 );
-	playerVel = glm::vec2( 1.0, 0.0 );
+	playerVel = glm::vec2( 10.0, 0.0 );
 }
 
 
@@ -114,11 +114,14 @@ void Game::Update() {
 	if ( timeToWait > 0 && timeToWait <= MILLISECONDS_PER_FRAME ) {
 		SDL_Delay( timeToWait );
 	}
+
+	// Sets deltaTime
+	double deltaTime = ( SDL_GetTicks() - millisecondsPreviousFrame / 1000.0 );
 	// Store the current frame time
 	millisecondsPreviousFrame = SDL_GetTicks();
 
-	playerPos.x += playerVel.x;
-	playerPos.y += playerVel.y;
+	playerPos.x += playerVel.x * deltaTime;
+	playerPos.y += playerVel.y * deltaTime;
 }
 
 void Game::Render() {
