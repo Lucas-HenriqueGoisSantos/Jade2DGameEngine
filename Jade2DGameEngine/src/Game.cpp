@@ -7,11 +7,13 @@
 
 
 Game::Game() {
+
 	isRunning = false;
 	std::cout << "It works!!" << std::endl;
 }
 
 Game::~Game() {
+
 	std::cout << "It also works!!" << std::endl;
 }
 
@@ -21,6 +23,7 @@ glm::vec2 playerPos;
 glm::vec2 playerVel;
 
 void Game::Setup() {
+
 	playerPos = glm::vec2( 10.0, 20.0 );
 	playerVel = glm::vec2( 1.0, 0.0 );
 }
@@ -107,7 +110,10 @@ void Game::ProcessInput() {
 void Game::Update() {
 
 	// Capps the FPS to 60
-	while ( !SDL_TICKS_PASSED( SDL_GetTicks(), millisecondsPreviousFrame + MILLISECONDS_PER_FRAME ) );
+	int timeToWait = MILLISECONDS_PER_FRAME - ( SDL_GetTicks() - millisecondsPreviousFrame );
+	if ( timeToWait > 0 && timeToWait <= MILLISECONDS_PER_FRAME ) {
+		SDL_Delay( timeToWait );
+	}
 	// Store the current frame time
 	millisecondsPreviousFrame = SDL_GetTicks();
 
@@ -116,6 +122,7 @@ void Game::Update() {
 }
 
 void Game::Render() {
+
 	SDL_SetRenderDrawColor( renderer, 14, 178, 66, 255);
 
 	SDL_RenderClear( renderer );
