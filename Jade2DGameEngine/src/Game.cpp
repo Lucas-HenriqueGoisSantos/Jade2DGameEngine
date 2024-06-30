@@ -6,6 +6,10 @@
 
 
 
+/// <summary>
+/// TODO: Consertar o Renderer. Tank não aparece após implementação de deltaTime
+/// </summary>
+
 Game::Game() {
 
 	isRunning = false;
@@ -25,7 +29,7 @@ glm::vec2 playerVel;
 void Game::Setup() {
 
 	playerPos = glm::vec2( 10.0, 20.0 );
-	playerVel = glm::vec2( 10.0, 0.0 );
+	playerVel = glm::vec2( 25.0, 10.0 );
 }
 
 
@@ -116,12 +120,12 @@ void Game::Update() {
 	}
 
 	// Sets deltaTime
-	double deltaTime = ( SDL_GetTicks() - millisecondsPreviousFrame / 1000.0 );
+	double deltaTime = ( SDL_GetTicks() - millisecondsPreviousFrame ) / 1000.0;
 	// Store the current frame time
 	millisecondsPreviousFrame = SDL_GetTicks();
 
-	playerPos.x += playerVel.x * deltaTime;
-	playerPos.y += playerVel.y * deltaTime;
+	playerPos.x += playerVel.x *deltaTime;
+	playerPos.y += playerVel.y *deltaTime;
 }
 
 void Game::Render() {
