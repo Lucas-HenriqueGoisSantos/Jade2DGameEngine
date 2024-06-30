@@ -114,10 +114,10 @@ void Game::ProcessInput() {
 void Game::Update() {
 
 	// Capps the FPS to 60
-	int timeToWait = MILLISECONDS_PER_FRAME - ( SDL_GetTicks() - millisecondsPreviousFrame );
-	if ( timeToWait > 0 && timeToWait <= MILLISECONDS_PER_FRAME ) {
-		SDL_Delay( timeToWait );
-	}
+	//int timeToWait = MILLISECONDS_PER_FRAME - ( SDL_GetTicks() - millisecondsPreviousFrame );
+	//if ( timeToWait > 0 && timeToWait <= MILLISECONDS_PER_FRAME ) {
+	//	SDL_Delay( timeToWait );
+	//}
 
 	// Sets deltaTime
 	double deltaTime = ( SDL_GetTicks() - millisecondsPreviousFrame ) / 1000.0;
