@@ -13,12 +13,12 @@
 Game::Game() {
 
 	isRunning = false;
-	Logger::Log( "It works!!" );
+	Logger::Log( "Game constroctor called correctly!" );
 }
 
 Game::~Game() {
 
-	Logger::Log( "It also works!!" );
+	Logger::Log( "Game destructor called correctly!" );
 }
 
 
