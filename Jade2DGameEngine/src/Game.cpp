@@ -1,5 +1,5 @@
 #include "Game.h"
-#include <iostream>
+#include "Logger.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -13,12 +13,12 @@
 Game::Game() {
 
 	isRunning = false;
-	std::cout << "It works!!" << std::endl;
+	Logger::Log( "It works!!" );
 }
 
 Game::~Game() {
 
-	std::cout << "It also works!!" << std::endl;
+	Logger::Log( "It also works!!" );
 }
 
 
@@ -48,7 +48,7 @@ void Game::Run() {
 void Game::Inicialize() {
 
 	if ( SDL_Init( SDL_INIT_EVERYTHING ) != 0 ) {
-		std::cerr << "Error inicializing SDL." << std::endl;
+		Logger::Err( "Error inicializing SDL." );
 		return;
 	}
 
@@ -67,7 +67,7 @@ void Game::Inicialize() {
 		SDL_WINDOW_BORDERLESS 
 	);
 	if ( !window ) {
-		std::cerr << "Error creating SDL window." << std::endl;
+		Logger::Err( "Error creating SDL window." );
 		return;
 	}
 
@@ -77,7 +77,7 @@ void Game::Inicialize() {
 		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
 	);
 	if ( !renderer ) {
-		std::cerr << "Error creating SDL renderer." << std::endl;
+		Logger::Err( "Error creating SDL renderer." );
 		return;
 	}
 
