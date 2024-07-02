@@ -11,7 +11,7 @@ void Logger::Log( const std::string& message ) {
     char* date_time = ctime(&now);
 
     // Print the current date and time
-    std::cout << date_time << message << std::endl;
+    std::cout << "\033[1;32m" << date_time << message << "\033[0m" << std::endl;
 }
 
 void Logger::Err( const std::string& message ) {
@@ -22,5 +22,5 @@ void Logger::Err( const std::string& message ) {
     char* date_time = ctime(&now);
 
     // Print the current date and time
-    std::cout << date_time << message << std::endl;
+    std::cout << "\033[1;31m" << date_time << message << "\033[0m" << std::endl;
 }
