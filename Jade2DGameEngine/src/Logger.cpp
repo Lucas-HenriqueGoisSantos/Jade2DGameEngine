@@ -4,6 +4,9 @@
 #include <chrono>
 #include <ctime>
 
+std::vector<LogEntry> Logger::messages;
+
+
 std::string CurrentDateTimeToString() {
     std::time_t now = std::chrono::system_clock::to_time_t( std::chrono::system_clock::now() );
     std::string output( 30, '\0' );
