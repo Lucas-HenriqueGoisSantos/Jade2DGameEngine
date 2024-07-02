@@ -12,16 +12,21 @@ std::string CurrentDateTimeToString() {
 }
 void Logger::Log( const std::string& message ) {
 
-    std::string output = "LOG: [" + CurrentDateTimeToString() + "]: " + message;
+    LogEntry logEntry;
+    logEntry.type = LOG_INFO;
+    logEntry.message = "LOG: [" + CurrentDateTimeToString() + "]: " + message;
 
-    // Print the current date and time
-    std::cout << "\033[1;32m" << output << "\033[0m" << std::endl;
+    std::cout << "\033[1;32m" << logEntry.message << "\033[0m" << std::endl;
+    messages.push_back( logEntry );
+
 }
 
 void Logger::Err( const std::string& message ) {
 
-    std::string output = "ERR: [" + CurrentDateTimeToString() + "]: " + message;
+    LogEntry logEntry;
+    logEntry.type = LOG_ERROR;
+    logEntry.message = "ERR: [" + CurrentDateTimeToString() + "]: " + message;
 
-    // Print the current date and time
-    std::cout << "\033[1;31m" << output << "\033[0m" << std::endl;
+    std::cerr << "\033[1;31m" << logEntry.message << "\033[0m" << std::endl;
+    messages.push_back( logEntry );
 }
