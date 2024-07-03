@@ -918,10 +918,10 @@
     <ClInclude Include="libs\sol\sol.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game.h">
+    <ClInclude Include="src\Game\Game.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="src\Logger.h">
+    <ClInclude Include="src\Logger\Logger.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1353,9 +1353,6 @@
     <ClCompile Include="libs\glm\detail\glm.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="libs\glm\glm.cppm">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
     <ClCompile Include="libs\imgui\imgui.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
@@ -1374,10 +1371,10 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game.cpp">
+    <ClCompile Include="src\Game\Game.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="src\Logger.cpp">
+    <ClCompile Include="src\Logger\Logger.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
