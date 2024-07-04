@@ -6,10 +6,6 @@
 
 
 
-/// <summary>
-/// TODO: Consertar o Renderer. Tank não aparece após implementação de deltaTime
-/// </summary>
-
 Game::Game() {
 
 	isRunning = false;
