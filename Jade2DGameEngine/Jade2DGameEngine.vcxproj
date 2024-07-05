@@ -491,6 +491,7 @@
     <ClInclude Include="libs\spdlog\tests\includes.h" />
     <ClInclude Include="libs\spdlog\tests\test_sink.h" />
     <ClInclude Include="libs\spdlog\tests\utils.h" />
+    <ClInclude Include="src\Components\TransformComponent.h" />
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\Logger\Logger.h" />
   </ItemGroup>
