@@ -440,6 +440,7 @@
     <ClInclude Include="libs\imgui\imstb_rectpack.h" />
     <ClInclude Include="libs\imgui\imstb_textedit.h" />
     <ClInclude Include="libs\imgui\imstb_truetype.h" />
+    <ClInclude Include="libs\logC\log.h" />
     <ClInclude Include="libs\lua\lauxlib.h" />
     <ClInclude Include="libs\lua\lua.h" />
     <ClInclude Include="libs\lua\lua.hpp" />
@@ -658,6 +659,7 @@
     <ClCompile Include="libs\imgui\imgui_draw.cpp" />
     <ClCompile Include="libs\imgui\imgui_sdl.cpp" />
     <ClCompile Include="libs\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="libs\logC\log.c" />
     <ClCompile Include="libs\spdlog\bench\boost-bench-mt.cpp" />
     <ClCompile Include="libs\spdlog\bench\boost-bench.cpp" />
     <ClCompile Include="libs\spdlog\bench\easylogging-bench-async.cpp" />
