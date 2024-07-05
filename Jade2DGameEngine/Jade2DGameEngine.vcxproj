@@ -493,6 +493,7 @@
     <ClInclude Include="libs\spdlog\tests\test_sink.h" />
     <ClInclude Include="libs\spdlog\tests\utils.h" />
     <ClInclude Include="src\Components\TransformComponent.h" />
+    <ClInclude Include="src\ECS\ECS.h" />
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\Logger\Logger.h" />
     <ClInclude Include="src\Systems\MovementSystem.h" />
@@ -703,6 +704,7 @@
     <ClCompile Include="libs\spdlog\tests\test_misc.cpp" />
     <ClCompile Include="libs\spdlog\tests\test_pattern_formatter.cpp" />
     <ClCompile Include="libs\spdlog\tests\utils.cpp" />
+    <ClCompile Include="src\ECS\ECS.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\Logger\Logger.cpp" />
     <ClCompile Include="src\Main.cpp" />
