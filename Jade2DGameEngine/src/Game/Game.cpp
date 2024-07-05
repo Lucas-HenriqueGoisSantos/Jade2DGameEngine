@@ -18,14 +18,12 @@ Game::~Game() {
 }
 
 
-// FOR TESTING ONLY
-glm::vec2 playerPos;
-glm::vec2 playerVel;
-
 void Game::Setup() {
-
-	playerPos = glm::vec2( 10.0, 20.0 );
-	playerVel = glm::vec2( 25.0, 10.0 );
+	// TODO:
+	// Entity tank = registry.CreateEntity();
+	// tank.AddComponent<TranformComponent>();
+	// tank.AddComponent<BoxColliderComponent>();
+	// tank.AddComponent<SpriteComponent>( "./assets/image/tank.png" );
 }
 
 
@@ -120,8 +118,10 @@ void Game::Update() {
 	// Store the current frame time
 	millisecondsPreviousFrame = SDL_GetTicks();
 
-	playerPos.x += playerVel.x *deltaTime;
-	playerPos.y += playerVel.y *deltaTime;
+	// TODO:
+	// MovementSystem.Update();
+	// CollisionSystem.Update();
+	// DamegeSystem.Update();
 }
 
 void Game::Render() {
@@ -139,21 +139,21 @@ void Game::Render() {
 	//SDL_RenderFillRect( renderer, &playerExemple );
 
 	//--------------------------------------------------------------------------------//
-	// Render PNG texture
+	//// Render PNG texture
 
-	// Load PNG from file
-	SDL_Surface* surface = IMG_Load( "./assets/images/tank-tiger-right.png" );
-	SDL_Texture* texture = SDL_CreateTextureFromSurface( renderer, surface );
-	SDL_FreeSurface( surface );
+	//// Load PNG from file
+	//SDL_Surface* surface = IMG_Load( "./assets/images/tank-tiger-right.png" );
+	//SDL_Texture* texture = SDL_CreateTextureFromSurface( renderer, surface );
+	//SDL_FreeSurface( surface );
 
-	// Destination and size in render
-	SDL_Rect dstRect = { 
-		static_cast<int>(playerPos.x), static_cast<int>(playerPos.y),
-		64, 64 
-	};
-	// Copying to the renderer. A NULL SDL_Rect will be interpreted as "get the entire texture / fill the entire window"
-	SDL_RenderCopy( renderer, texture, NULL, &dstRect );
-	SDL_DestroyTexture( texture );
+	//// Destination and size in render
+	//SDL_Rect dstRect = { 
+	//	static_cast<int>(playerPos.x), static_cast<int>(playerPos.y),
+	//	64, 64 
+	//};
+	//// Copying to the renderer. A NULL SDL_Rect will be interpreted as "get the entire texture / fill the entire window"
+	//SDL_RenderCopy( renderer, texture, NULL, &dstRect );
+	//SDL_DestroyTexture( texture );
 	//--------------------------------------------------------------------------------//
 
 
