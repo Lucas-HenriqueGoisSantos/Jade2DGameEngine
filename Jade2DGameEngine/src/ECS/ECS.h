@@ -45,10 +45,24 @@ public:
 	System() = default;
 	~System() = default;
 
+	void AddEntityToSystem( Entity entity );
+	void RemoveEntityFromSystem( Entity entity );
+	std::vector<Entity> GetSystemEntities() const;
+	Signature& GetComponentSignature() const;
+
+	template <typename T> void RequireComponent();
+
 };
 
 class Registry {
 
 };
+
+
+template <typename T>
+void System::RequireComponent() {
+	const auto componentId = Component<T>::GetId;
+	componentSignature.set( componentId );
+}
 
 #endif // !ECS_H
