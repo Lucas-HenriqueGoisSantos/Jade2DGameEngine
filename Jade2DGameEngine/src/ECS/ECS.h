@@ -15,7 +15,19 @@ const unsigned int MAX_COMPONENTS = 32;
 
 typedef std::bitset<MAX_COMPONENTS> Signature;
 
-class Component {
+struct BaseComponent {
+protected:
+	static int nextId;
+};
+
+// Assigns a unique ids to a component type
+template <typename T>
+class Component: public BaseComponent {
+
+	static int GetId() {
+		static auto id = nextId++;
+		return id;
+	}
 
 };
 
