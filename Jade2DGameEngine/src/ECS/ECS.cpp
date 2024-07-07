@@ -9,7 +9,7 @@ int Entity::GetId() const {
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // System
 void System::AddEntityToSystem( Entity entity ) {
-
+	entities.push_back( entity );
 }
 
 void System::RemoveEntityFromSystem( Entity entity ) {
