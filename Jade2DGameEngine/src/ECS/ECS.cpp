@@ -20,6 +20,6 @@ std::vector<Entity> System::GetSystemEntities() const {
 	return entities;
 }
 
-Signature& System::GetComponentSignature() const {
-
+const Signature& System::GetComponentSignature() const {
+	return componentSignature;
 }
