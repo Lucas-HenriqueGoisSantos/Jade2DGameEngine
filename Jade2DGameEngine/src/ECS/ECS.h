@@ -18,12 +18,11 @@ typedef std::bitset<MAX_COMPONENTS> Signature;
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Components
 ///////////////////////////////////////////////////////////////////////////////////////////////
+// Assigns a unique ids to a component type
 struct BaseComponent {
 protected:
 	static int nextId;
 };
-
-// Assigns a unique ids to a component type
 template <typename T>
 class Component: public BaseComponent {
 
@@ -46,7 +45,11 @@ public:
 	Entity( int id ) : id( id ) {};
 	int GetId() const;
 	
-	bool operator == (const Entity& other) const { return id == other.id; }
+	bool operator == ( const Entity& other ) const { return id == other.id; }
+	bool operator != ( const Entity& other ) const { return id != other.id; }
+	bool operator > ( const Entity& other ) const { return id > other.id; }
+	bool operator < ( const Entity& other ) const { return id < other.id; }
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
