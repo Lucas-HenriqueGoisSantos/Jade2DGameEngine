@@ -927,9 +927,6 @@
     <ClInclude Include="src\Components\TransformComponent.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="libs\logC\log.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
     <ClInclude Include="src\Systems\MovementSystem.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
@@ -1387,9 +1384,6 @@
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="src\Logger\Logger.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="libs\logC\log.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="src\ECS\ECS.cpp">

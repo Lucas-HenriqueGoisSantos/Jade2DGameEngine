@@ -16,7 +16,7 @@ std::string CurrentDateTimeToString() {
 void Logger::Log( const std::string& message ) {
 
     LogEntry logEntry;
-    logEntry.type = LOG_INFO;
+    logEntry.type = LOG_INF;
     logEntry.message = "LOG: [" + CurrentDateTimeToString() + "]: " + message;
 
     std::cout << "\033[1;32m" << logEntry.message << "\033[0m" << std::endl;
@@ -27,7 +27,7 @@ void Logger::Log( const std::string& message ) {
 void Logger::Err( const std::string& message ) {
 
     LogEntry logEntry;
-    logEntry.type = LOG_ERROR;
+    logEntry.type = LOG_ERR;
     logEntry.message = "ERR: [" + CurrentDateTimeToString() + "]: " + message;
 
     std::cerr << "\033[1;31m" << logEntry.message << "\033[0m" << std::endl;

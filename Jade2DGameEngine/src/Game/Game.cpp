@@ -1,6 +1,5 @@
 #include "Game.h"
 #include "../Logger/Logger.h"
-#include "logC/log.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -55,13 +54,16 @@ void Game::Inicialize() {
 	//windowHeight = 600; // displayMode.h;
 
 
-	window = SDL_CreateWindow( 
+	window = SDL_CreateWindow(
+
 		NULL, 
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
 		windowWidth, windowHeight, 
 		SDL_WINDOW_BORDERLESS 
 	);
+
 	if ( !window ) {
+
 		Logger::Err( "Error creating SDL window." );
 		return;
 	}

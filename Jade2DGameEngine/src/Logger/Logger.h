@@ -5,9 +5,9 @@
 #include <vector>
 
 enum LogType {
-	LOG_INFO,
+	LOG_INF,
 	LOG_WORNING,
-	LOG_ERROR
+	LOG_ERR
 };
 
 struct LogEntry {
