@@ -81,8 +81,56 @@ public:
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Registry
 ///////////////////////////////////////////////////////////////////////////////////////////////
-class Registry {
+class IPool {
+public:
+	virtual ~IPool();
+};
+template <typename T>
+class Pool: public IPool {
+private:
+	std::vector<T> data;
 
+public:
+	Pool( int size = 100 ) {
+		data.resize( size );
+	}
+	virtual ~Pool() = default;
+
+	bool IsEmpty() const {
+		return data.empty();
+	}
+	int GetSize() const {
+		return data.size();
+	}
+	void Resize( int n ) {
+		data.resize( n );
+	}
+	void Clear() {
+		data.clear();
+	}
+	void Add( T object ) {
+		data.push_back( object );
+	}
+	void Set( int index, T object ) {
+		data[index] = object;
+	}
+	T& Get( int index, T object ) {
+		return static_cast<T*>( data[index] );
+	}
+
+	T& operator []( unsined int index ) {
+		data[index];
+	}
+};
+
+class Registry {
+private:
+	int numEntities = 0;
+
+	// Each Pool constains all the data for a certain component type
+	// Vector index = component type id
+	// Pool index = enity id
+	std::vector<IPool*> componentPools;
 };
 
 
