@@ -52,3 +52,7 @@ Entity Registry::CreateEntity() {
 	
 	return entity;
 }
+
+void Registry::Update() {
+	// TODO
+}

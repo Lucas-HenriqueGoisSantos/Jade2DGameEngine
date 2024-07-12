@@ -152,6 +152,9 @@ public:
 	Registry() = default;
 	
 	Entity CreateEntity();
+	void AddEntityToSystem( Entity entity );
+
+	void Update();
 };
 
 
