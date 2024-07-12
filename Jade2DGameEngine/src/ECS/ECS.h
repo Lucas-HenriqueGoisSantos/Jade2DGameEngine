@@ -2,6 +2,7 @@
 #define ECS_H
 
 #include <bitset>
+#include <set>
 #include <vector>
 #include <unordered_map>
 #include <typeindex>
@@ -144,6 +145,8 @@ private:
 	std::unordered_map<std::type_index, System*> system;
 
 	// Entities to be added in the next Registry Update
+	std::set<Entity> entitiesToBeAdded;
+	std::set<Entity> entitiesToBeKilled;
 
 public:
 	Registry() = default;

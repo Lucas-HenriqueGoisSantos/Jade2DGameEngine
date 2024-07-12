@@ -41,8 +41,13 @@ const Signature& System::GetComponentSignature() const {
 // Registry
 ///////////////////////////////////////////////////////////////////////////////////////////////
 Entity Registry::CreateEntity() {
-	
+
 	int entityId;
 	entityId = numEntities++;
 	Entity entity( entityId );
+	entitiesToBeAdded.insert( entity );
+
+	Logger::Log( "Entity created with id = " + entityId );
+	
+	return entity;
 }
