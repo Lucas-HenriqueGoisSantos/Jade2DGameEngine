@@ -3,6 +3,8 @@
 
 #include <bitset>
 #include <vector>
+#include <unordered_map>
+#include <typeindex>
 
 const unsigned int MAX_COMPONENTS = 32;
 
@@ -85,8 +87,10 @@ class IPool {
 public:
 	virtual ~IPool();
 };
+
 template <typename T>
 class Pool: public IPool {
+
 private:
 	std::vector<T> data;
 
@@ -124,13 +128,24 @@ public:
 };
 
 class Registry {
+
 private:
 	int numEntities = 0;
 
 	// Each Pool constains all the data for a certain component type
-	// Vector index = component type id
-	// Pool index = enity id
+	// [Vector index = component type id]
+	// [Pool index = entity id]
 	std::vector<IPool*> componentPools;
+
+	// Vector of component signatures per entity, saying which component is turned "on" for which entity
+	// [Vector index = entity id]
+	std::vector<Signature> entityComponentSignature;
+
+	std::unordered_map<std::type_index, System*> system;
+
+
+public:
+	Registry() = default;
 };
 
 
