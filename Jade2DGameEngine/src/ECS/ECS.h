@@ -154,6 +154,8 @@ public:
 	Entity CreateEntity();
 	void AddEntityToSystem( Entity entity );
 
+	template<typename T,  typename ...TArgs> void AddComponent( Entity entity, TArgs&& ...args );
+
 	void Update();
 };
 
@@ -163,8 +165,25 @@ public:
 ///////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
 void System::RequireComponent() {
+
 	const auto componentId = Component<T>::GetId;
+	
 	componentSignature.set( componentId );
 }
+
+
+template<typename T,  typename ...TArgs>
+void Registry::AddComponent( Entity entity, TArgs&& ...args ) {
+
+	const auto componentId = Component<T>::GetId();
+	const auto entityId = entity.GetId();
+
+
+	if ( componentId >= componentPools.size() ) {
+
+		componentPools.resize( componentId + 1, nullptr );
+	}
+}
+
 
 #endif // !ECS_H
