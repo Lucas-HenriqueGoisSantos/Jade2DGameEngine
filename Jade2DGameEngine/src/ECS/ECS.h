@@ -184,7 +184,7 @@ void Registry::AddComponent( Entity entity, TArgs&& ...args ) {
 		componentPools.resize( componentId + 1, nullptr );
 	}
 
-	If ( !componentPools[componentId] ) {
+	if ( !componentPools[componentId] ) {
 
 		Pool<T>* newComponentPool = new Pool<T>();
 		componentPools[componentId] = newComponentPool;
