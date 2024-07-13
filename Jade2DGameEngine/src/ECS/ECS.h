@@ -167,7 +167,7 @@ template <typename T>
 void System::RequireComponent() {
 
 	const auto componentId = Component<T>::GetId;
-	
+
 	componentSignature.set( componentId );
 }
 
@@ -182,6 +182,12 @@ void Registry::AddComponent( Entity entity, TArgs&& ...args ) {
 	if ( componentId >= componentPools.size() ) {
 
 		componentPools.resize( componentId + 1, nullptr );
+	}
+
+	If ( !componentPools[componentId] ) {
+
+		Pool<T>* newComponentPool = new Pool<T>();
+		componentPools[componentId] = newComponentPool;
 	}
 }
 
