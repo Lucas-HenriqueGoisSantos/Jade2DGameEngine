@@ -189,6 +189,13 @@ void Registry::AddComponent( Entity entity, TArgs&& ...args ) {
 		Pool<T>* newComponentPool = new Pool<T>();
 		componentPools[componentId] = newComponentPool;
 	}
+
+	Pool<T>* componentPool = Pool<T>( componentPools[componentId] );
+
+	if ( entityId >= componentPool->GetSize() ) {
+		
+		componentPool->Resize( numEntities );
+	}
 }
 
 
