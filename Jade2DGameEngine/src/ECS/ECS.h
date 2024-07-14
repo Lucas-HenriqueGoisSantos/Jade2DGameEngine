@@ -151,9 +151,11 @@ private:
 public:
 	Registry() = default;
 	
+	// Entity management
 	Entity CreateEntity();
 	void AddEntityToSystem( Entity entity );
 
+	// Component management
 	template<typename T,  typename ...TArgs> void AddComponent( Entity entity, TArgs&& ...args );
 
 	void Update();
