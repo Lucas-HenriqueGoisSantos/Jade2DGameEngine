@@ -123,7 +123,7 @@ public:
 		return static_cast<T*>( data[index] );
 	}
 
-	T& operator []( unsined int index ) {
+	T& operator []( unsigned int index ) {
 		data[index];
 	}
 };
