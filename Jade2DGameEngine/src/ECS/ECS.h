@@ -200,6 +200,8 @@ void Registry::AddComponent( Entity entity, TArgs&& ...args ) {
 	T newComponent( std::forward<TArgs>( args )... );
 
 	componentPool->Set( entityId, newComponent );
+
+	entityComponentSignature[entityId].set( componentId );
 }
 
 
