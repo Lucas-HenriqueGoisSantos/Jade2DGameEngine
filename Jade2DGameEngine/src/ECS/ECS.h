@@ -196,6 +196,8 @@ void Registry::AddComponent( Entity entity, TArgs&& ...args ) {
 		
 		componentPool->Resize( numEntities );
 	}
+
+	T newComponent( std::forward<TArgs>( args )... );
 }
 
 
