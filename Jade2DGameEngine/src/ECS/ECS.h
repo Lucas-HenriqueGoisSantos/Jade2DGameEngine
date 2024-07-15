@@ -159,7 +159,13 @@ public:
 	// Component management
 	template<typename T,  typename ...TArgs> void AddComponent( Entity entity, TArgs&& ...args );
 	template<typename T> void RemoveComponent( Entity entity );
-	template<typename T> bool HasComponent( Entity entity );
+	template<typename T> bool HasComponent( Entity entity ) const;
+
+	// System management
+	template<typename T, typename ...TArgs> void AddSystem( TArgs&& ...args );
+	template<typename T> void RemoveSystem();
+	template<typename T> bool HasSystem() const;
+	template<typename T> T& GetSystem() const;
 
 	void Update();
 };
@@ -221,7 +227,7 @@ void Registry::RemoveComponent( Entity entity ) {
 
 
 template<typename T>
-bool Registry::HasComponent( Entity entity ) {
+bool Registry::HasComponent( Entity entity ) const {
 
 	const auto componentId = Component<T>::GetId();
 	const auto entityId = entity.GetId();
