@@ -25,6 +25,7 @@ struct BaseComponent {
 protected:
 	static int nextId;
 };
+
 template <typename T>
 class Component: public BaseComponent {
 
