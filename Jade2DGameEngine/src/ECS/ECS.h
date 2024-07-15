@@ -211,10 +211,21 @@ void Registry::AddComponent( Entity entity, TArgs&& ...args ) {
 
 template<typename T>
 void Registry::RemoveComponent( Entity entity ) {
+
 	const auto componentId = Component<T>::GetId();
 	const auto entityId = entity.GetId();
 
 	entityComponentSignature[entityId].set( componentId, false );
+}
+
+
+template<typename T>
+bool Registry::HasComponent( Entity entity ) {
+
+	const auto componentId = Component<T>::GetId();
+	const auto entityId = entity.GetId();
+
+	return entityComponentSignature[entityId].test( componentId );
 }
 
 
