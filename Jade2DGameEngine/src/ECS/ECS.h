@@ -242,7 +242,7 @@ bool Registry::HasComponent( Entity entity ) const {
 template<typename T, typename ...TArgs>
 void Registry::AddSystem( TArgs&& ...args ) {
 
-	T* newSystem( new T( std::forward<TArgs>( args )... ) );
+	std::shared_ptr<T> newSystem = std::make_shared<T>( std::forward<TArgs>( args )... );
 	systems.insert(std::make_pair( std::type_index( typeid( T ) ), newSystem ) );
 }
 
