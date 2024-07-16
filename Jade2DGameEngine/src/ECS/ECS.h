@@ -246,7 +246,8 @@ void Registry::AddSystem( TArgs&& ...args ) {
 
 template<typename T>
 void Registry::RemoveSystem() {
-
+	auto system = systems.find( std::type_index( typeid( T ) ) );
+	systems.erase( system );
 }
 
 
