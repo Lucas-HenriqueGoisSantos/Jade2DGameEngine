@@ -145,7 +145,7 @@ private:
 	// [Vector index = entity id]
 	std::vector<Signature> entityComponentSignatures;
 
-	std::unordered_map<std::type_index, System*> systems;
+	std::unordered_map<std::type_index, std::shared_ptr<System>> systems;
 
 	// Entities to be added in the next Registry Update
 	std::set<Entity> entitiesToBeAdded;
