@@ -143,7 +143,7 @@ private:
 	// [Vector index = entity id]
 	std::vector<Signature> entityComponentSignature;
 
-	std::unordered_map<std::type_index, System*> system;
+	std::unordered_map<std::type_index, System*> systems;
 
 	// Entities to be added in the next Registry Update
 	std::set<Entity> entitiesToBeAdded;
@@ -234,6 +234,33 @@ bool Registry::HasComponent( Entity entity ) const {
 
 	return entityComponentSignature[entityId].test( componentId );
 }
+
+
+template<typename T, typename ...TArgs>
+void Registry::AddSystem( TArgs&& ...args ) {
+
+	T* newSystem( new T( std::forward<TArgs>( args )... ) );
+	systems.insert(std::make_pair( std::type_index( typeid( T ) ), newSystem ) );
+}
+
+
+template<typename T>
+void Registry::RemoveSystem() {
+
+}
+
+
+template<typename T>
+bool Registry::HasSystem() const {
+
+}
+
+
+template<typename T>
+T& Registry::GetSystem() const {
+
+}
+
 
 
 #endif // !ECS_H
