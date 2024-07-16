@@ -10,6 +10,8 @@ Game::Game() {
 
 	isRunning = false;
 	Logger::Log( "Game constroctor called correctly!" );
+
+	registry = new Registry();
 }
 
 Game::~Game() {
@@ -19,11 +21,9 @@ Game::~Game() {
 
 
 void Game::Setup() {
+
 	// TODO:
-	// Entity tank = registry.CreateEntity();
-	// tank.AddComponent<TranformComponent>();
-	// tank.AddComponent<BoxColliderComponent>();
-	// tank.AddComponent<SpriteComponent>( "./assets/image/tank.png" );
+	Entity tank = registry->CreateEntity();
 }
 
 
