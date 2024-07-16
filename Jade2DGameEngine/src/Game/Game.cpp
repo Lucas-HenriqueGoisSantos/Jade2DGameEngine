@@ -11,7 +11,7 @@ Game::Game() {
 	isRunning = false;
 	Logger::Log( "Game constroctor called correctly!" );
 
-	registry = new Registry();
+	registry = std::make_unique<Registry>();
 }
 
 Game::~Game() {
