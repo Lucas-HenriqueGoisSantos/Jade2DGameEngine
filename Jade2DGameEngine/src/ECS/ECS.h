@@ -139,7 +139,7 @@ private:
 	// Each Pool constains all the data for a certain component type
 	// [Vector index = component type id]
 	// [Pool index = entity id]
-	std::vector<IPool*> componentPools;
+	std::vector<std::shared_ptr<IPool>> componentPools;
 
 	// Vector of component signatures per entity, saying which component is turned "on" for which entity
 	// [Vector index = entity id]
