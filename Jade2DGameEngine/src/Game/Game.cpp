@@ -22,7 +22,6 @@ Game::~Game() {
 
 void Game::Setup() {
 
-	// TODO:
 	Entity tank = registry->CreateEntity();
 }
 
@@ -164,6 +163,7 @@ void Game::Render() {
 }
 
 void Game::Destroy() {
+
 	SDL_DestroyRenderer( renderer );
 	SDL_DestroyWindow( window );
 	SDL_Quit();
