@@ -200,7 +200,7 @@ void Registry::AddComponent( Entity entity, TArgs&& ...args ) {
 
 	if ( !componentPools[componentId] ) {
 
-		Pool<T>* newComponentPool = new Pool<T>();
+		std::shared_prt<Pool<T>> newComponentPool = std::make_shared<Pool<T>>();
 		componentPools[componentId] = newComponentPool;
 	}
 
