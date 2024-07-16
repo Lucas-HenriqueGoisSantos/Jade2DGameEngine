@@ -141,7 +141,7 @@ private:
 
 	// Vector of component signatures per entity, saying which component is turned "on" for which entity
 	// [Vector index = entity id]
-	std::vector<Signature> entityComponentSignature;
+	std::vector<Signature> entityComponentSignatures;
 
 	std::unordered_map<std::type_index, System*> systems;
 
@@ -166,6 +166,7 @@ public:
 	template<typename T> void RemoveSystem();
 	template<typename T> bool HasSystem() const;
 	template<typename T> T& GetSystem() const;
+
 
 	void Update();
 };
@@ -212,7 +213,7 @@ void Registry::AddComponent( Entity entity, TArgs&& ...args ) {
 
 	componentPool->Set( entityId, newComponent );
 
-	entityComponentSignature[entityId].set( componentId );
+	entityComponentSignatures[entityId].set( componentId );
 }
 
 
@@ -222,7 +223,7 @@ void Registry::RemoveComponent( Entity entity ) {
 	const auto componentId = Component<T>::GetId();
 	const auto entityId = entity.GetId();
 
-	entityComponentSignature[entityId].set( componentId, false );
+	entityComponentSignatures[entityId].set( componentId, false );
 }
 
 
@@ -232,7 +233,7 @@ bool Registry::HasComponent( Entity entity ) const {
 	const auto componentId = Component<T>::GetId();
 	const auto entityId = entity.GetId();
 
-	return entityComponentSignature[entityId].test( componentId );
+	return entityComponentSignatures[entityId].test( componentId );
 }
 
 
