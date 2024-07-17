@@ -24,6 +24,7 @@ typedef std::bitset<MAX_COMPONENTS> Signature;
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Assigns a unique ids to a component type
 struct BaseComponent {
+
 protected:
 	static int nextId;
 };
@@ -31,6 +32,7 @@ protected:
 template <typename T>
 class Component: public BaseComponent {
 
+public:
 	static int GetId() {
 		static auto id = nextId++;
 		return id;
@@ -216,6 +218,9 @@ void Registry::AddComponent( Entity entity, TArgs&& ...args ) {
 	componentPool->Set( entityId, newComponent );
 
 	entityComponentSignatures[entityId].set( componentId );
+
+
+	Logger::Log( "Component id: " + std::to_string( componentId ) + "was added to entity id:" + std::to_string ( entityId ) );
 }
 
 
