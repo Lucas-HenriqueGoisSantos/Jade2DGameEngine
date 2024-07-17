@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "../Logger/Logger.h"
 #include "../Components/TransformComponent.h"
+#include "../Components/RigidBodyComponent.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -24,7 +25,8 @@ Game::~Game() {
 void Game::Setup() {
 
 	Entity tank = registry->CreateEntity();
-	registry->AddComponent<TranformComponent>( tenk, glm::vec2( 10.0, 30.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
+	registry->AddComponent<TranformComponent>( tank, glm::vec2( 10.0, 30.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
+	registry->AddComponent<RigidBodyComponent>( glm::vec2( 50.0, 0.0 ) )
 }
 
 
