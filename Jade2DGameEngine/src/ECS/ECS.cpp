@@ -70,7 +70,7 @@ Entity Registry::CreateEntity() {
 }
 
 
-void Registry::AddEntityToSystem(Entity entity) {
+void Registry::AddEntityToSystem( Entity entity ) {
 
 	const auto entityId = entity.GetId();
 	const auto& entityComponentSignature = entityComponentSignatures[entityId];

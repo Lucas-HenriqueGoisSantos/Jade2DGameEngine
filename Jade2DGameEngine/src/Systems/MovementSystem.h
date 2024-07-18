@@ -25,6 +25,15 @@ public:
 			transform.position.x += rigidbody.velocity.x;
 			transform.position.y += rigidbody.velocity.y;
 
+			Logger::Log(
+				"Entity id = " +
+				std::to_string( entity.GetId() ) +
+				" position is now ( " +
+				std::to_string( transform.position.x ) +
+				", " +
+				std::to_string( transform.position.y ) +
+				" )" 
+			);
 		}
 	}
 };
