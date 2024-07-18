@@ -2,6 +2,7 @@
 #include "../Logger/Logger.h"
 #include "../Components/TransformComponent.h"
 #include "../Components/RigidBodyComponent.h"
+#include "../Systems/MovementSystem.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -23,6 +24,8 @@ Game::~Game() {
 
 
 void Game::Setup() {
+
+	registry->AddSystem<MovementSystem>();
 
 	Entity tank = registry->CreateEntity();
 	tank.AddComponent<TranformComponent>( glm::vec2( 10.0, 30.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
@@ -125,14 +128,14 @@ void Game::Update() {
 	millisecondsPreviousFrame = SDL_GetTicks();
 
 	// TODO:
-	// MovementSystem.Update();
+	registry->GetSystem<MovementSystem>().Update();
 	// CollisionSystem.Update();
 	// DamegeSystem.Update();
 }
 
 void Game::Render() {
 
-	SDL_SetRenderDrawColor( renderer, 14, 178, 66, 255);
+	SDL_SetRenderDrawColor( renderer, 14, 178, 66, 255 );
 
 	SDL_RenderClear( renderer );
 
