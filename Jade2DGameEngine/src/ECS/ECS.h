@@ -296,4 +296,28 @@ T& Registry::GetSystem() const {
 
 
 
+template<typename T, typename ...TArgs>
+void Entity::AddComponent( TArgs&& ...args ) {
+	registry->AddComponent<T>( *this, std::forward<TArgs>( args )... );
+}
+
+
+template<typename T>
+void Entity::RemoveComponent() {
+	registry->RemoveComponent<T>( *this );
+}
+
+
+template<typename T>
+bool Entity::HasComponent() const {
+	return registry->HasComponent<T>( *this );
+}
+
+
+template<typename T>
+T& Entity::GetComponent() const {
+	return registry->GetComponent<T>( *this );
+}
+
+
 #endif // !ECS_H
