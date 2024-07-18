@@ -11,18 +11,18 @@
 
 
 const unsigned int MAX_COMPONENTS = 32;
-///////////////////////////////////////////////////////////////////////////////////////////////
-// Signature
-///////////////////////////////////////////////////////////////////////////////////////////////
-// We use a bitset to keep track of which components an entity has,
-// and also helps keep track of which entities a system is interested in.
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-typedef std::bitset<MAX_COMPONENTS> Signature;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Components
 ///////////////////////////////////////////////////////////////////////////////////////////////
+
+//-------------------------------------------------------------------------------------------//
+// Signature --------------------------------------------------------------------------------//
+// We use a bitset to keep track of which components an entity has,
+// and also helps keep track of which entities a system is interested in.
+//-------------------------------------------------------------------------------------------//
+typedef std::bitset<MAX_COMPONENTS> Signature;
+
 // Assigns a unique ids to a component type
 struct BaseComponent {
 
@@ -60,6 +60,7 @@ public:
 	bool operator >( const Entity& other ) const { return id > other.id; }
 	bool operator <( const Entity& other ) const { return id < other.id; }
 
+	class Registry* registry;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
