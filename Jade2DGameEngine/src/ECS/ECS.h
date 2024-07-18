@@ -1,6 +1,7 @@
 #ifndef ECS_H
 #define ECS_H
 
+#include "../Logger/Logger.h"
 #include <bitset>
 #include <set>
 #include <vector>
@@ -91,7 +92,7 @@ public:
 class IPool {
 
 public:
-	virtual ~IPool();
+	virtual ~IPool() {};
 };
 
 template <typename T>
@@ -206,7 +207,7 @@ void Registry::AddComponent( Entity entity, TArgs&& ...args ) {
 		componentPools[componentId] = newComponentPool;
 	}
 
-	std::shared_ptr<<Pool<T>> componentPool = std::static_pointer_cast<Pool<T>>( componentPools[componentId] );
+	std::shared_ptr<Pool<T>> componentPool = std::static_pointer_cast<Pool<T>>( componentPools[componentId] );
 
 	if ( entityId >= componentPool->GetSize() ) {
 		
