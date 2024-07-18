@@ -111,7 +111,7 @@ public:
 		return data.empty();
 	}
 	int GetSize() const {
-		return data.size();
+		return static_cast<int>( data.size() );
 	}
 	void Resize( int n ) {
 		data.resize( n );
