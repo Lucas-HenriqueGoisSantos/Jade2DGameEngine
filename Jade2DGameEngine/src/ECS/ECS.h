@@ -60,6 +60,11 @@ public:
 	bool operator >( const Entity& other ) const { return id > other.id; }
 	bool operator <( const Entity& other ) const { return id < other.id; }
 
+	template<typename T, typename ...TArgs> void AddComponent( TArgs&& ...args );
+	template<typename T> void RemoveComponent();
+	template<typename T> bool HasComponent() const;
+	template<typename T> T& GetComponent() const;
+
 	class Registry* registry;
 };
 
@@ -166,6 +171,7 @@ public:
 	template<typename T,  typename ...TArgs> void AddComponent( Entity entity, TArgs&& ...args );
 	template<typename T> void RemoveComponent( Entity entity );
 	template<typename T> bool HasComponent( Entity entity ) const;
+	template<typename T> T& GetComponent( Entity entity ) const;
 
 	// System management
 	template<typename T, typename ...TArgs> void AddSystem( TArgs&& ...args );
@@ -243,6 +249,18 @@ bool Registry::HasComponent( Entity entity ) const {
 	const auto entityId = entity.GetId();
 
 	return entityComponentSignatures[entityId].test( componentId );
+}
+
+
+template<typename T>
+T& Registry::GetComponent( Entity entity ) const {
+
+	const auto componentId = Component<T>::GetId();
+	const auto entityId = entity.GetId();
+
+	auto componentPool = std::static_pointer_cast<Pool<T>>( componentPools[componentId] );
+	
+	return componentPool->Get( entityId );
 }
 
 
