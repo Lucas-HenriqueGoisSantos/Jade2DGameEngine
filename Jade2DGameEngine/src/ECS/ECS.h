@@ -131,8 +131,8 @@ public:
 	void Set( int index, T object ) {
 		data[index] = object;
 	}
-	T& Get( int index, T object ) {
-		return static_cast<T*>( data[index] );
+	T& Get( int index ) {
+		return static_cast<T&>( data[index] );
 	}
 
 	T& operator []( unsigned int index ) {
@@ -190,8 +190,7 @@ public:
 template <typename T>
 void System::RequireComponent() {
 
-	const auto componentId = Component<T>::GetId;
-
+	const auto componentId = Component<T>::GetId();
 	componentSignature.set( componentId );
 }
 
@@ -252,8 +251,8 @@ bool Registry::HasComponent( Entity entity ) const {
 }
 
 
-template<typename T>
-T& Registry::GetComponent( Entity entity ) const {
+template <typename T>
+T& Registry::GetComponent(Entity entity) const {
 
 	const auto componentId = Component<T>::GetId();
 	const auto entityId = entity.GetId();
@@ -262,7 +261,6 @@ T& Registry::GetComponent( Entity entity ) const {
 	
 	return componentPool->Get( entityId );
 }
-
 
 template<typename T, typename ...TArgs>
 void Registry::AddSystem( TArgs&& ...args ) {

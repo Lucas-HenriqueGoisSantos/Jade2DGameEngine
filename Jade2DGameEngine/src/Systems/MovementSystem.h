@@ -11,8 +11,8 @@ class MovementSystem : public System {
 public:
 	MovementSystem() {
 
-		RequiredComponent<TransformComponent>();
-		RequiredComponent<RigidBodyComponent>();
+		RequireComponent<TransformComponent>();
+		RequireComponent<RigidBodyComponent>();
 	}
 
 	void Update( double deltaTime ) {
