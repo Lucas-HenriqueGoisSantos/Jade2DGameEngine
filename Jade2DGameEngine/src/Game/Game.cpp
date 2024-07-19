@@ -4,6 +4,7 @@
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/SpriteComponent.h"
 #include "../Systems/MovementSystem.h"
+#include "../Systems/RenderSystem.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -156,7 +157,11 @@ void Game::Render() {
 
 	// Render objects here;
 
-
+	//-------------------------------------------------------------------------------------------//
+	// Ivoke all the systems that need to render ------------------------------------------------//
+	registry->GetSystem<RenderSystem>().Update( renderer );
+	
+	//-------------------------------------------------------------------------------------------//
 	// Render of a white rectangle
 	//SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
 	//SDL_Rect playerExemple = { 10, 10, 20, 30 };
