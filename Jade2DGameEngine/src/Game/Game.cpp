@@ -26,10 +26,12 @@ Game::~Game() {
 void Game::Setup() {
 
 	registry->AddSystem<MovementSystem>();
+	registry->AddSystem<RenderSystem>();
 
 	Entity tank = registry->CreateEntity();
 	tank.AddComponent<TransformComponent>( glm::vec2( 10.0, 30.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
 	tank.AddComponent<RigidBodyComponent>( glm::vec2( 50.0, 0.0 ) );
+	tank.AddComponent<SpriteComponent>( 10, 10 );
 }
 
 
