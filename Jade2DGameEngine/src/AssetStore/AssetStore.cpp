@@ -9,7 +9,7 @@ AssetStore::AssetStore() {
 
 AssetStore::~AssetStore() {
 
-	Logger::Log("AssetStore destructor called!");
+	Logger::Log( "AssetStore destructor called!" );
 }
 
 
@@ -17,10 +17,10 @@ void ClearAssets() {
 
 }
 
-void AddTexture(const std::string& assetId, const std::string& filePath) {
+void AddTexture( const std::string& assetId, const std::string& filePath ) {
 
 }
 
-SDL_Texture* GetTexture(const std::string& assetId) const {
+SDL_Texture* GetTexture( const std::string& assetId ) {
 
 }
