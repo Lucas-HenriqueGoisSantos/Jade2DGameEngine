@@ -27,7 +27,7 @@ void AssetStore::AddTexture( SDL_Renderer* renderer, const std::string& assetId,
 	textures.emplace( assetId, texture );
 }
 
-SDL_Texture* AssetStore::GetTexture( const std::string& assetId ) const {
+SDL_Texture* AssetStore::GetTexture( const std::string& assetId ) {
 	
 	return textures[assetId];
 }
