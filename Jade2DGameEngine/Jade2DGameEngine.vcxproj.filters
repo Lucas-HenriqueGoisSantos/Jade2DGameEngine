@@ -936,6 +936,15 @@
     <ClInclude Include="src\Components\RigidBodyComponent.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="src\Components\SpriteComponent.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Systems\RenderSystem.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AssetStore\AssetStore.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="libs\glm\detail\func_common.inl">
@@ -1390,6 +1399,9 @@
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="src\ECS\ECS.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AssetStore\AssetStore.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
