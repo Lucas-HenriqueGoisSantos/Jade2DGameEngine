@@ -23,6 +23,7 @@ public:
 			const auto transform = entity.GetComponent<TransformComponent>();
             const auto sprite = entity.GetComponent<SpriteComponent>();
 
+			// TODO:
 			SDL_Rect objRect = {
 				static_cast<int>( transform.position.x ),
 				static_cast<int>( transform.position.y ),
