@@ -18,10 +18,13 @@ void AssetStore::ClearAssets() {
 
 }
 
-void AssetStore::AddTexture( const std::string& assetId, const std::string& filePath ) {
+void AssetStore::AddTexture( SDL_Renderer* renderer, const std::string& assetId, const std::string& filePath ) {
 
 	SDL_Surface* surface = IMG_Load( filePath.c_str() );
-	SDL_Texture* texture = SDL_CreateTextureFromSurface( surface );
+	SDL_Texture* texture = SDL_CreateTextureFromSurface( renderer, surface );
+	SDL_FreeSurface( surface );
+
+	textures.emplace( assetId, texture );
 }
 
 SDL_Texture* AssetStore::GetTexture( const std::string& assetId ) const {

@@ -36,9 +36,9 @@ void Game::Setup() {
 
 
 	// Add assets here
-	assetStore->AddTexture( "tank-image", "./assets/images/tank-panther-right.png" );
+	assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
 	
-	assetStore->AddTexture( "truck-image", "./assets/images/truck-ford-right.png" );
+	assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
 
 
 	// Create and add components to entities here
