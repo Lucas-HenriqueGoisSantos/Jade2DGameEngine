@@ -14,9 +14,11 @@
 Game::Game() {
 
 	isRunning = false;
-	Logger::Log( "Game constroctor called correctly!" );
 
 	registry = std::make_unique<Registry>();
+	assetStore = std::make_unique<AssetStore>();
+
+	Logger::Log("Game constroctor called correctly!");
 }
 
 Game::~Game() {
