@@ -13,14 +13,14 @@ AssetStore::~AssetStore() {
 }
 
 
-void ClearAssets() {
+void AssetStore::ClearAssets() {
 
 }
 
-void AddTexture( const std::string& assetId, const std::string& filePath ) {
+void AssetStore::AddTexture( const std::string& assetId, const std::string& filePath ) {
 
 }
 
-SDL_Texture* GetTexture( const std::string& assetId ) {
+SDL_Texture* AssetStore::GetTexture( const std::string& assetId ) const {
 
 }
