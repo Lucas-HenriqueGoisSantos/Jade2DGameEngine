@@ -10,12 +10,18 @@ AssetStore::AssetStore() {
 
 AssetStore::~AssetStore() {
 
+	ClearAssets();
 	Logger::Log( "AssetStore destructor called!" );
 }
 
 
 void AssetStore::ClearAssets() {
 
+	for ( auto texture: textures ) {
+		
+		Sdl_DestroyTexture( texture.second );
+	}
+	textures.clear();
 }
 
 void AssetStore::AddTexture( SDL_Renderer* renderer, const std::string& assetId, const std::string& filePath ) {
