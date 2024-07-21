@@ -18,7 +18,7 @@ Game::Game() {
 	registry = std::make_unique<Registry>();
 	assetStore = std::make_unique<AssetStore>();
 
-	Logger::Log("Game constroctor called correctly!");
+	Logger::Log( "Game constroctor called correctly!" );
 }
 
 Game::~Game() {
@@ -53,7 +53,7 @@ void Game::Inicialize() {
 
 	if ( !window ) {
 
-		Logger::Err("Error creating SDL window.");
+		Logger::Err( "Error creating SDL window." );
 		return;
 	}
 
@@ -63,7 +63,7 @@ void Game::Inicialize() {
 		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
 	);
 	if ( !renderer ) {
-		Logger::Err("Error creating SDL renderer.");
+		Logger::Err( "Error creating SDL renderer." );
 		return;
 	}
 
