@@ -24,9 +24,10 @@ public:
 	Game();
 	~Game();
 
+	void Inicialize();
+	void LoadLevel( int level );
 	void Setup();
 	void Run();
-	void Inicialize();
 	void ProcessInput();
 	void Update();
 	void Render();

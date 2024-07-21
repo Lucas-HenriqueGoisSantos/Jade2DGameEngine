@@ -27,18 +27,65 @@ Game::~Game() {
 }
 
 
-void Game::Setup() {
+
+void Game::Inicialize() {
+
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+		Logger::Err("Error inicializing SDL.");
+		return;
+	}
+
+	// Sets the game to "fake" fullscreen
+	SDL_DisplayMode displayMode;
+	SDL_GetCurrentDisplayMode(0, &displayMode);
+
+	//windowWidth = 800; // displayMode.w;
+	//windowHeight = 600; // displayMode.h;
+
+
+	window = SDL_CreateWindow(
+
+		NULL,
+		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+		windowWidth, windowHeight,
+		SDL_WINDOW_BORDERLESS
+	);
+
+	if (!window) {
+
+		Logger::Err("Error creating SDL window.");
+		return;
+	}
+
+	renderer = SDL_CreateRenderer(
+		window,
+		-1,
+		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
+	);
+	if (!renderer) {
+		Logger::Err("Error creating SDL renderer.");
+		return;
+	}
+
+	// Change video mode to fullscreen
+	SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+
+	isRunning = true;
+}
+
+
+void Game::LoadLevel( int level ) {
 
 	// Add the systems here
 	registry->AddSystem<MovementSystem>();
-	
+
 	registry->AddSystem<RenderSystem>();
 
 
 	// Add assets here
-	assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
-	
-	assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
+	assetStore->AddTexture(renderer, "tank-image", "./assets/images/tank-panther-right.png");
+
+	assetStore->AddTexture(renderer, "truck-image", "./assets/images/truck-ford-right.png");
 
 
 	// Create and add components to entities here
@@ -54,6 +101,12 @@ void Game::Setup() {
 }
 
 
+void Game::Setup() {
+
+	LoadLevel( 1 );
+}
+
+
 void Game::Run() {
 
 	Setup();
@@ -65,51 +118,6 @@ void Game::Run() {
 	}
 }
 
-
-void Game::Inicialize() {
-
-	if ( SDL_Init( SDL_INIT_EVERYTHING ) != 0 ) {
-		Logger::Err( "Error inicializing SDL." );
-		return;
-	}
-
-	// Sets the game to "fake" fullscreen
-	SDL_DisplayMode displayMode;
-	SDL_GetCurrentDisplayMode( 0, &displayMode );
-
-	//windowWidth = 800; // displayMode.w;
-	//windowHeight = 600; // displayMode.h;
-
-
-	window = SDL_CreateWindow(
-
-		NULL, 
-		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
-		windowWidth, windowHeight, 
-		SDL_WINDOW_BORDERLESS 
-	);
-
-	if ( !window ) {
-
-		Logger::Err( "Error creating SDL window." );
-		return;
-	}
-
-	renderer = SDL_CreateRenderer( 
-		window, 
-		-1, 
-		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
-	);
-	if ( !renderer ) {
-		Logger::Err( "Error creating SDL renderer." );
-		return;
-	}
-
-	// Change video mode to fullscreen
-	SDL_SetWindowFullscreen( window, SDL_WINDOW_FULLSCREEN );
-	
-	isRunning = true;
-}
 
 
 void Game::ProcessInput() {
