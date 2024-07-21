@@ -30,14 +30,14 @@ Game::~Game() {
 
 void Game::Inicialize() {
 
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-		Logger::Err("Error inicializing SDL.");
+	if ( SDL_Init( SDL_INIT_EVERYTHING ) != 0 ) {
+		Logger::Err( "Error inicializing SDL." );
 		return;
 	}
 
 	// Sets the game to "fake" fullscreen
 	SDL_DisplayMode displayMode;
-	SDL_GetCurrentDisplayMode(0, &displayMode);
+	SDL_GetCurrentDisplayMode( 0, &displayMode );
 
 	//windowWidth = 800; // displayMode.w;
 	//windowHeight = 600; // displayMode.h;
@@ -51,7 +51,7 @@ void Game::Inicialize() {
 		SDL_WINDOW_BORDERLESS
 	);
 
-	if (!window) {
+	if ( !window ) {
 
 		Logger::Err("Error creating SDL window.");
 		return;
@@ -62,13 +62,13 @@ void Game::Inicialize() {
 		-1,
 		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
 	);
-	if (!renderer) {
+	if ( !renderer ) {
 		Logger::Err("Error creating SDL renderer.");
 		return;
 	}
 
 	// Change video mode to fullscreen
-	SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+	SDL_SetWindowFullscreen( window, SDL_WINDOW_FULLSCREEN );
 
 	isRunning = true;
 }
@@ -83,21 +83,21 @@ void Game::LoadLevel( int level ) {
 
 
 	// Add assets here
-	assetStore->AddTexture(renderer, "tank-image", "./assets/images/tank-panther-right.png");
+	assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
 
-	assetStore->AddTexture(renderer, "truck-image", "./assets/images/truck-ford-right.png");
+	assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
 
 
 	// Create and add components to entities here
 	Entity tank = registry->CreateEntity();
-	tank.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-	tank.AddComponent<RigidBodyComponent>(glm::vec2(40.0, 0.0));
-	tank.AddComponent<SpriteComponent>("tank-image", 32, 32);
+	tank.AddComponent<TransformComponent>( glm::vec2( 10.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
+	tank.AddComponent<RigidBodyComponent>( glm::vec2( 40.0, 0.0 ) );
+	tank.AddComponent<SpriteComponent>( "tank-image", 32, 32 );
 
 	Entity truck = registry->CreateEntity();
-	truck.AddComponent<TransformComponent>(glm::vec2(50.0, 100.0), glm::vec2(1.0, 1.0), 0.0);
-	truck.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 50.0));
-	truck.AddComponent<SpriteComponent>("truck-image", 32, 32);
+	truck.AddComponent<TransformComponent>( glm::vec2( 50.0, 100.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
+	truck.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 50.0 ) );
+	truck.AddComponent<SpriteComponent>( "truck-image", 32, 32 );
 }
 
 
