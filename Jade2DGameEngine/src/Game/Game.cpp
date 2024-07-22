@@ -90,6 +90,7 @@ void Game::LoadLevel( int level ) {
 	assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
 	assetStore->AddTexture( renderer, "tilemap-image", "./assets/tilemaps/jungle.png" );
 
+
 	// Load Tilemap
 	int tileSize = 32;
 	double tileScale = 1.0;
@@ -108,21 +109,22 @@ void Game::LoadLevel( int level ) {
 
 			Entity tile = registry->CreateEntity();
 			tile.AddComponent<TransformComponent>(glm::vec2(x * (tileScale * tileSize), y * (tileScale * tileSize)), glm::vec2(tileScale, tileScale), 0.0);
-			tile.AddComponent<SpriteComponent>("tilemap-image", tileSize, tileSize, srcRectX, srcRectY);
+			tile.AddComponent<SpriteComponent>("tilemap-image", tileSize, tileSize, 0, srcRectX, srcRectY);
 		}
 	}
 	mapFile.close();
+
 
 	// Create and add components to entities here
 	Entity tank = registry->CreateEntity();
 	tank.AddComponent<TransformComponent>( glm::vec2( 10.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
 	tank.AddComponent<RigidBodyComponent>( glm::vec2( 40.0, 0.0 ) );
-	tank.AddComponent<SpriteComponent>( "tank-image", 32, 32 );
+	tank.AddComponent<SpriteComponent>( "tank-image", 1, 32, 32 );
 
 	Entity truck = registry->CreateEntity();
 	truck.AddComponent<TransformComponent>( glm::vec2( 50.0, 100.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
 	truck.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 50.0 ) );
-	truck.AddComponent<SpriteComponent>( "truck-image", 32, 32 );
+	truck.AddComponent<SpriteComponent>( "truck-image", 1, 32, 32 );
 }
 
 
