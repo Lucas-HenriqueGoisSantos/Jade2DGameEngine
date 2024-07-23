@@ -19,6 +19,21 @@ public:
 
 	void Update( SDL_Renderer* renderer, std::unique_ptr<AssetStore>& assetStore ) {
 
+		struct RenderableEntity {
+
+			TransformComponent transformComponent;
+			SpriteComponent spriteComponent;
+		}
+		std::vector<RenderableEntity> renderableEntities;
+		for ( auto entity : GetSystemEntities() ) {
+
+			RenderableEntity renderableEntity;
+			renderableEntity.spriteComponent = entity.GetComponent<SpriteComponent>();
+			renderableEntity.transformComponent = entity.GetComponent<transformComponent>();
+			renderableEntities.emplace_back( renderableEntity );
+		}
+
+
 		for ( auto entity : GetSystemEntities() ) {
 
 			const auto transform = entity.GetComponent<TransformComponent>();
