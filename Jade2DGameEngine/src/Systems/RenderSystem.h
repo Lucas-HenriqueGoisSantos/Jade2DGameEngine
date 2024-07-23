@@ -33,6 +33,11 @@ public:
 			renderableEntities.emplace_back( renderableEntity );
 		}
 
+		std::sort( renderableEntities.begin(), renderableEntities.end(), []( const RenderableEntity& a, const RenderableEntity& b ) {
+			
+			return a.spriteComponent.zIndex < b.spriteComponent.zIndex;
+		} );
+
 
 		for ( auto entity : GetSystemEntities() ) {
 
