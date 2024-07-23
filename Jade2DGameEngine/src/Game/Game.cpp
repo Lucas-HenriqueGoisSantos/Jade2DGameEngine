@@ -119,12 +119,12 @@ void Game::LoadLevel( int level ) {
 	Entity tank = registry->CreateEntity();
 	tank.AddComponent<TransformComponent>( glm::vec2( 10.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
 	tank.AddComponent<RigidBodyComponent>( glm::vec2( 40.0, 0.0 ) );
-	tank.AddComponent<SpriteComponent>( "tank-image", 1, 32, 32 );
+	tank.AddComponent<SpriteComponent>( "tank-image", 32, 32, 1 );
 
 	Entity truck = registry->CreateEntity();
 	truck.AddComponent<TransformComponent>( glm::vec2( 50.0, 100.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
 	truck.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 50.0 ) );
-	truck.AddComponent<SpriteComponent>( "truck-image", 1, 32, 32 );
+	truck.AddComponent<SpriteComponent>( "truck-image", 32, 32, 1 );
 }
 
 
