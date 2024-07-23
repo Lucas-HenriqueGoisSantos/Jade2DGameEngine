@@ -34,15 +34,15 @@ public:
 		}
 
 		std::sort( renderableEntities.begin(), renderableEntities.end(), []( const RenderableEntity& a, const RenderableEntity& b ) {
-			
+
 			return a.spriteComponent.zIndex < b.spriteComponent.zIndex;
 		} );
 
 
-		for ( auto entity : GetSystemEntities() ) {
+		for ( auto entity : renderableEntities ) {
 
-			const auto transform = entity.GetComponent<TransformComponent>();
-            const auto sprite = entity.GetComponent<SpriteComponent>();
+			const auto transform = entity.transformComponent;
+            const auto sprite = entity.spriteComponent;
 
 			SDL_Rect srcRect = sprite.srcRect;
 
