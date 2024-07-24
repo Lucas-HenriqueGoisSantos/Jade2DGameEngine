@@ -6,6 +6,7 @@
 #include "../Components/AnimationComponent.h"
 #include "../Systems/MovementSystem.h"
 #include "../Systems/RenderSystem.h"
+#include "../Systems/AnimationSystem.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -82,12 +83,12 @@ void Game::LoadLevel( int level ) {
 
 	// Add the systems here
 	registry->AddSystem<MovementSystem>();
-
 	registry->AddSystem<RenderSystem>();
+	registry->AddSystem<AnimationSystem>();
 
 
 	// Add assets here
-	assetStore->AddTexture(renderer, "chopper-image", "./assets/images/chopper-spritesheet.png");
+	assetStore->AddTexture( renderer, "chopper-image", "./assets/images/chopper-spritesheet.png" );
 	assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
 	assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
 	assetStore->AddTexture( renderer, "tilemap-image", "./assets/tilemaps/jungle.png" );
@@ -196,7 +197,7 @@ void Game::Update() {
 	//-------------------------------------------------------------------------------------------//
 	// Update all the systems -------------------------------------------------------------------//
 	registry->GetSystem<MovementSystem>().Update( deltaTime );
-	
+	registry->GetSystem<AnimationSystem>().Update();
 	//-------------------------------------------------------------------------------------------//
 
 	// TODO:

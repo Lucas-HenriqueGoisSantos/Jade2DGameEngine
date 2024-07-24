@@ -17,6 +17,11 @@ public:
 
 	void Update() {
 
+		for ( auto entity: GetSystemEntities() ) {
+
+			auto animation = entity.GetComponent<AnimationComponent>();
+			auto sprite = entity.GetComponent<SpriteComponent>();
+		}
 	}
 };
 
