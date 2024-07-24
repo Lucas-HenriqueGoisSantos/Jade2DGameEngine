@@ -86,6 +86,7 @@ void Game::LoadLevel( int level ) {
 
 
 	// Add assets here
+	assetStore->AddTexture(renderer, "chopper-image", "./assets/images/chopper-spritesheet.png");
 	assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
 	assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
 	assetStore->AddTexture( renderer, "tilemap-image", "./assets/tilemaps/jungle.png" );
@@ -116,6 +117,12 @@ void Game::LoadLevel( int level ) {
 
 
 	// Create and add components to entities here
+	Entity chopper = registry->CreateEntity();
+	chopper.AddComponent<TransformComponent>( glm::vec2( 10.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
+	chopper.AddComponent<RigidBodyComponent>( glm::vec2( 50.0, 10.0 ) );
+	chopper.AddComponent<SpriteComponent>( "chopper-image", 32, 32, 2 );
+	chopper.AddComponent<AnimationComponent>();
+
 	Entity tank = registry->CreateEntity();
 	tank.AddComponent<TransformComponent>( glm::vec2( 10.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
 	tank.AddComponent<RigidBodyComponent>( glm::vec2( 40.0, 0.0 ) );

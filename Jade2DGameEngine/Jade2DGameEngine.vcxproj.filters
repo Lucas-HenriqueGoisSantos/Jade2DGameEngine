@@ -948,6 +948,9 @@
     <ClInclude Include="..\..\..\..\..\Users\Lucas\Desktop\2dgameengine\src\Components\SpriteComponent.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="src\Components\AnimationComponent.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="libs\glm\detail\func_common.inl">
