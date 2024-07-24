@@ -8,6 +8,7 @@
 #include "../Systems/MovementSystem.h"
 #include "../Systems/RenderSystem.h"
 #include "../Systems/AnimationSystem.h"
+#include "../Systems/CollisionSystem.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -86,6 +87,7 @@ void Game::LoadLevel( int level ) {
 	registry->AddSystem<MovementSystem>();
 	registry->AddSystem<RenderSystem>();
 	registry->AddSystem<AnimationSystem>();
+	registry->AddSystem<CollisionSystem>();
 
 
 	// Add assets here
@@ -208,6 +210,7 @@ void Game::Update() {
 	// Update all the systems -------------------------------------------------------------------//
 	registry->GetSystem<MovementSystem>().Update( deltaTime );
 	registry->GetSystem<AnimationSystem>().Update();
+	registry->GetSystem<CollisionSystem>().Update();
 	//-------------------------------------------------------------------------------------------//
 
 	// TODO:
