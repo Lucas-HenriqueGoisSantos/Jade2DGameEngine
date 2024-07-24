@@ -7,6 +7,8 @@
 #include "../Logger/Logger.h"
 #include "../AssetStore/AssetStore.h"
 #include <SDL.h>
+#include <vector>
+#include <algorithm>
 
 class RenderSystem : public System {
 
@@ -23,13 +25,13 @@ public:
 
 			TransformComponent transformComponent;
 			SpriteComponent spriteComponent;
-		}
+		};
 		std::vector<RenderableEntity> renderableEntities;
 		for ( auto entity : GetSystemEntities() ) {
 
 			RenderableEntity renderableEntity;
 			renderableEntity.spriteComponent = entity.GetComponent<SpriteComponent>();
-			renderableEntity.transformComponent = entity.GetComponent<transformComponent>();
+			renderableEntity.transformComponent = entity.GetComponent<TransformComponent>();
 			renderableEntities.emplace_back( renderableEntity );
 		}
 
