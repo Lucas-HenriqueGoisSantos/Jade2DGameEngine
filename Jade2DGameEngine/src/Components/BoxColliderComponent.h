@@ -5,7 +5,7 @@
 
 struct BoxColliderComponent {
 
-    int width
+    int width;
     int height;
     glm::vec2 offset;
 
