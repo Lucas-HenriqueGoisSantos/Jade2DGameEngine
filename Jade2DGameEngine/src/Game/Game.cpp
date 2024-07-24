@@ -3,6 +3,7 @@
 #include "../Components/TransformComponent.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/SpriteComponent.h"
+#include "../Components/AnimationComponent.h"
 #include "../Systems/MovementSystem.h"
 #include "../Systems/RenderSystem.h"
 #include <glm/glm.hpp>
@@ -121,7 +122,7 @@ void Game::LoadLevel( int level ) {
 	chopper.AddComponent<TransformComponent>( glm::vec2( 10.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
 	chopper.AddComponent<RigidBodyComponent>( glm::vec2( 50.0, 10.0 ) );
 	chopper.AddComponent<SpriteComponent>( "chopper-image", 32, 32, 2 );
-	chopper.AddComponent<AnimationComponent>();
+	chopper.AddComponent<AnimationComponent>( 2, 24 );
 
 	Entity tank = registry->CreateEntity();
 	tank.AddComponent<TransformComponent>( glm::vec2( 10.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
