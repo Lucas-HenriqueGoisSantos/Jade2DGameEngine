@@ -89,6 +89,7 @@ void Game::LoadLevel( int level ) {
 
 	// Add assets here
 	assetStore->AddTexture( renderer, "chopper-image", "./assets/images/chopper.png" );
+	assetStore->AddTexture( renderer, "radar-image", "./assets/images/radar.png");
 	assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
 	assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
 	assetStore->AddTexture( renderer, "tilemap-image", "./assets/tilemaps/jungle.png" );
@@ -124,6 +125,12 @@ void Game::LoadLevel( int level ) {
 	chopper.AddComponent<RigidBodyComponent>( glm::vec2( 50.0, 10.0 ) );
 	chopper.AddComponent<SpriteComponent>( "chopper-image", 32, 32, 2 );
 	chopper.AddComponent<AnimationComponent>( 2, 12 );
+
+	Entity radar = registry->CreateEntity();
+	radar.AddComponent<TransformComponent>( glm::vec2( 500.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
+	radar.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
+	radar.AddComponent<SpriteComponent>( "radar-image", 64, 64, 3 );
+	radar.AddComponent<AnimationComponent>( 7, 8 );
 
 	Entity tank = registry->CreateEntity();
 	tank.AddComponent<TransformComponent>( glm::vec2( 10.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
