@@ -5,6 +5,7 @@
 #include "../Components/SpriteComponent.h"
 #include "../Components/AnimationComponent.h"
 #include "../Components/BoxColliderComponent.h"
+#include "../Systems/RenderColliderSystem.h"
 #include "../Systems/MovementSystem.h"
 #include "../Systems/RenderSystem.h"
 #include "../Systems/AnimationSystem.h"
@@ -20,6 +21,7 @@
 Game::Game() {
 
 	isRunning = false;
+	isDebug = false;
 
 	registry = std::make_unique<Registry>();
 	assetStore = std::make_unique<AssetStore>();
@@ -176,12 +178,18 @@ void Game::ProcessInput() {
 		switch ( sdlEvent.type ) {
 
 			case SDL_QUIT:
+				
 				isRunning = false;
 				break;
 
 			case SDL_KEYDOWN:
 				if ( sdlEvent.key.keysym.sym == SDLK_ESCAPE ) {
+					
 					isRunning = false;
+				}
+
+				if ( sdlEvent.key.keysym.sym == SDLK_d ) {
+
 				}
 				break;
 
