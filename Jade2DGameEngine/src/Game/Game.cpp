@@ -247,7 +247,7 @@ void Game::Render() {
 	
 	if ( isDebug ) {
 
-		registry->GetSystem<RenderColliderSystem>().Update( Renderer );
+		registry->GetSystem<RenderColliderSystem>().Update( renderer );
 	}
 	//-------------------------------------------------------------------------------------------//
 	// Render of a white rectangle
