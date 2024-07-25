@@ -190,6 +190,7 @@ void Game::ProcessInput() {
 
 				if ( sdlEvent.key.keysym.sym == SDLK_d ) {
 
+					isDebug = !isDebug;
 				}
 				break;
 
