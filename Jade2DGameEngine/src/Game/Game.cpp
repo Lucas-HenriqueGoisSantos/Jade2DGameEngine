@@ -90,6 +90,7 @@ void Game::LoadLevel( int level ) {
 	registry->AddSystem<RenderSystem>();
 	registry->AddSystem<AnimationSystem>();
 	registry->AddSystem<CollisionSystem>();
+	registry->AddSystem<RenderColliderSystem>();
 
 
 	// Add assets here
@@ -244,6 +245,10 @@ void Game::Render() {
 	// Ivoke all the systems that need to render ------------------------------------------------//
 	registry->GetSystem<RenderSystem>().Update( renderer, assetStore );
 	
+	if ( isDebug ) {
+
+		registry->GetSystem<RenderColliderSystem>().Update( Renderer );
+	}
 	//-------------------------------------------------------------------------------------------//
 	// Render of a white rectangle
 	//SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
