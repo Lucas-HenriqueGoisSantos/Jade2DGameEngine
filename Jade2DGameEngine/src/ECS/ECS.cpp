@@ -12,6 +12,12 @@ int Entity::GetId() const {
 }
 
 
+void Entity::Kill() {
+
+	registry->KillEntity( *this );
+}
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // System
@@ -67,7 +73,7 @@ Entity Registry::CreateEntity() {
 		entityId = freeIds.front();
 		freeIds.pop_front();
 	}
-	
+
 	Entity entity( entityId );
 	entity.registry = this;
 	entitiesToBeAdded.insert( entity );
