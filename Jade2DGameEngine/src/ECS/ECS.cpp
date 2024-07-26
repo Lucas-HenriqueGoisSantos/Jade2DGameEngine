@@ -117,6 +117,8 @@ void Registry::Update() {
 	for ( auto entity: entitiesToBeAdded ) {
 
 		RemoveEntityFromSystems( entity );
+
+		freeIds.push_back( entity.GetId() );
 	}
 
 	entitiesToBeKilled.clear();
