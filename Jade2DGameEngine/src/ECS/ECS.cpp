@@ -70,7 +70,13 @@ Entity Registry::CreateEntity() {
 }
 
 
-void Registry::AddEntityToSystem( Entity entity ) {
+void Registry::KillEntity( Entity entity ) {
+
+	entitiesToBeKilled.insert( entity );
+}
+
+
+void Registry::AddEntityToSystems( Entity entity ) {
 
 	const auto entityId = entity.GetId();
 	const auto& entityComponentSignature = entityComponentSignatures[entityId];
@@ -88,12 +94,30 @@ void Registry::AddEntityToSystem( Entity entity ) {
 }
 
 
+void Registry::RemoveEntityFromSystems( Entity entity ) {
+
+	for ( auto system: systems ) {
+
+		system.second->RemoveEntityFromSystem( entity );
+	}
+}
+
+
 void Registry::Update() {
 
-	// TODO
+	// Processing the entities to be created
 	for ( auto entity: entitiesToBeAdded ) {
 
-		AddEntityToSystem( entity );
+		AddEntityToSystems( entity );
 	}
+
 	entitiesToBeAdded.clear();
+
+
+	for ( auto entity: entitiesToBeAdded ) {
+
+		RemoveEntityFromSystems( entity );
+	}
+
+	entitiesToBeKilled.clear();
 }

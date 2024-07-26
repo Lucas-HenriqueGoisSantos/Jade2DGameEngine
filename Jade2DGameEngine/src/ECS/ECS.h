@@ -4,6 +4,7 @@
 #include "../Logger/Logger.h"
 #include <bitset>
 #include <set>
+#include <deque>
 #include <vector>
 #include <unordered_map>
 #include <typeindex>
@@ -160,12 +161,17 @@ private:
 	std::set<Entity> entitiesToBeAdded;
 	std::set<Entity> entitiesToBeKilled;
 
+	// List of free entity ids
+	std::deque<int> freeIds;
+
 public:
 	Registry() = default;
 	
 	// Entity management
 	Entity CreateEntity();
-	void AddEntityToSystem( Entity entity );
+	void KillEntity( Entity entity );
+	void AddEntityToSystems( Entity entity );
+	void RemoveEntityFromSystems( Entity entity );
 
 	// Component management
 	template<typename T,  typename ...TArgs> void AddComponent( Entity entity, TArgs&& ...args );
