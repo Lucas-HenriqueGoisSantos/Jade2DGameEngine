@@ -119,6 +119,8 @@ void Registry::Update() {
 		RemoveEntityFromSystems( entity );
 
 		freeIds.push_back( entity.GetId() );
+
+		entityComponentSignatures[entity.GetId()].reset();
 	}
 
 	entitiesToBeKilled.clear();
