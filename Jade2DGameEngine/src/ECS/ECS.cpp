@@ -14,12 +14,8 @@ int Entity::GetId() const {
 
 void Entity::Kill() {
 
-	registry->KillEntity( *this );
+	registry->KillEntity(*this);
 }
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
 // System
 ///////////////////////////////////////////////////////////////////////////////////////////////
 void System::AddEntityToSystem( Entity entity ) {
@@ -132,7 +128,7 @@ void Registry::Update() {
 	for ( auto entity: entitiesToBeAdded ) {
 
 		RemoveEntityFromSystems( entity );
-		entityComponentSignatures[entiity.GetId()].reset();
+		entityComponentSignatures[entity.GetId()].reset();
 		freeIds.push_back( entity.GetId() );
 
 		entityComponentSignatures[entity.GetId()].reset();
