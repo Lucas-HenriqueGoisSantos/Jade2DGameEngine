@@ -12,6 +12,12 @@ int Entity::GetId() const {
 }
 
 
+void Entity::Kill() {
+
+	registry->KillEntity( *this );
+}
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // System
@@ -54,15 +60,24 @@ const Signature& System::GetComponentSignature() const {
 Entity Registry::CreateEntity() {
 
 	int entityId;
-	entityId = numEntities++;
+	if ( freeIds.empty() ) {
+
+		entityId = numEntities++;
+
+		if ( entityId >= entityComponentSignatures.size() ) {
+
+			entityComponentSignatures.resize( entityId + 1 );
+		}
+	} else {
+
+		entityId = freeIds.front();
+		freeIds.pop_front();
+	}
+
 	Entity entity( entityId );
 	entity.registry = this;
 	entitiesToBeAdded.insert( entity );
 
-	if ( entityId >= entityComponentSignatures.size() ) {
-
-		entityComponentSignatures.resize( entityId + 1 );
-	}
 
 	Logger::Log( "Entity created with id = " + std::to_string ( entityId ) );
 	
@@ -117,7 +132,7 @@ void Registry::Update() {
 	for ( auto entity: entitiesToBeAdded ) {
 
 		RemoveEntityFromSystems( entity );
-
+		entityComponentSignatures[entiity.GetId()].reset();
 		freeIds.push_back( entity.GetId() );
 
 		entityComponentSignatures[entity.GetId()].reset();
