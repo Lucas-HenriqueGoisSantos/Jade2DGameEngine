@@ -3,9 +3,15 @@
 
 
 #include "../Logger/Logger.h"
+#include <map>
+#include <typeindex>
+#include <memory>
 
 
 class EventBus {
+
+private:
+	std::map<std::type_index, std::unique_ptr<HandlerList>> subscribers;
 
 public:
 	EventBus() {
@@ -16,6 +22,17 @@ public:
 	~EventBus() {
 
 		Logger::Log( "EventBus destructor called!" );
+	}
+
+
+	void SubscribeToEvent<___>() {
+
+
+	}
+
+	void EmitEvent<___>() {
+
+
 	}
 };
 
