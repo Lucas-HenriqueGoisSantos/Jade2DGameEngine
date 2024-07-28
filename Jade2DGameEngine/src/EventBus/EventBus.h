@@ -6,6 +6,13 @@
 #include <map>
 #include <typeindex>
 #include <memory>
+#include <list>
+
+template<typename T> class EventCallback {
+
+};
+
+typedef std::list<std::unique_ptr<EventCallback>> HandlerList;
 
 
 class EventBus {
