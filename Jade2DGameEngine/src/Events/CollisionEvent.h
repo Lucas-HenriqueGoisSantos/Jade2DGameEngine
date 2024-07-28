@@ -5,7 +5,7 @@
 #include "../ECS/ECS.h"
 
 
-class CollisionEvent {
+class CollisionEvent: public Event {
 
 public:
 	Entity a;
