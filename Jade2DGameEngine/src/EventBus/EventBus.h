@@ -8,11 +8,43 @@
 #include <memory>
 #include <list>
 
-template<typename T> class EventCallback {
 
+class Event {
+
+public:
+	Event() = default;
 };
 
-typedef std::list<std::unique_ptr<EventCallback>> HandlerList;
+class IEventCallback {
+
+private:
+	virtual void Call( Event& e ) = 0;
+
+public:
+	virtual ~IEventCallback() = default;
+
+	void Execute( Event& e ) {
+
+		Call( e );
+	}
+};
+
+template<typename TOwner, typename T> class EventCallback: public IEventCallback {
+
+private:
+	typedef void ( TOwner::* CallBackFunction ) ( T& );
+
+	TOwner ownerInstance;
+	CallbackFunction callbackFunction;
+
+	virtual void Call( Event& e ) override {
+
+		std:invoke( callbackFunction, ownerInstance, e );
+	}
+};
+
+
+typedef std::list<std::unique_ptr<IEventCallback>> HandlerList;
 
 
 class EventBus {
