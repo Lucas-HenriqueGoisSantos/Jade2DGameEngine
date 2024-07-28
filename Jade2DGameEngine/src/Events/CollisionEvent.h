@@ -1,0 +1,7 @@
+#ifndef COLLISIONEVENT_H
+#define COLLISIONEVENT_H
+
+
+
+
+#endif // !COLLISIONEVENT_H
