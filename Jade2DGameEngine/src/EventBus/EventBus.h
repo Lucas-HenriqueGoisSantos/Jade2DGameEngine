@@ -72,7 +72,8 @@ public:
 		Logger::Log( "EventBus destructor called!" );
 	}
 
-	template<typename TOwner, typename T> void SubscribeToEvent( TOwner* ownerInstance, void( TOwner::*callbackFunction )( T& ) ) {
+	template<typename TOwner, typename T>
+	void SubscribeToEvent( TOwner* ownerInstance, void( TOwner::*callbackFunction )( T& ) ) {
 
 		if ( !subscribers[typeid( T )].get() ) {
 
@@ -83,9 +84,21 @@ public:
 		subscribers[typeid( T )]->push_back( std::move( subscriber ) );
 	}
 
-	void EmitEvent<___>() {
+	template<typename T, typename ...TArgs>
+	void EmitEvent( TArgs&& ...args ) {
 
+		auto handlers = subscribers[typeid( T )].get();
 
+		if ( handlers ) {
+
+			for ( auto it = handlers->begin(); it != handlers->end(); it++ ) {
+				
+				auto handler = it->get();
+				T event( std::forward<TArgs>( args )... );
+
+				handler->Execute( event );
+			}
+		}
 	}
 };
 
