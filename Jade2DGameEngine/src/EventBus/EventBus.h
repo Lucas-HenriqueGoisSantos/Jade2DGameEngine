@@ -3,17 +3,12 @@
 
 
 #include "../Logger/Logger.h"
+#include "Event.h"
 #include <map>
 #include <typeindex>
 #include <memory>
 #include <list>
 
-
-class Event {
-
-public:
-	Event() = default;
-};
 
 class IEventCallback {
 
