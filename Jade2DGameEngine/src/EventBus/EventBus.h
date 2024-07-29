@@ -27,14 +27,14 @@ public:
 template<typename TOwner, typename T> class EventCallback: public IEventCallback {
 
 private:
-	typedef void ( TOwner::* CallBackFunction ) ( T& );
+	typedef void ( TOwner::*CallBackFunction ) ( T& );
 
 	TOwner ownerInstance;
-	CallbackFunction callbackFunction;
+	CallBackFunction callbackFunction;
 
 	virtual void Call( Event& e ) override {
 
-	std:invoke( callbackFunction, ownerInstance, static_cast<TEvent&>( e ) );
+	std:invoke( callbackFunction, ownerInstance, static_cast<T&>( e ) );
 	}
 
 public:
