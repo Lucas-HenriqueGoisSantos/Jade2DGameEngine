@@ -3,6 +3,7 @@
 
 #include "../ECS/ECS.h"
 #include "../EventBus/EventBus.h"
+#include "../Events/CollisionEvent.h"
 #include "../Logger/Logger.h"
 #include "../Components/BoxColliderComponent.h"
 #include "../Components/TransformComponent.h"
@@ -61,7 +62,7 @@ public:
 
                     Logger::Log("Entity " + std::to_string(a.GetId()) + " is colliding with entity " + std::to_string(b.GetId()));
 
-                    eventBus->EmitEvent<CollisionEvent>();
+                    eventBus->EmitEvent<CollisionEvent>( a, b )...;
                 }
             }
         }
