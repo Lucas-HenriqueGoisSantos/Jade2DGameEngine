@@ -224,7 +224,7 @@ void Game::Update() {
 	// Update all the systems -------------------------------------------------------------------//
 	registry->GetSystem<MovementSystem>().Update( deltaTime );
 	registry->GetSystem<AnimationSystem>().Update();
-	registry->GetSystem<CollisionSystem>().Update();
+	registry->GetSystem<CollisionSystem>().Update( eventBus);
 	//-------------------------------------------------------------------------------------------//
 
 	// TODO:
