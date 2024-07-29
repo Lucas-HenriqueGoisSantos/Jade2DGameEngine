@@ -72,10 +72,15 @@ public:
 		Logger::Log( "EventBus destructor called!" );
 	}
 
+	template<typename TOwner, typename T> void SubscribeToEvent( TOwner* ownerInstance, void( TOwner::*callbackFunction )( T& ) ) {
 
-	void SubscribeToEvent<___>() {
+		if ( !subscribers[typeid( T )].get() ) {
 
+			subscribers[typeid( T )] == std::make_unique<HandlerList>();
+		}
 
+		auto subscriber = std::make_unique<EventCallback<TOwner, T>>( ownerInstance, callbackFunction );
+		subscribers[typeid( T )]->push_back( std::move( subscriber ) );
 	}
 
 	void EmitEvent<___>() {
