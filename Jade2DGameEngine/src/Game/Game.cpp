@@ -74,6 +74,7 @@ void Game::Inicialize() {
 		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
 	);
 	if ( !renderer ) {
+
 		Logger::Err( "Error creating SDL renderer." );
 		return;
 	}
@@ -166,6 +167,7 @@ void Game::Run() {
 	Setup();
 
 	while ( isRunning ) {
+		
 		ProcessInput();
 		Update();
 		Render();
