@@ -24,21 +24,22 @@ public:
 	}
 };
 
-template<typename TOwner, typename T> class EventCallback: public IEventCallback {
+template<typename TOwner, typename T>
+class EventCallback: public IEventCallback {
 
 private:
 	typedef void ( TOwner::*CallBackFunction ) ( T& );
 
-	TOwner ownerInstance;
+	TOwner* ownerInstance;
 	CallBackFunction callbackFunction;
 
 	virtual void Call( Event& e ) override {
 
-	std:invoke( callbackFunction, ownerInstance, static_cast<T&>( e ) );
+	std::invoke( callbackFunction, ownerInstance, static_cast<T&>( e ) );
 	}
 
 public:
-	EventCallback( TOwner ownerInstance, CallBackFunction callbackFunction ) {
+	EventCallback( TOwner* ownerInstance, CallBackFunction callbackFunction ) {
 
 		this->ownerInstance = ownerInstance;
 		this->callbackFunction = callbackFunction;
@@ -67,16 +68,16 @@ public:
 		Logger::Log( "EventBus destructor called!" );
 	}
 
-	template<typename TOwner, typename T>
-	void SubscribeToEvent( TOwner* ownerInstance, void( TOwner::*callbackFunction )( T& ) ) {
+	template <typename TEvent, typename TOwner>
+	void SubscribeToEvent( TOwner* ownerInstance, void ( TOwner::* callbackFunction )( TEvent& ) ) {
 
-		if ( !subscribers[typeid( T )].get() ) {
+		if ( !subscribers[typeid( TEvent )].get() ) {
 
-			subscribers[typeid( T )] == std::make_unique<HandlerList>();
+			subscribers[typeid( TEvent )] = std::make_unique<HandlerList>();
 		}
 
-		auto subscriber = std::make_unique<EventCallback<TOwner, T>>( ownerInstance, callbackFunction );
-		subscribers[typeid( T )]->push_back( std::move( subscriber ) );
+		auto subscriber = std::make_unique<EventCallback<TOwner, TEvent>>( ownerInstance, callbackFunction );
+		subscribers[typeid( TEvent )]->push_back( std::move( subscriber ) );
 	}
 
 	template<typename T, typename ...TArgs>

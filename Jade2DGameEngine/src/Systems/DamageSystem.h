@@ -3,6 +3,8 @@
 
 
 #include "../ECS/ECS.h"
+#include "../EventBus/EventBus.h"
+#include "../Events/CollisionEvent.h"
 #include "../Components/BoxColliderComponent.h"
 
 
@@ -12,6 +14,17 @@ public:
 	DamageSystem() {
 
 		RequireComponent<BoxColliderComponent>();
+	}
+
+
+	void onCollision( CollisionEvent& event ) {
+
+		// TODO
+	}
+
+	void SubscribeToEvent( std::unique_ptr<EventBus>& eventBus ) {
+
+		eventBus->SubscribeToEvent<CollisionEvent>( this, &DamageSystem::onCollision );
 	}
 
 	void Update() {

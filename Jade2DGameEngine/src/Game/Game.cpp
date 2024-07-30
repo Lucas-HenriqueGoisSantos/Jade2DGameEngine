@@ -10,6 +10,7 @@
 #include "../Systems/RenderSystem.h"
 #include "../Systems/AnimationSystem.h"
 #include "../Systems/CollisionSystem.h"
+#include "../Systems/DamageSystem.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
