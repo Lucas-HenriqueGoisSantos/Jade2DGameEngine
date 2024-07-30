@@ -84,6 +84,8 @@ Entity Registry::CreateEntity() {
 void Registry::KillEntity( Entity entity ) {
 
 	entitiesToBeKilled.insert( entity );
+
+	Logger::Log("Entity killed with id = " + std::to_string( entity.GetId() ));
 }
 
 
@@ -125,7 +127,7 @@ void Registry::Update() {
 	entitiesToBeAdded.clear();
 
 
-	for ( auto entity: entitiesToBeAdded ) {
+	for ( auto entity: entitiesToBeKilled ) {
 
 		RemoveEntityFromSystems( entity );
 		entityComponentSignatures[entity.GetId()].reset();
