@@ -11,6 +11,7 @@
 #include "../Systems/AnimationSystem.h"
 #include "../Systems/CollisionSystem.h"
 #include "../Systems/DamageSystem.h"
+#include "../Systems/KeyboardControlSystem.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -95,6 +96,7 @@ void Game::LoadLevel( int level ) {
 	registry->AddSystem<CollisionSystem>();
 	registry->AddSystem<RenderColliderSystem>();
 	registry->AddSystem<DamageSystem>();
+	registry->AddSystem<KeyboardControlSystem>();
 
 
 	// Add assets here
@@ -226,7 +228,8 @@ void Game::Update() {
 
 	//-------------------------------------------------------------------------------------------//
 	// Performs events subscribtion to all systems ----------------------------------------------------------//
-	registry->GetSystem<DamageSystem>().SubscribeToEvent( eventBus );
+	registry->GetSystem<DamageSystem>().SubscribeToEvents( eventBus );
+	registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents( eventBus );
 	//-------------------------------------------------------------------------------------------//
 
 	//-------------------------------------------------------------------------------------------//

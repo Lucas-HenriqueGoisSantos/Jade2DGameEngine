@@ -26,7 +26,7 @@ public:
 		event.b.Kill();
 	}
 
-	void SubscribeToEvent( std::unique_ptr<EventBus>& eventBus ) {
+	void SubscribeToEvents( std::unique_ptr<EventBus>& eventBus ) {
 
 		eventBus->SubscribeToEvent<CollisionEvent>( this, &DamageSystem::onCollision );
 	}
