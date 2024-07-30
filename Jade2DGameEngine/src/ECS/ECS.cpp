@@ -14,7 +14,7 @@ int Entity::GetId() const {
 
 void Entity::Kill() {
 
-	registry->KillEntity(*this);
+	registry->KillEntity( *this );
 }
 // System
 ///////////////////////////////////////////////////////////////////////////////////////////////
