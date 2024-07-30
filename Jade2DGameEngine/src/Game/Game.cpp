@@ -222,20 +222,24 @@ void Game::Update() {
 	// Store the current frame time
 	millisecondsPreviousFrame = SDL_GetTicks();
 
+	// Reset all event handlers
+	eventBus->Reset();
+
+	//-------------------------------------------------------------------------------------------//
+	// Performs events subscribtion to all systems ----------------------------------------------------------//
+	registry->GetSystem<DamageSystem>().SubscribeToEvent( eventBus );
+	//-------------------------------------------------------------------------------------------//
+
+	//-------------------------------------------------------------------------------------------//
+	// Adds and removes entities from the registry
+	registry->Update();
+	//-------------------------------------------------------------------------------------------//
+
 	//-------------------------------------------------------------------------------------------//
 	// Update all the systems -------------------------------------------------------------------//
 	registry->GetSystem<MovementSystem>().Update( deltaTime );
 	registry->GetSystem<AnimationSystem>().Update();
 	registry->GetSystem<CollisionSystem>().Update( eventBus);
-	//-------------------------------------------------------------------------------------------//
-
-	// TODO:
-	// CollisionSystem.Update();
-	// DamegeSystem.Update();
-
-	//-------------------------------------------------------------------------------------------//
-	// Adds and removes entities from the registry
-	registry->Update();
 	//-------------------------------------------------------------------------------------------//
 }
 
