@@ -200,6 +200,9 @@ void Game::ProcessInput() {
 
 					isDebug = !isDebug;
 				}
+
+				eventBus->EmitEvent<KeyPressedEvent>( sdlEvent.key.keysym.sym );
+
 				break;
 
 			default:
