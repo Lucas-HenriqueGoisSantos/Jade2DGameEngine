@@ -27,7 +27,7 @@ public:
             );
     }
 
-    void Update( std::unique_ptr<EventBus>& eventBus; ) {
+    void Update( std::unique_ptr<EventBus>& eventBus ) {
 
         auto entities = GetSystemEntities();
 
@@ -60,9 +60,9 @@ public:
 
                 if ( collisionHappened ) {
 
-                    Logger::Log("Entity " + std::to_string(a.GetId()) + " is colliding with entity " + std::to_string(b.GetId()));
+                    Logger::Log("Entity " + std::to_string( a.GetId() ) + " is colliding with entity " + std::to_string( b.GetId() ) );
 
-                    eventBus->EmitEvent<CollisionEvent>( a, b )...;
+                    eventBus->EmitEvent<CollisionEvent>( a, b );
                 }
             }
         }

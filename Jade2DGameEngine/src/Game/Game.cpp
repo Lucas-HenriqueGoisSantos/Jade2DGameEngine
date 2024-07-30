@@ -25,7 +25,7 @@ Game::Game() {
 
 	registry = std::make_unique<Registry>();
 	assetStore = std::make_unique<AssetStore>();
-	eventBus = make_unique<EventBus>();
+	eventBus = std::make_unique<EventBus>();
 
 	Logger::Log( "Game constroctor called correctly!" );
 }
