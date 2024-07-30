@@ -93,6 +93,7 @@ void Game::LoadLevel( int level ) {
 	registry->AddSystem<AnimationSystem>();
 	registry->AddSystem<CollisionSystem>();
 	registry->AddSystem<RenderColliderSystem>();
+	registry->AddSystem<DamageSystem>();
 
 
 	// Add assets here
