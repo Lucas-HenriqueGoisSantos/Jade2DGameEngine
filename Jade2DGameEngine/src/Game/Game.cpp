@@ -22,6 +22,10 @@
 #include <fstream>
 
 
+int Game::windowWidth;
+int Game::windowHeight;
+int Game::mapWidth;
+int Game::mapHeight;
 
 Game::Game() {
 
@@ -141,6 +145,8 @@ void Game::LoadLevel( int level ) {
 		}
 	}
 	mapFile.close();
+	mapWidth = mapNumCols * tileSize * tileScale;
+	mapHeight = mapNumRows * tileSize * tileScale;
 
 
 	// Create and add components to entities here
