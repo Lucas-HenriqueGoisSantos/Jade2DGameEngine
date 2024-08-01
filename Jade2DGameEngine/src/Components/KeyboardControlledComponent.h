@@ -5,14 +5,14 @@
 #include <glm/glm.hpp>
 
 
-struct KeyboardContrelledComponent {
+struct KeyboardControlledComponent {
 
     glm::vec2 upVelocity;
     glm::vec2 rightVelocity;
     glm::vec2 downVelocity;
     glm::vec2 leftVelocity;
 
-    KeyboardContrelledComponent( glm::vec2 upVelocity = glm::vec2( 0 ), glm::vec2 rightVelocity = glm::vec2( 0 ), glm::vec2 downVelocity = glm::vec2( 0 ), glm::vec2 leftVelocity = glm::vec2( 0 ) ) {
+    KeyboardControlledComponent( glm::vec2 upVelocity = glm::vec2( 0 ), glm::vec2 rightVelocity = glm::vec2( 0 ), glm::vec2 downVelocity = glm::vec2( 0 ), glm::vec2 leftVelocity = glm::vec2( 0 ) ) {
 
         this->upVelocity = upVelocity;
         this->rightVelocity = rightVelocity;
