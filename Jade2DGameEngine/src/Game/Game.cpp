@@ -44,7 +44,7 @@ Game::~Game() {
 void Game::Initialize() {
 
 	if ( SDL_Init( SDL_INIT_EVERYTHING ) != 0 ) {
-		
+
 		Logger::Err( "Error initializing SDL." );
 		return;
 	}
@@ -84,6 +84,13 @@ void Game::Initialize() {
 
 	// Change video mode to fullscreen
 	SDL_SetWindowFullscreen( window, SDL_WINDOW_FULLSCREEN );
+
+	
+	camera.x = 0;
+	camera.y = 0;
+	camera.w = windowWidth;
+	camera.h = windowHeight;
+
 
 	isRunning = true;
 }
