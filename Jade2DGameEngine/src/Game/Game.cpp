@@ -41,10 +41,11 @@ Game::~Game() {
 
 
 
-void Game::Inicialize() {
+void Game::Initialize() {
 
 	if ( SDL_Init( SDL_INIT_EVERYTHING ) != 0 ) {
-		Logger::Err( "Error inicializing SDL." );
+		
+		Logger::Err( "Error initializing SDL." );
 		return;
 	}
 

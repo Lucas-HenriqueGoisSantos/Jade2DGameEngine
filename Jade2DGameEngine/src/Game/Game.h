@@ -18,6 +18,7 @@ private:
 	int millisecondsPreviousFrame = 0;
 	SDL_Window* window = NULL;
 	SDL_Renderer* renderer = NULL;
+	SDL_Rect camera;
 
 	std::unique_ptr<Registry> registry;
 	std::unique_ptr<AssetStore> assetStore;
@@ -27,7 +28,7 @@ public:
 	Game();
 	~Game();
 
-	void Inicialize();
+	void Initialize();
 	void LoadLevel( int level );
 	void Setup();
 	void Run();
