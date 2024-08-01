@@ -108,6 +108,7 @@ void Game::LoadLevel( int level ) {
 	registry->AddSystem<RenderColliderSystem>();
 	registry->AddSystem<DamageSystem>();
 	registry->AddSystem<KeyboardControlSystem>();
+	registry->AddSystem<CameraMovementSystem>();
 
 
 	// Add assets here
@@ -257,7 +258,8 @@ void Game::Update() {
 	// Update all the systems -------------------------------------------------------------------//
 	registry->GetSystem<MovementSystem>().Update( deltaTime );
 	registry->GetSystem<AnimationSystem>().Update();
-	registry->GetSystem<CollisionSystem>().Update( eventBus);
+	registry->GetSystem<CollisionSystem>().Update( eventBus );
+	registry->GetSystem<CameraMovementSystem>().Update( camera );
 	//-------------------------------------------------------------------------------------------//
 }
 
