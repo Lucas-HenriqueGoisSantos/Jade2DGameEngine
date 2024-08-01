@@ -14,6 +14,7 @@
 #include "../Systems/CollisionSystem.h"
 #include "../Systems/DamageSystem.h"
 #include "../Systems/KeyboardControlSystem.h"
+#include "../Systems/CameraMovementSystem.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
