@@ -29,6 +29,33 @@ public:
 			const auto keyboardControl = entity.GetComponent<KeyboardControlledComponent>();
 			auto& sprite = entity.GetComponent<SpriteComponent>();
 			auto& rigidbody = entity.GetComponent<RigidBodyComponent>();
+		
+			switch ( event.symbol ) {
+
+				case SDLK_UP:
+					rigidbody.velocity = keyboardControl.upVelocity;
+					sprite.srcRect.y = sprite.height * 0;
+					break;
+
+				case SDLK_RIGHT:
+					rigidbody.velocity = keyboardControl.rightVelocity;
+					sprite.srcRect.y = sprite.height * 1;
+					break;
+
+				case SDLK_DOWN:
+					rigidbody.velocity = keyboardControl.downVelocity;
+					sprite.srcRect.y = sprite.height * 2;
+					break;
+
+				case SDLK_LEFT:
+					rigidbody.velocity = keyboardControl.leftVelocity;
+					sprite.srcRect.y = sprite.height * 3;
+					break;
+
+
+				default:
+					break;
+			}
 		}
 	}
 
