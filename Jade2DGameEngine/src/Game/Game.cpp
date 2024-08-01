@@ -138,7 +138,7 @@ void Game::LoadLevel( int level ) {
 	chopper.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
 	chopper.AddComponent<SpriteComponent>( "chopper-image", 32, 32, 2 );
 	chopper.AddComponent<AnimationComponent>( 2, 12 );
-	chopper.AddComponent<KeyboardControlledComponent>( glm::vec2( 0, -20 ), glm::vec2( 20, 0 ), glm::vec2( 0, 20 ), glm::vec2( -20, 0 ) );
+	chopper.AddComponent<KeyboardControlledComponent>( glm::vec2( 0, -80 ), glm::vec2( 80, 0 ), glm::vec2( 0, 80 ), glm::vec2( -80, 0 ) );
 
 	Entity radar = registry->CreateEntity();
 	radar.AddComponent<TransformComponent>( glm::vec2( 500.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
