@@ -6,20 +6,30 @@
 #include "../ECS/ECS.h"
 #include "../EventBus/EventBus.h"
 #include "../Events/KeyPressedEvent.h"
+#include "../Components/KeyboardControlledComponent.h"
+#include "../Components/SpriteComponent.h"
+#include "../Components/RigidBodyComponent.h"
 
 
 class KeyboardControlSystem : public System {
 
 public:
-	KeyboardControlSystem() {}
+	KeyboardControlSystem() {
+
+		RequireComponent<KeyboardControlledComponent>();
+		RequireComponent<SpriteComponent>();
+		RequireComponent<RigidBodyComponent>();
+	}
 
 
 	void OnKeyPressed( KeyPressedEvent& event ) {
 
-		std::string keyCode = std::to_string( event.symbol );
-		std::string keySymbol( 1, event.symbol );
+		for ( auto entity: GetSystemEntities() ) {
 
-		Logger::Log( "Key pressed event emitted: [" + keyCode + "] " + keySymbol );
+			const auto keyboardControl = entity.GetComponent<KeyboardControlledComponent>();
+			auto& sprite = entity.GetComponent<SpriteComponent>();
+			auto& rigidbody = entity.GetComponent<RigidBodyComponent>();
+		}
 	}
 
 	void SubscribeToEvents( std::unique_ptr<EventBus>& eventBus ) {
