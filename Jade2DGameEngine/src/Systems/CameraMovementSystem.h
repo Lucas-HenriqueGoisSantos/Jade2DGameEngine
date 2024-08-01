@@ -23,7 +23,8 @@ public:
 
             auto transform = entity.GetComponent<TransformComponent>();
 
-            
+            camera.x = transform.position.x;
+            camera.y = transform.position.y;
         }
     }
 }

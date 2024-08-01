@@ -273,7 +273,7 @@ void Game::Render() {
 
 	//-------------------------------------------------------------------------------------------//
 	// Ivoke all the systems that need to render ------------------------------------------------//
-	registry->GetSystem<RenderSystem>().Update( renderer, assetStore );
+	registry->GetSystem<RenderSystem>().Update( renderer, assetStore, camera );
 	
 	if ( isDebug ) {
 
