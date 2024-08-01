@@ -274,29 +274,6 @@ void Game::Render() {
 
 		registry->GetSystem<RenderColliderSystem>().Update( renderer );
 	}
-	//-------------------------------------------------------------------------------------------//
-	// Render of a white rectangle
-	//SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
-	//SDL_Rect playerExemple = { 10, 10, 20, 30 };
-	//SDL_RenderFillRect( renderer, &playerExemple );
-
-	//--------------------------------------------------------------------------------//
-	//// Render PNG texture
-
-	//// Load PNG from file
-	//SDL_Surface* surface = IMG_Load( "./assets/images/tank-tiger-right.png" );
-	//SDL_Texture* texture = SDL_CreateTextureFromSurface( renderer, surface );
-	//SDL_FreeSurface( surface );
-
-	//// Destination and size in render
-	//SDL_Rect dstRect = { 
-	//	static_cast<int>(playerPos.x), static_cast<int>(playerPos.y),
-	//	64, 64 
-	//};
-	//// Copying to the renderer. A NULL SDL_Rect will be interpreted as "get the entire texture / fill the entire window"
-	//SDL_RenderCopy( renderer, texture, NULL, &dstRect );
-	//SDL_DestroyTexture( texture );
-	//--------------------------------------------------------------------------------//
 
 
 	SDL_RenderPresent( renderer );
