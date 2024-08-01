@@ -2,7 +2,10 @@
 #define CAMERAFOLLOWCOMPONENT_H
 
 
+struct CameraFollowComponent {
 
+    CameraFollowComponent() = default;
+};
 
 
 #endif
