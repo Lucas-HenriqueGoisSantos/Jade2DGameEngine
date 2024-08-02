@@ -23,14 +23,14 @@ public:
 
             auto transform = entity.GetComponent<TransformComponent>();
 
-            if ( transform.position.x < Game::mapWidth ) {
+            if ( transform.position.x + ( camera.w / 2 ) < Game::mapWidth ) {
 
-                camera.x = transform.position.x;
+                camera.x = transform.position.x - ( Game::mapWidth / 2 );
             }
 
-            if ( transform.position.y < Game::mapHeight ) {
+            if ( transform.position.y + (camera.h / 2) < Game::mapHeight ) {
 
-                camera.y = transform.position.y;
+                camera.y = transform.position.y - ( Game::mapHeight / 2 );
             }
 
 
