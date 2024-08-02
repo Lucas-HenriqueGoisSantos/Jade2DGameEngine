@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\SDK\SDL2\include;C:\Dev\C_Cpp\Cpp\Jade2DGameEngine\Jade2DGameEngine\libs;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Dev\C_Cpp\Cpp\Jade2DGameEngine\Jade2DGameEngine\libs\lua;C:\SDK\SDL2\lib\x64;C:\SDK\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Dev\C_Cpp\Cpp\Jade2DGameEngine\Jade2DGameEngine\libs\lua;C:\SDK\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
     <ExternalIncludePath>C:\SDK\SDL2\lib\x64;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryWPath>$(LibraryWPath)</LibraryWPath>
   </PropertyGroup>
@@ -122,7 +122,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;SDL2test.lib;liblua54.a;SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;SDL2test.lib;liblua54.a;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
