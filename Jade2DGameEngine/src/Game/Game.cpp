@@ -125,7 +125,7 @@ void Game::LoadLevel( int level ) {
 
 	// Load Tilemap
 	int tileSize = 32;
-	double tileScale = 1.0;
+	double tileScale = 2.0;
 	int mapNumCols = 25;
 	int mapNumRows = 20;
 	std::fstream mapFile;
