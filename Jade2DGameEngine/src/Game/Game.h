@@ -37,8 +37,8 @@ public:
 	void Render();
 	void Destroy();
 
-	static int windowWidth = 800;
-	static int windowHeight = 600;
+	static int windowWidth;
+	static int windowHeight;
 	static int mapWidth;
 	static int mapHeight;
 };

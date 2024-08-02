@@ -8,7 +8,7 @@
 #include <SDL.h>
 
 
-class CameraMovementSystem: System {
+class CameraMovementSystem : System {
 
 public:
     CameraMovementSystem() {
@@ -17,17 +17,17 @@ public:
         RequireComponent<TransformComponent>();
     }
 
-    Update( SDL_Rect& camera) {
-
-        for( auto entity: GetSystemEntities() ) {
+    void Update( SDL_Rect& camera ) {
+    /*
+        for ( auto entity : GetSystemEntities() ) {
 
             auto transform = entity.GetComponent<TransformComponent>();
 
             camera.x = transform.position.x;
             camera.y = transform.position.y;
-        }
+        }*/
     }
-}
+};
 
 
 #endif
