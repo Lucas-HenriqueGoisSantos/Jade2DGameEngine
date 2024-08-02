@@ -283,7 +283,7 @@ void Game::Render() {
 	
 	if ( isDebug ) {
 
-		registry->GetSystem<RenderColliderSystem>().Update( renderer );
+		registry->GetSystem<RenderColliderSystem>().Update( renderer, camera );
 	}
 
 
