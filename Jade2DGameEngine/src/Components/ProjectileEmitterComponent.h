@@ -15,7 +15,7 @@ struct ProjectileEmitterComponent {
     bool isFriendly;
     int lastEmissionTime;
 
-    ProjectileEmitterComponent( glm::vec2 projectileVelocit = glm::vec2( 0 ), int repeatFrequency = 0, int projectileDuration = 10000, int hitPercentDamage = 10, bool isFriendly = false ) {
+    ProjectileEmitterComponent( glm::vec2 projectileVelocity = glm::vec2( 0 ), int repeatFrequency = 10000, int projectileDuration = 10000, int hitPercentDamage = 10, bool isFriendly = false ) {
 
         this->projectileVelocity = projectileVelocity;
         this->repeatFrequency = repeatFrequency;
