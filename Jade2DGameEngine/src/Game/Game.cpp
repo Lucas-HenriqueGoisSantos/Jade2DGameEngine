@@ -115,6 +115,7 @@ void Game::LoadLevel( int level ) {
 	registry->AddSystem<DamageSystem>();
 	registry->AddSystem<KeyboardControlSystem>();
 	registry->AddSystem<CameraMovementSystem>();
+	registry->AddSystem<ProjectileEmitSystem>();
 
 
 	// Add assets here
@@ -123,6 +124,7 @@ void Game::LoadLevel( int level ) {
 	assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
 	assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
 	assetStore->AddTexture( renderer, "tilemap-image", "./assets/tilemaps/jungle.png" );
+	assetStore->AddTexture(renderer, "bullet-image", "./assets/images/bullet.png");
 
 
 	// Load Tilemap
@@ -269,6 +271,7 @@ void Game::Update() {
 	registry->GetSystem<MovementSystem>().Update( deltaTime );
 	registry->GetSystem<AnimationSystem>().Update();
 	registry->GetSystem<CollisionSystem>().Update( eventBus );
+	registry->GetSystem<ProjectileEmitSystem>().Update( registry );
 	registry->GetSystem<CameraMovementSystem>().Update( camera );
 	//-------------------------------------------------------------------------------------------//
 }
