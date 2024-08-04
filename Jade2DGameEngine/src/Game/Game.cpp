@@ -18,6 +18,7 @@
 #include "../Systems/KeyboardControlSystem.h"
 #include "../Systems/CameraMovementSystem.h"
 #include "../Systems/ProjectileEmitSystem.h"
+#include "../Systems/ProjectileLifeCycleSystem.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -117,6 +118,7 @@ void Game::LoadLevel( int level ) {
 	registry->AddSystem<KeyboardControlSystem>();
 	registry->AddSystem<CameraMovementSystem>();
 	registry->AddSystem<ProjectileEmitSystem>();
+	registry->AddSystem<ProjectileLifeCycleSystem>();
 
 
 	// Add assets here
@@ -277,6 +279,7 @@ void Game::Update() {
 	registry->GetSystem<CollisionSystem>().Update( eventBus );
 	registry->GetSystem<ProjectileEmitSystem>().Update( registry );
 	registry->GetSystem<CameraMovementSystem>().Update( camera );
+	registry->GetSystem<ProjectileLifeCycleSystem>().Update();
 	//-------------------------------------------------------------------------------------------//
 }
 
