@@ -165,6 +165,8 @@ void Game::LoadLevel( int level ) {
 	chopper.AddComponent<KeyboardControlledComponent>( glm::vec2( 0, -80 ), glm::vec2( 80, 0 ), glm::vec2( 0, 80 ), glm::vec2( -80, 0 ) );
 	chopper.AddComponent<CameraFollowComponent>();
 	chopper.AddComponent<HealthComponent>( 100 );
+	chopper.AddComponent<ProjectileEmitterComponent>(glm::vec2( 150.0, 150.0), 0, 10000, 0, true );
+
 
 	Entity radar = registry->CreateEntity();
 	radar.AddComponent<TransformComponent>( glm::vec2( 500.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
@@ -177,7 +179,7 @@ void Game::LoadLevel( int level ) {
 	tank.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
 	tank.AddComponent<SpriteComponent>( "tank-image", 32, 32, 1 );
 	tank.AddComponent<BoxColliderComponent>( 32, 32 );
-	tank.AddComponent<ProjectileEmitterComponent>( glm::vec2( -50.0, 0.0 ), 1000, 1000, 0, false );
+	tank.AddComponent<ProjectileEmitterComponent>( glm::vec2( 0.0, 50.0 ), 1000, 1000, 0, false );
 	tank.AddComponent<HealthComponent>( 100 );
 
 	Entity truck = registry->CreateEntity();
@@ -265,6 +267,7 @@ void Game::Update() {
 	// Performs events subscribtion to all systems ----------------------------------------------------------//
 	registry->GetSystem<DamageSystem>().SubscribeToEvents( eventBus );
 	registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents( eventBus );
+	registry->GetSystem<ProjectileEmitSystem>().SubscribeToEvents( eventBus );
 	//-------------------------------------------------------------------------------------------//
 
 	//-------------------------------------------------------------------------------------------//
