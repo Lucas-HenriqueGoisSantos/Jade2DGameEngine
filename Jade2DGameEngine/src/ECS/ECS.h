@@ -192,7 +192,7 @@ public:
 	// Entity group management
 	void GroupEntity( Entity entity, const std::string& group );
 	bool EntityBelongsToGroup( Entity entity, const std::string& group ) const;
-	std::vector<Entity> GetEntitiesByGroup( const std::string& group );
+	std::vector<Entity> GetEntitiesByGroup( const std::string& group ) const;
 	void RemoveEntityGroup( Entity entity );
 
 	// Component management
