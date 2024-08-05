@@ -184,6 +184,16 @@ public:
 	void KillEntity( Entity entity );
 	void AddEntityToSystems( Entity entity );
 	void RemoveEntityFromSystems( Entity entity );
+	// Entity Tag management
+	void TagEntity( Entity entity, const std::string& tag );
+	bool EntityHasTag( Entity entity, const std::string& tag ) const;
+	Entity GetEntityByTag( const std::string& tag ) const;
+	void RemoveEntityTag( Entity entity );
+	// Entity group management
+	void GroupEntity( Entity entity, const std::string& group );
+	bool EntityBelongsToGroup( Entity entity, const std::string& group ) const;
+	std::vector<Entity> GetEntitiesByGroup( const std::string& group );
+	void RemoveEntityGroup( Entity entity );
 
 	// Component management
 	template<typename T,  typename ...TArgs> void AddComponent( Entity entity, TArgs&& ...args );
