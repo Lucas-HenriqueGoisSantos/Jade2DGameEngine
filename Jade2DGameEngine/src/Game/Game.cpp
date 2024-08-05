@@ -158,6 +158,7 @@ void Game::LoadLevel( int level ) {
 
 	// Create and add components to entities here
 	Entity chopper = registry->CreateEntity();
+	chopper.Tag( "player" );
 	chopper.AddComponent<TransformComponent>( glm::vec2( 10.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
 	chopper.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
 	chopper.AddComponent<SpriteComponent>( "chopper-image", 32, 32, 2 );
@@ -175,6 +176,7 @@ void Game::LoadLevel( int level ) {
 	radar.AddComponent<AnimationComponent>( 7, 8 );
 
 	Entity tank = registry->CreateEntity();
+	tank.Group( "enemies" );
 	tank.AddComponent<TransformComponent>( glm::vec2( 10.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
 	tank.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
 	tank.AddComponent<SpriteComponent>( "tank-image", 32, 32, 1 );
@@ -183,6 +185,7 @@ void Game::LoadLevel( int level ) {
 	tank.AddComponent<HealthComponent>( 100 );
 
 	Entity truck = registry->CreateEntity();
+	truck.Group("enemies");
 	truck.AddComponent<TransformComponent>( glm::vec2( 500.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
 	truck.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
 	truck.AddComponent<SpriteComponent>( "truck-image", 32, 32, 1 );
