@@ -157,9 +157,19 @@ private:
 	// [Vector index = entity id]
 	std::vector<Signature> entityComponentSignatures;
 
+	// Map of active systems
+	// [Map key = system type id]
 	std::unordered_map<std::type_index, std::shared_ptr<System>> systems;
 
-	// Entities to be added in the next Registry Update
+	// Entity tags (one tag name per entity)
+	std::unordered_map<std::string, Entity> entityPerTag;
+	std::unordered_map<int, std::string> tagPerEntity;
+
+	// Entity groups (a set of entities per group name)
+	std::unordered_map<std::string, std::set<Entity>> entitiesPerGroup;
+	std::unordered_map<int, std::string> groupPerEntity;
+
+	// Entities to be added or killed in the next Registry Update
 	std::set<Entity> entitiesToBeAdded;
 	std::set<Entity> entitiesToBeKilled;
 
