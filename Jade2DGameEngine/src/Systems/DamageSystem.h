@@ -18,17 +18,22 @@ public:
 	}
 
 
-	void onCollision( CollisionEvent& event ) {
+	void OnCollision( CollisionEvent& event ) {
 
-		Logger::Log( "The Damage system received an event collision between entities " + std::to_string( event.a.GetId() ) + " and " + std::to_string( event.b.GetId() ) );
+		Entity a = event.a;
+		Entity b = event.b;
 		
+		Logger::Log( "The Damage system received an event collision between entities " + std::to_string( a.GetId() ) + " and " + std::to_string( b.GetId() ) );
+		
+
+
 		//event.a.Kill();
 		//event.b.Kill();
 	}
 
 	void SubscribeToEvents( std::unique_ptr<EventBus>& eventBus ) {
 
-		eventBus->SubscribeToEvent<CollisionEvent>( this, &DamageSystem::onCollision );
+		eventBus->SubscribeToEvent<CollisionEvent>( this, &DamageSystem::OnCollision );
 	}
 
 	void Update() {
