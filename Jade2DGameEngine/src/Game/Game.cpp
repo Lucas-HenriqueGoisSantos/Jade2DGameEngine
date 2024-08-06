@@ -167,6 +167,7 @@ void Game::LoadLevel( int level ) {
 	chopper.AddComponent<KeyboardControlledComponent>( glm::vec2( 0, -80 ), glm::vec2( 80, 0 ), glm::vec2( 0, 80 ), glm::vec2( -80, 0 ) );
 	chopper.AddComponent<CameraFollowComponent>();
 	chopper.AddComponent<HealthComponent>( 100 );
+	chopper.AddComponent<BoxColliderComponent>( 32, 32 );
 	chopper.AddComponent<ProjectileEmitterComponent>(glm::vec2( 150.0, 150.0), 0, 10000, 10, true );
 
 
