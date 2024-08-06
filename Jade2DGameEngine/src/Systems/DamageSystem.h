@@ -38,9 +38,11 @@ public:
 
 		if ( a.BelongsToGroup( "projectiles" ) && b.BelongsToGroup( "enemies" ) ) {
 
+			OnProjectileHitsEnemy( a, b );
 		}
 		if ( b.BelongsToGroup( "projectiles" ) && a.BelongsToGroup( "enemies" ) ) {
-
+			
+			OnProjectileHitsEnemy( b, a );
 		}
 	}
 
@@ -57,6 +59,25 @@ public:
 			if ( health.healthPercentage <= 0 ) {
 
 				player.Kill();
+			}
+
+			projectile.Kill();
+		}
+	}
+
+	void OnProjectileHitsEnemy( Entity projectile, Entity enemy ) {
+
+		const auto projectileComponent = projectile.GetComponent<ProjectileComponent>();
+
+		if ( projectileComponent.isFriendly ) {
+	
+			auto& health = enemy.GetComponent<HealthComponent>();
+
+			health.healthPercentage -= projectileComponent.hitPercentDamage;
+
+			if ( health.healthPercentage <= 0 ) {
+
+				enemy.Kill();
 			}
 
 			projectile.Kill();
