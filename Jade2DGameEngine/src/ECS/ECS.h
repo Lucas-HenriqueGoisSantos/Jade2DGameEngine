@@ -57,16 +57,25 @@ public:
 	int GetId() const;
 	void Kill();
 	
-	Entity& operator =( const Entity& other ) = default;
-	bool operator ==( const Entity& other ) const { return id == other.id; }
-	bool operator !=( const Entity& other ) const { return id != other.id; }
-	bool operator >( const Entity& other ) const { return id > other.id; }
-	bool operator <( const Entity& other ) const { return id < other.id; }
+
+	void Tag( const std::string& tag );
+	bool HasTag( const std::string& tag ) const;
+	void Group( const std::string& group );
+	bool BelongsToGroup( const std::string& group ) const;
+
 
 	template<typename T, typename ...TArgs> void AddComponent( TArgs&& ...args );
 	template<typename T> void RemoveComponent();
 	template<typename T> bool HasComponent() const;
 	template<typename T> T& GetComponent() const;
+
+
+	Entity& operator =(const Entity& other) = default;
+	bool operator ==(const Entity& other) const { return id == other.id; }
+	bool operator !=(const Entity& other) const { return id != other.id; }
+	bool operator >(const Entity& other) const { return id > other.id; }
+	bool operator <(const Entity& other) const { return id < other.id; }
+
 
 	class Registry* registry;
 };
