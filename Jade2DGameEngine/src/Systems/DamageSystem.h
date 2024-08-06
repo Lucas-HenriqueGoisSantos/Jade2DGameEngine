@@ -56,6 +56,11 @@ public:
 			auto health = player.GetComponent<HealthComponent>();
 
 			health.healthPercentage -= projectileComponent.hitPercentDamage;
+		
+			if ( health.healthPercentage <= 0 ) {
+
+				player.Kill();
+			}
 		}
 	}
 
