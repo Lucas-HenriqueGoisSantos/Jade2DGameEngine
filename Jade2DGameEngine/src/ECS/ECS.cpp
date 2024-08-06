@@ -232,9 +232,11 @@ void Registry::Update() {
 
 		RemoveEntityFromSystems( entity );
 		entityComponentSignatures[entity.GetId()].reset();
+		
 		freeIds.push_back( entity.GetId() );
 
-		entityComponentSignatures[entity.GetId()].reset();
+		RemoveEntityTag( entity );
+		RemoveEntityGroup( entity );
 	}
 
 	entitiesToBeKilled.clear();
