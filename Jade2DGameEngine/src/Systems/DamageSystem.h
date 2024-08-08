@@ -47,7 +47,7 @@ public:
 	}
 
 	void OnProjectileHitsPlayer( Entity projectile, Entity player ) {
-
+		
 		auto projectileComponent = projectile.GetComponent<ProjectileComponent>();
 	
 		if ( !projectileComponent.isFriendly ) {

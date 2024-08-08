@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "../Logger/Logger.h"
+#include "../ECS/ECS.h"
 #include "../Components/TransformComponent.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/SpriteComponent.h"
@@ -187,7 +188,7 @@ void Game::LoadLevel( int level ) {
 	tank.AddComponent<HealthComponent>( 100 );
 
 	Entity truck = registry->CreateEntity();
-	truck.Group("enemies");
+	truck.Group( "enemies" );
 	truck.AddComponent<TransformComponent>( glm::vec2( 500.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
 	truck.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
 	truck.AddComponent<SpriteComponent>( "truck-image", 32, 32, 1 );
