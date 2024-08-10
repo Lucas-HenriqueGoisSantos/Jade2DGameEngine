@@ -186,6 +186,8 @@ public:
 
 		entityIdToIndex.erase(entityId);
 		indexToEntityId.erase(indexOfLast);
+
+		size--;
 	}
 	T& Get( int index ) {
 
