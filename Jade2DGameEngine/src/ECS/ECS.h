@@ -132,28 +132,38 @@ public:
 	virtual ~Pool() = default;
 
 	bool IsEmpty() const {
-		return data.empty();
+
+		return size == 0;
 	}
 	int GetSize() const {
-		return static_cast<int>( data.size() );
+
+		return size;
 	}
 	void Resize( int n ) {
+
 		data.resize( n );
 	}
 	void Clear() {
+
 		data.clear();
+		size = 0;
 	}
 	void Add( T object ) {
+
 		data.push_back( object );
 	}
 	void Set( int index, T object ) {
+
 		data[index] = object;
 	}
 	T& Get( int index ) {
+
 		return static_cast<T&>( data[index] );
 	}
 
+
 	T& operator []( unsigned int index ) {
+
 		data[index];
 	}
 };
