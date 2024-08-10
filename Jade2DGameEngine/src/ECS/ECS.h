@@ -173,6 +173,9 @@ public:
 			size++;
 		}
 	}
+	void Remove( int entityId ) {
+
+	}
 	T& Get( int index ) {
 
 		return static_cast<T&>( data[index] );
