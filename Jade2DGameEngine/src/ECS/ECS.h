@@ -189,8 +189,9 @@ public:
 
 		size--;
 	}
-	T& Get( int index ) {
+	T& Get( int entityId ) {
 
+		int index = entityIdToIndex[entityId];
 		return static_cast<T&>( data[index] );
 	}
 
