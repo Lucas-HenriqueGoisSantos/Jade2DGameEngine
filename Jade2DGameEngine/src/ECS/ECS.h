@@ -118,10 +118,16 @@ class Pool: public IPool {
 
 private:
 	std::vector<T> data;
+	int size;
+
+	std::unordered_map<int, int> entityIdToIndex;
+	std::unordered_map<int, int> indexToEntityId;
 
 public:
-	Pool( int size = 100 ) {
-		data.resize( size );
+	Pool( int capacity = 100 ) {
+
+		size = 0;
+		data.resize( capacity );
 	}
 	virtual ~Pool() = default;
 
