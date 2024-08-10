@@ -174,7 +174,18 @@ public:
 		}
 	}
 	void Remove( int entityId ) {
+		
+		int indexOfRemoved = entityToIndex[entityId];
+		int indexOfLast = size - 1;
 
+		data[indexOfRemoved] = data[indexOfLast];
+
+		int entityIdOfLastElement = indexToEntityId[indexOfRemoved];
+		entityIdToIndex[entityIdOfLastElement] = indexOfRemoved;
+		indexToEntityId[indexOfRemoved] = entityIdOfLastElement;
+
+		entityIdToIndex.erase(entityId);
+		indexToEntityId.erase(indexOfLast);
 	}
 	T& Get( int index ) {
 
