@@ -152,9 +152,26 @@ public:
 
 		data.push_back( object );
 	}
-	void Set( int index, T object ) {
+	void Set( int entityId, T object ) {
 
-		data[index] = object;
+		if ( entityIdToIndex.find( entityId ) != entityIdToIndex.end() ) {
+
+			int index = entityIdToIndex[entityId];
+			data[index] = object;
+		}
+		else {
+
+			int index = size;
+			entityIdToIndex.emplace( entityId, index );
+			indexToEntityId.emplace( index, entityId );
+
+			if ( index >= data.capacity() ) {
+
+				data.resize( size * 2 );
+			}
+			data[index] = object;
+			size++;
+		}
 	}
 	T& Get( int index ) {
 
