@@ -158,8 +158,7 @@ public:
 
 			int index = entityIdToIndex[entityId];
 			data[index] = object;
-		}
-		else {
+		} else {
 
 			int index = size;
 			entityIdToIndex.emplace( entityId, index );
@@ -169,6 +168,7 @@ public:
 
 				data.resize( size * 2 );
 			}
+
 			data[index] = object;
 			size++;
 		}
