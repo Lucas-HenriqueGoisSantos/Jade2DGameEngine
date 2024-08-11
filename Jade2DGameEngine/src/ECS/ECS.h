@@ -319,6 +319,9 @@ void Registry::RemoveComponent( Entity entity ) {
 	const auto componentId = Component<T>::GetId();
 	const auto entityId = entity.GetId();
 
+	std::shared_ptr<Pool<T>> componentPool = std::static_pointer_cast<Pool<T>>(componentPools[componentId]);
+	componentPool->Remove(entityId);
+
 	entityComponentSignatures[entityId].set( componentId, false );
 }
 
