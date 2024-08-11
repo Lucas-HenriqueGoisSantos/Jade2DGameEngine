@@ -175,7 +175,7 @@ public:
 	}
 	void Remove( int entityId ) {
 		
-		int indexOfRemoved = entityToIndex[entityId];
+		int indexOfRemoved = entityIdToIndex[entityId];
 		int indexOfLast = size - 1;
 
 		data[indexOfRemoved] = data[indexOfLast];
