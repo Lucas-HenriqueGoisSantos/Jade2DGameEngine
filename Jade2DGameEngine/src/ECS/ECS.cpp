@@ -238,6 +238,11 @@ void Registry::Update() {
 		RemoveEntityFromSystems( entity );
 		entityComponentSignatures[entity.GetId()].reset();
 		
+		for ( auto pool: componentPools ) {
+
+			pool->RemoveEntityFromPool( entity.GetId() );
+		}
+
 		freeIds.push_back( entity.GetId() );
 
 		RemoveEntityTag( entity );
