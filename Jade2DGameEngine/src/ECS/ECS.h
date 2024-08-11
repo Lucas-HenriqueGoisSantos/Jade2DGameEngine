@@ -318,7 +318,6 @@ void Registry::RemoveComponent( Entity entity ) {
 
 	const auto componentId = Component<T>::GetId();
 	const auto entityId = entity.GetId();
-	entityComponentSignatures[entityId].set( componentId, false );
 
 	entityComponentSignatures[entityId].set( componentId, false );
 }
