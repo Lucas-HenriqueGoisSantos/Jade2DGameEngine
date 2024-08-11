@@ -110,7 +110,8 @@ public:
 class IPool {
 
 public:
-	virtual ~IPool() {};
+	virtual ~IPool() = default;
+	virtual void RemoveEntityFromPool( int entityId ) = 0;
 };
 
 template <typename T>
@@ -188,6 +189,13 @@ public:
 		indexToEntityId.erase(indexOfLast);
 
 		size--;
+	}
+	void RemoveEntityFromPool( int entityId ) override {
+
+		if ( entityIdToIndex.find( entityId ) != entityIdToIndex.end() ) {
+
+			Remove( entityId );
+		}
 	}
 	T& Get( int entityId ) {
 
