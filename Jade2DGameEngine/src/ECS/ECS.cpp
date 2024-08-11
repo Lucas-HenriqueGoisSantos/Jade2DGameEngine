@@ -240,7 +240,10 @@ void Registry::Update() {
 		
 		for ( auto pool: componentPools ) {
 
-			pool->RemoveEntityFromPool( entity.GetId() );
+			if ( pool ) {
+
+				pool->RemoveEntityFromPool( entity.GetId() );
+			}
 		}
 
 		freeIds.push_back( entity.GetId() );
