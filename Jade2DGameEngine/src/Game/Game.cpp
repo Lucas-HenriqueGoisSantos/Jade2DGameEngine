@@ -197,6 +197,9 @@ void Game::LoadLevel( int level ) {
 	truck.AddComponent<BoxColliderComponent>( 32, 32 );
 	truck.AddComponent<ProjectileEmitterComponent>( glm::vec2( 50.0, 0.0 ), 1000, 1000, 10, false );
 	truck.AddComponent<HealthComponent>( 100 );
+
+	Entity label = registry->CreateEntity();
+	label.AddComponent<TextLabelComponent>( <POSITION>, "THIS IS MY TEXT", "charriot-font", ... );
 }
 
 
