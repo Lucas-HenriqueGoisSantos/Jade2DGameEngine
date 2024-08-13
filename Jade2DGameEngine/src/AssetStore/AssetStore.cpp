@@ -46,5 +46,5 @@ void AssetStore::AddFont( const std::string& assetId, const std::string& filePat
 
 TTF_Font* AssetStore::GetFont( const std::string& assetId ) {
 
-
+	return fonts[assetId];
 }
