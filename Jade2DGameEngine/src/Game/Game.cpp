@@ -124,11 +124,13 @@ void Game::LoadLevel( int level ) {
 
 	// Add assets here
 	assetStore->AddTexture( renderer, "chopper-image", "./assets/images/chopper-spritesheet.png" );
-	assetStore->AddTexture( renderer, "radar-image", "./assets/images/radar.png");
+	assetStore->AddTexture( renderer, "radar-image", "./assets/images/radar.png" );
 	assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
 	assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
 	assetStore->AddTexture( renderer, "tilemap-image", "./assets/tilemaps/jungle.png" );
-	assetStore->AddTexture(renderer, "bullet-image", "./assets/images/bullet.png");
+	assetStore->AddTexture( renderer, "bullet-image", "./assets/images/bullet.png" );
+
+	assetStore->AddFont( "charriot-font", "./assets/fonts/charriot.ttf", 14 );
 
 
 	// Load Tilemap
