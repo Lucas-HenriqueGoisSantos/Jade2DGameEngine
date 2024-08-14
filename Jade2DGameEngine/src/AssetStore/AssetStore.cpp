@@ -26,7 +26,7 @@ void AssetStore::ClearAssets() {
 
 	for ( auto font: fonts ) {
 		
-		TTF_CloseFont( fonts.second );
+		TTF_CloseFont( font.second );
 	}
 	fonts.clear();
 }

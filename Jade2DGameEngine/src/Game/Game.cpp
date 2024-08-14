@@ -199,7 +199,7 @@ void Game::LoadLevel( int level ) {
 	truck.AddComponent<HealthComponent>( 100 );
 
 	Entity label = registry->CreateEntity();
-	label.AddComponent<TextLabelComponent>( <POSITION>, "THIS IS MY TEXT", "charriot-font", ... );
+	//label.AddComponent<TextLabelComponent>( <POSITION>, "THIS IS MY TEXT", "charriot-font", ... );
 }
 
 
