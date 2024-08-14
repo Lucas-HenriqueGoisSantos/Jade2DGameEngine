@@ -80,6 +80,8 @@ public:
 				labelHeight
 			};
 			SDL_RenderCopy( renderer, texture, NULL, &healthBarTextRectangle );
+
+			SDL_DestroyTexture( texture );
 		}
 	}
 };
