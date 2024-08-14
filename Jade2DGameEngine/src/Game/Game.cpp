@@ -22,6 +22,7 @@
 #include "../Systems/ProjectileEmitSystem.h"
 #include "../Systems/ProjectileLifeCycleSystem.h"
 #include "../Systems/RenderTextSystem.h"
+#include "../Systems/RenderHealthBarSystem.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -129,6 +130,7 @@ void Game::LoadLevel( int level ) {
 	registry->AddSystem<ProjectileEmitSystem>();
 	registry->AddSystem<ProjectileLifeCycleSystem>();
 	registry->AddSystem<RenderTextSystem>();
+	registry->AddSystem<RenderHealthBarSystem>();
 
 
 	// Add assets here
@@ -139,7 +141,9 @@ void Game::LoadLevel( int level ) {
 	assetStore->AddTexture( renderer, "tilemap-image", "./assets/tilemaps/jungle.png" );
 	assetStore->AddTexture( renderer, "bullet-image", "./assets/images/bullet.png" );
 
-	assetStore->AddFont( "charriot-font", "./assets/fonts/charriot.ttf", 14 );
+	assetStore->AddFont( "charriot-font-20", "./assets/fonts/charriot.ttf", 20 );
+	assetStore->AddFont( "pico8-font-5", "./assets/fonts/pico8.ttf", 5 );
+	assetStore->AddFont("pico8-font-10", "./assets/fonts/pico8.ttf", 10);
 
 
 	// Load Tilemap
@@ -209,7 +213,7 @@ void Game::LoadLevel( int level ) {
 
 	Entity label = registry->CreateEntity();
 	SDL_Color white = { 255, 255, 255 };
-	label.AddComponent<TextLabelComponent>( glm::vec2( 100, 100 ), "THIS IS MY TEXT", "charriot-font", white, true );
+	label.AddComponent<TextLabelComponent>( glm::vec2( windowWidth/2 - 40 , 100 ), "CHOPPER GAME v 1.0", "charriot-font-20", white, true );
 }
 
 
@@ -319,7 +323,7 @@ void Game::Render() {
 	// Ivoke all the systems that need to render ------------------------------------------------//
 	registry->GetSystem<RenderSystem>().Update( renderer, assetStore, camera );
 	registry->GetSystem<RenderTextSystem>().Update( renderer, assetStore, camera );
-
+	registry->GetSystem<RenderHealthBarSystem>().Update( renderer, assetStore, camera );
 	if ( isDebug ) {
 
 		registry->GetSystem<RenderColliderSystem>().Update( renderer, camera );
