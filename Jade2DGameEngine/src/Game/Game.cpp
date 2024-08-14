@@ -21,6 +21,7 @@
 #include "../Systems/CameraMovementSystem.h"
 #include "../Systems/ProjectileEmitSystem.h"
 #include "../Systems/ProjectileLifeCycleSystem.h"
+#include "../Systems/RenderTextSystem.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -58,6 +59,12 @@ void Game::Initialize() {
 	if ( SDL_Init( SDL_INIT_EVERYTHING ) != 0 ) {
 
 		Logger::Err( "Error initializing SDL." );
+		return;
+	}
+
+	if ( TTF_Init() != 0 ) {
+
+		Logger::Err( "Error initializing SDL TTF." );
 		return;
 	}
 
@@ -121,6 +128,7 @@ void Game::LoadLevel( int level ) {
 	registry->AddSystem<CameraMovementSystem>();
 	registry->AddSystem<ProjectileEmitSystem>();
 	registry->AddSystem<ProjectileLifeCycleSystem>();
+	registry->AddSystem<RenderTextSystem>();
 
 
 	// Add assets here
@@ -310,7 +318,8 @@ void Game::Render() {
 	//-------------------------------------------------------------------------------------------//
 	// Ivoke all the systems that need to render ------------------------------------------------//
 	registry->GetSystem<RenderSystem>().Update( renderer, assetStore, camera );
-	
+	registry->GetSystem<RenderTextSystem>().Update( renderer, assetStore, camera );
+
 	if ( isDebug ) {
 
 		registry->GetSystem<RenderColliderSystem>().Update( renderer, camera );
