@@ -10,6 +10,7 @@
 #include "../Components/CameraFollowComponent.h"
 #include "../Components/ProjectileEmitterComponent.h"
 #include "../Components/HealthComponent.h"
+#include "../Components/TextLabelComponent.h"
 #include "../Systems/RenderColliderSystem.h"
 #include "../Systems/MovementSystem.h"
 #include "../Systems/RenderSystem.h"
@@ -199,7 +200,8 @@ void Game::LoadLevel( int level ) {
 	truck.AddComponent<HealthComponent>( 100 );
 
 	Entity label = registry->CreateEntity();
-	//label.AddComponent<TextLabelComponent>( <POSITION>, "THIS IS MY TEXT", "charriot-font", ... );
+	SDL_Color white = { 255, 255, 255 };
+	label.AddComponent<TextLabelComponent>( glm::vec2( 100, 100 ), "THIS IS MY TEXT", "charriot-font", white, true );
 }
 
 
