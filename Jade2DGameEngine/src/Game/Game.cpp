@@ -333,6 +333,10 @@ void Game::Render() {
 	if ( isDebug ) {
 
 		registry->GetSystem<RenderColliderSystem>().Update( renderer, camera );
+		ImGui::NewFrame();
+		ImGui::ShowDemoWindow();
+		ImGui::Render();
+		ImGuiSDL::Render(ImGui::GetDrawData());
 	}
 
 
