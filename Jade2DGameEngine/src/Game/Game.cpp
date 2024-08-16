@@ -24,6 +24,8 @@
 #include "../Systems/RenderTextSystem.h"
 #include "../Systems/RenderHealthBarSystem.h"
 #include <glm/glm.hpp>
+#include <imgui/imgui.h>
+#include<imgui/imgui_sdl.h>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
@@ -101,6 +103,10 @@ void Game::Initialize() {
 		Logger::Err( "Error creating SDL renderer." );
 		return;
 	}
+
+	// Initializing thr ImGui context
+	ImGui::CreateContext();
+	ImGuiSDL::Initialize( renderer, windowWidth, windowHeight );
 
 	// Change video mode to fullscreen
 	SDL_SetWindowFullscreen( window, SDL_WINDOW_FULLSCREEN );
