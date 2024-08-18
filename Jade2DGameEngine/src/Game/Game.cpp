@@ -23,6 +23,7 @@
 #include "../Systems/ProjectileLifeCycleSystem.h"
 #include "../Systems/RenderTextSystem.h"
 #include "../Systems/RenderHealthBarSystem.h"
+#include "../Systems/RenderGUISystem.h"
 #include <glm/glm.hpp>
 #include <imgui/imgui.h>
 #include <imgui/imgui_sdl.h>
