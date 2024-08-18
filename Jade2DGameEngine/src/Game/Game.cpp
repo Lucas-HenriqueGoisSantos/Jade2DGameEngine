@@ -138,6 +138,7 @@ void Game::LoadLevel( int level ) {
 	registry->AddSystem<ProjectileLifeCycleSystem>();
 	registry->AddSystem<RenderTextSystem>();
 	registry->AddSystem<RenderHealthBarSystem>();
+	registry->AddSystem<RenderGUISystem>();
 
 
 	// Add assets here
@@ -346,10 +347,7 @@ void Game::Render() {
 	if ( isDebug ) {
 
 		registry->GetSystem<RenderColliderSystem>().Update( renderer, camera );
-		ImGui::NewFrame();
-		ImGui::ShowDemoWindow();
-		ImGui::Render();
-		ImGuiSDL::Render(ImGui::GetDrawData());
+		registry->GetSystem<RenderGUISystem>()Update();
 	}
 
 
