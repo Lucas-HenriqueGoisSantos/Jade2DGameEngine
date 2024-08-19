@@ -20,10 +20,10 @@ public:
 		// ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoNav;
 		if ( ImGui::Begin( "Spawn Enemies"/*, NULL, windowFlags*/ ) ) {
 
-			int enemyXPos = 0;
+			static int enemyXPos = 0;
 			ImGui::InputInt( "Enemy X position", &enemyXPos );
 
-			int enemyYPos = 0;
+			static int enemyYPos = 0;
 			ImGui::InputInt( "Enemy Y position", &enemyYPos );
 		}
 		ImGui::End();
