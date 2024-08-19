@@ -17,11 +17,11 @@ public:
 		
 		ImGui::NewFrame();
 
-		if ( ImGui::Begin( "Spawn Enemies" ) ) {
+		ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoNav;
+		if ( ImGui::Begin( "Spawn Enemies", NULL, windowFlags ) ) {
 
 			ImGui::Text( "Enemies Spawner" );
 		}
-
 		ImGui::End();
 
 		ImGui::Render();
