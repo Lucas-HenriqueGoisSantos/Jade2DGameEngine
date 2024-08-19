@@ -17,10 +17,14 @@ public:
 		
 		ImGui::NewFrame();
 
-		ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoNav;
-		if ( ImGui::Begin( "Spawn Enemies", NULL, windowFlags ) ) {
+		// ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoNav;
+		if ( ImGui::Begin( "Spawn Enemies"/*, NULL, windowFlags*/ ) ) {
 
-			ImGui::Text( "Enemies Spawner" );
+			int enemyXPos = 0;
+			ImGui::InputInt( "Enemy X position", &enemyXPos );
+
+			int enemyYPos = 0;
+			ImGui::InputInt( "Enemy Y position", &enemyYPos );
 		}
 		ImGui::End();
 
