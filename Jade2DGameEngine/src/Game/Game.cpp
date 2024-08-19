@@ -204,7 +204,7 @@ void Game::LoadLevel( int level ) {
 
 	Entity tank = registry->CreateEntity();
 	tank.Group( "enemies" );
-	tank.AddComponent<TransformComponent>( glm::vec2( 10.0, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
+	tank.AddComponent<TransformComponent>( glm::vec2( 500.0, 500.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
 	tank.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
 	tank.AddComponent<SpriteComponent>( "tank-image", 32, 32, 1 );
 	tank.AddComponent<BoxColliderComponent>( 32, 32 );
@@ -348,7 +348,7 @@ void Game::Render() {
 	if ( isDebug ) {
 
 		registry->GetSystem<RenderColliderSystem>().Update( renderer, camera );
-		registry->GetSystem<RenderGUISystem>().Update();
+		registry->GetSystem<RenderGUISystem>().Update( registry );
 	}
 
 
