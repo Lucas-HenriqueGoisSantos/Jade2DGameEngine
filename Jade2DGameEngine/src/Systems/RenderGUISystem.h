@@ -17,7 +17,12 @@ public:
 		
 		ImGui::NewFrame();
 
-		ImGui::Begin( "Test" );
+		if ( ImGui::Begin( "Spawn Enemies" ) ) {
+
+			ImGui::Text( "Enemies Spawner" );
+		}
+
+		ImGui::End();
 
 		ImGui::Render();
 		ImGuiSDL::Render( ImGui::GetDrawData() );
