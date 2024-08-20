@@ -20,7 +20,7 @@ class RenderGUISystem: public System {
 public:
 	RenderGUISystem() = default;
 
-	void Update( const std::unique_ptr<Registry>& registry ) {
+	void Update( const std::unique_ptr<Registry>& registry, SDL_Rect& camera ) {
 		
 		ImGui::NewFrame();
 
@@ -105,6 +105,21 @@ public:
 			}
 		}
 		ImGui::End();
+
+
+		ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize;
+		ImGui::SetNextWindowPos( ImVec2( 10, 10 ), ImGuiCond_Always, ImVec2( 0, 0 ) );
+		ImGui::SetNextWindowBgAlpha( 0.9f );
+		
+		if ( ImGui::Begin( "Map Coordinates", NULL, windowFlags ) ) {
+
+			ImGui::Text(
+				"Map Coodinates ( x=%.1f, y=%.1f )",
+				ImGui::GetIO().MousePos.x + camera.x,
+				ImGui::GetIO().MousePos.y + camera.y
+			);
+		}
+
 
 		ImGui::Render();
 		ImGuiSDL::Render( ImGui::GetDrawData() );
