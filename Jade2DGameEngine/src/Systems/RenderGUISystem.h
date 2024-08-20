@@ -107,7 +107,7 @@ public:
 		ImGui::End();
 
 
-		ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize;
+		ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoNav;
 		ImGui::SetNextWindowPos( ImVec2( 10, 10 ), ImGuiCond_Always, ImVec2( 0, 0 ) );
 		ImGui::SetNextWindowBgAlpha( 0.9f );
 		
