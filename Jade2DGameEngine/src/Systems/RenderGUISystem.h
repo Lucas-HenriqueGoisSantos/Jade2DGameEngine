@@ -97,7 +97,8 @@ public:
 				enemy.AddComponent<ProjectileEmitterComponent>( glm::vec2( projVelX, projVelY ), projRepeat * 1000, projDuration * 1000, 10, false );
 				enemy.AddComponent<HealthComponent>( health );
 
-				posX = posY = scaleX = scaleY = rotation = projAngle = 0;
+				posX = posY = rotation = projAngle = 0;
+				scaleX = scaleY = 1;
 				projRepeat = projDuration = 10;
 				projSpeed = 100.0;
 				health = 100;
