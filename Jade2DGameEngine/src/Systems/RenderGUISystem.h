@@ -20,7 +20,7 @@ class RenderGUISystem: public System {
 public:
 	RenderGUISystem() = default;
 
-	void Update( const std::unique_ptr<Registry>& registry, SDL_Rect& camera ) {
+	void Update( const std::unique_ptr<Registry>& registry, const SDL_Rect& camera ) {
 		
 		ImGui::NewFrame();
 
