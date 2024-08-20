@@ -1,9 +1,9 @@
 #include "ECS.h"
 #include "../Logger/Logger.h"
+#include <algorithm>
 
 
 int BaseComponent::nextId = 0;
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Entity
@@ -229,7 +229,6 @@ void Registry::Update() {
 
 		AddEntityToSystems( entity );
 	}
-
 	entitiesToBeAdded.clear();
 
 
