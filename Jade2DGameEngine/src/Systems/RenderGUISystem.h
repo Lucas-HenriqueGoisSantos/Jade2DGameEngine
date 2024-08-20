@@ -99,7 +99,8 @@ public:
 
 				posX = posY = scaleX = scaleY = rotation = projAngle = 0;
 				projRepeat = projDuration = 10;
-				projSpeed = health = 100;
+				projSpeed = 100.0;
+				health = 100;
 			}
 		}
 		ImGui::End();
