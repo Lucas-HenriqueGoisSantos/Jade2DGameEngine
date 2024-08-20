@@ -36,6 +36,7 @@ class Component: public BaseComponent {
 
 public:
 	static int GetId() {
+
 		static auto id = nextId++;
 		return id;
 	}
@@ -140,18 +141,12 @@ public:
 
 		return size;
 	}
-	void Resize( int n ) {
-
-		data.resize( n );
-	}
 	void Clear() {
 
 		data.clear();
+		entityIdToIndex.clear();
+		indexToEntityId.clear();
 		size = 0;
-	}
-	void Add( T object ) {
-
-		data.push_back( object );
 	}
 	void Set( int entityId, T object ) {
 
@@ -185,8 +180,8 @@ public:
 		entityIdToIndex[entityIdOfLastElement] = indexOfRemoved;
 		indexToEntityId[indexOfRemoved] = entityIdOfLastElement;
 
-		entityIdToIndex.erase(entityId);
-		indexToEntityId.erase(indexOfLast);
+		entityIdToIndex.erase( entityId );
+		indexToEntityId.erase( indexOfLast );
 
 		size--;
 	}
@@ -206,7 +201,7 @@ public:
 
 	T& operator []( unsigned int index ) {
 
-		data[index];
+		return data[index];
 	}
 };
 
@@ -244,7 +239,12 @@ private:
 	std::deque<int> freeIds;
 
 public:
-	Registry() = default;
+	Registry() {
+		Logger::Log("Registry constructor called");
+	}
+	~Registry() {
+		Logger::Log("Registry destructor called");
+	}
 	
 	// Entity management
 	Entity CreateEntity();
@@ -327,10 +327,12 @@ void Registry::RemoveComponent( Entity entity ) {
 	const auto componentId = Component<T>::GetId();
 	const auto entityId = entity.GetId();
 
-	std::shared_ptr<Pool<T>> componentPool = std::static_pointer_cast<Pool<T>>(componentPools[componentId]);
-	componentPool->Remove(entityId);
+	std::shared_ptr<Pool<T>> componentPool = std::static_pointer_cast<Pool<T>>( componentPools[componentId] );
+	componentPool->Remove( entityId );
 
 	entityComponentSignatures[entityId].set( componentId, false );
+	
+    Logger::Log("Component id = " + std::to_string(componentId) + " was removed from entity id " + std::to_string(entityId));
 }
 
 
@@ -345,7 +347,7 @@ bool Registry::HasComponent( Entity entity ) const {
 
 
 template <typename T>
-T& Registry::GetComponent(Entity entity) const {
+T& Registry::GetComponent( Entity entity ) const {
 
 	const auto componentId = Component<T>::GetId();
 	const auto entityId = entity.GetId();
