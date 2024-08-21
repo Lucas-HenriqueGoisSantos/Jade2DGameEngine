@@ -152,7 +152,7 @@ void Game::LoadLevel( int level ) {
 
 	assetStore->AddFont( "charriot-font-20", "./assets/fonts/charriot.ttf", 20 );
 	assetStore->AddFont( "pico8-font-5", "./assets/fonts/pico8.ttf", 5 );
-	assetStore->AddFont("pico8-font-10", "./assets/fonts/pico8.ttf", 10);
+	assetStore->AddFont( "pico8-font-10", "./assets/fonts/pico8.ttf", 10 );
 
 
     // Load the tilemap
