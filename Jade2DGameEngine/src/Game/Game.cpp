@@ -155,31 +155,30 @@ void Game::LoadLevel( int level ) {
 	assetStore->AddFont("pico8-font-10", "./assets/fonts/pico8.ttf", 10);
 
 
-	// Load Tilemap
-	int tileSize = 32;
-	double tileScale = 2.0;
-	int mapNumCols = 25;
-	int mapNumRows = 20;
-	std::fstream mapFile;
-	mapFile.open( "./assets/tilemaps/jungle.map" );
-	for (int y = 0; y < mapNumRows; y++) {
-		for (int x = 0; x < mapNumCols; x++) {
-			char ch;
-			mapFile.get(ch);
-			int srcRectY = std::atoi(&ch) * tileSize;
-			mapFile.get(ch);
-			int srcRectX = std::atoi(&ch) * tileSize;
-			mapFile.ignore();
-
-			Entity tile = registry->CreateEntity();
-			tile.Group( "tiles" );
-			tile.AddComponent<TransformComponent>(glm::vec2(x * (tileScale * tileSize), y * (tileScale * tileSize)), glm::vec2(tileScale, tileScale), 0.0);
-			tile.AddComponent<SpriteComponent>("tilemap-image", tileSize, tileSize, 0, false, srcRectX, srcRectY);
-		}
-	}
-	mapFile.close();
-	mapWidth = mapNumCols * tileSize * tileScale;
-	mapHeight = mapNumRows * tileSize * tileScale;
+    // Load the tilemap
+    int tileSize = 32;
+    double tileScale = 2.0;
+    int mapNumCols = 25;
+    int mapNumRows = 20;
+    std::fstream mapFile;
+    mapFile.open("./assets/tilemaps/jungle.map");
+    for (int y = 0; y < mapNumRows; y++) {
+        for (int x = 0; x < mapNumCols; x++) {
+            char ch;
+            mapFile.get(ch);
+            int srcRectY = std::atoi(&ch) * tileSize;
+            mapFile.get(ch);
+            int srcRectX = std::atoi(&ch) * tileSize;
+            mapFile.ignore();
+            Entity tile = registry->CreateEntity();
+            tile.Group("tiles");
+            tile.AddComponent<TransformComponent>(glm::vec2(x * (tileScale * tileSize), y * (tileScale * tileSize)), glm::vec2(tileScale, tileScale), 0.0);
+            tile.AddComponent<SpriteComponent>("tilemap-image", tileSize, tileSize, 0, false, srcRectX, srcRectY);
+        }
+    }
+    mapFile.close();
+    mapWidth = mapNumCols * tileSize * tileScale;
+    mapHeight = mapNumRows * tileSize * tileScale;
 
 
 	// Create and add components to entities here
