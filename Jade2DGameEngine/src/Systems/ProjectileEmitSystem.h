@@ -34,7 +34,7 @@ public:
 
 			for ( auto entity: GetSystemEntities() ) {
 
-				if ( entity.HasComponent<CameraFollowComponent>() ) {
+				if ( entity.HasTag( "player" ) ) {
 
 					const auto projectileEmitter = entity.GetComponent<ProjectileEmitterComponent>();
 					const auto transform = entity.GetComponent<TransformComponent>();
