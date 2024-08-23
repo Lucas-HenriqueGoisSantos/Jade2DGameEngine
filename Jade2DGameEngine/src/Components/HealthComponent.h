@@ -2,9 +2,11 @@
 #define HEALTHCOMPONENT_H
 
 struct HealthComponent {
+
     int healthPercentage;
 
-    HealthComponent(int healthPercentage = 0) {
+    HealthComponent( int healthPercentage = 0 ) {
+
         this->healthPercentage = healthPercentage;
     }
 };
