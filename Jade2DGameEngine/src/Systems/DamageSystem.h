@@ -9,73 +9,72 @@
 #include "../Events/CollisionEvent.h"
 
 class DamageSystem: public System {
+
     public:
         DamageSystem() {
+
             RequireComponent<BoxColliderComponent>();
         }
 
-        void SubscribeToEvents(std::unique_ptr<EventBus>& eventBus) {
-            eventBus->SubscribeToEvent<CollisionEvent>(this, &DamageSystem::OnCollision);
+
+        void SubscribeToEvents( std::unique_ptr<EventBus>& eventBus ) {
+
+            eventBus->SubscribeToEvent<CollisionEvent>( this, &DamageSystem::OnCollision );
         }
 
-        void OnCollision(CollisionEvent& event) {
+
+        void OnCollision( CollisionEvent& event ) {
+
             Entity a = event.a;
             Entity b = event.b;
-            Logger::Log("Collision event emitted: " + std::to_string(a.GetId()) + " and " + std::to_string(b.GetId()));
         
-            if (a.BelongsToGroup("projectiles") && b.HasTag("player")) {
-                OnProjectileHitsPlayer(a, b); // "a" is the projectile, "b" is the player
+            if ( a.BelongsToGroup( "projectiles" ) && b.HasTag( "player" ) ) {
+
+                OnProjectileHitsPlayer( a, b );
+            }
+            if ( b.BelongsToGroup( "projectiles" ) && a.HasTag( "player" ) ) {
+
+                OnProjectileHitsPlayer( b, a );
             }
 
-            if (b.BelongsToGroup("projectiles") && a.HasTag("player")) {
-                OnProjectileHitsPlayer(b, a); // "b" is the projectile, "a" is the player
+            if ( a.BelongsToGroup( "projectiles" ) && b.BelongsToGroup( "enemies" ) ) {
+
+                OnProjectileHitsEnemy( a, b );
+            }
+            if ( b.BelongsToGroup( "projectiles" ) && a.BelongsToGroup( "enemies" ) ) {
+
+                OnProjectileHitsEnemy( b, a );
             }
 
-            if (a.BelongsToGroup("projectiles") && b.BelongsToGroup("enemies")) {
-                OnProjectileHitsEnemy(a, b); // "a" is the projectile, "b" is the enemy
-            }
-            
-            if (b.BelongsToGroup("projectiles") && a.BelongsToGroup("enemies")) {
-                OnProjectileHitsEnemy(b, a); // "b" is the projectile, "a" is the enemy
-            }
+            Logger::Log( "Collision event emitted: " + std::to_string( a.GetId() ) + " and " + std::to_string( b.GetId() ) );
         }
 
-        void OnProjectileHitsPlayer(Entity projectile, Entity player) {
+
+        void OnProjectileHitsPlayer( Entity projectile, Entity player ) {
+
             const auto projectileComponent = projectile.GetComponent<ProjectileComponent>();
 
-            if (!projectileComponent.isFriendly) {
-                // Reduce the health of the player by the projectile hitPercentDamage
+            if ( !projectileComponent.isFriendly ) {
+
                 auto& health = player.GetComponent<HealthComponent>();
 
-                // Subtract the health of the player
                 health.healthPercentage -= projectileComponent.hitPercentDamage;
-
-                // Kills the player when health reaches zero
-                if (health.healthPercentage <= 0) {
-                    player.Kill();
-                }
-
-                // Kill the projectile
+                if ( health.healthPercentage <= 0 ) { player.Kill(); }
                 projectile.Kill();
             }
         }
 
-        void OnProjectileHitsEnemy(Entity projectile, Entity enemy) {
+
+        void OnProjectileHitsEnemy( Entity projectile, Entity enemy ) {
+
             const auto projectileComponent = projectile.GetComponent<ProjectileComponent>();
 
-            if (projectileComponent.isFriendly) {
-                // Reduce the health of the enemy by the projectile hitPercentDamage
+            if ( projectileComponent.isFriendly ) {
+
                 auto& health = enemy.GetComponent<HealthComponent>();
 
-                // Subtract the health of the enemy
                 health.healthPercentage -= projectileComponent.hitPercentDamage;
-
-                // Kills the enemy when health reaches zero
-                if (health.healthPercentage <= 0) {
-                    enemy.Kill();
-                }
-
-                // Kill the projectile
+                if ( health.healthPercentage <= 0 ) { enemy.Kill(); }
                 projectile.Kill();
             }
         }
