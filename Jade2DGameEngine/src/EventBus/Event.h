@@ -2,6 +2,7 @@
 #define EVENT_H
 
 class Event {
+    
     public:
         Event() = default;
 };
