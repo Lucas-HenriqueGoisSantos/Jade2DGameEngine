@@ -1,32 +1,27 @@
 #ifndef ANIMATIONSYSTEM_H
 #define ANIMATIONSYSTEM_H
 
-#include "../src/ECS/ECS.h"
-#include "../src/Components/AnimationComponent.h"
-#include "../src/Components/SpriteComponent.h"
+#include "../ECS/ECS.h"
+#include "../Components/SpriteComponent.h"
+#include "../Components/AnimationComponent.h"
+#include <SDL.h>
 
 class AnimationSystem: public System {
+    public:
+        AnimationSystem() {
+            RequireComponent<SpriteComponent>();
+            RequireComponent<AnimationComponent>();
+        }
 
-public:
+        void Update() {
+            for (auto entity: GetSystemEntities()) {
+                auto& animation = entity.GetComponent<AnimationComponent>();
+                auto& sprite = entity.GetComponent<SpriteComponent>();
 
-	AnimationSystem() {
-
-		RequireComponent<AnimationComponent>();
-		RequireComponent<SpriteComponent>();
-	}
-
-	void Update() {
-
-		for ( auto entity: GetSystemEntities() ) {
-
-			auto& animation = entity.GetComponent<AnimationComponent>();
-			auto& sprite = entity.GetComponent<SpriteComponent>();
-
-			animation.currentFrame = ( ( SDL_GetTicks() - animation.startTime ) * animation.frameSpeedRate / 1000 ) % animation.numFrames;
-			sprite.srcRect.x = animation.currentFrame * sprite.width;
-		}
-	}
+                animation.currentFrame = ((SDL_GetTicks() - animation.startTime) * animation.frameSpeedRate / 1000) % animation.numFrames;
+                sprite.srcRect.x = animation.currentFrame * sprite.width;
+            }
+        }
 };
 
-
-#endif // !ANIMATIONSYSTEM_H
+#endif

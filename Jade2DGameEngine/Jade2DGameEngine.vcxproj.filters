@@ -1442,6 +1442,7 @@
     <None Include="SDL2_mixer.dll" />
     <None Include="SDL2_ttf.dll" />
     <None Include="imgui.ini" />
+    <None Include="libs\lua\lua54.dll" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libs\glm\detail\glm.cpp">
@@ -1484,5 +1485,8 @@
   <ItemGroup>
     <Text Include="libs\glm\CMakeLists.txt" />
     <Text Include="libs\glm\copying.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="libs\lua\liblua54.a" />
   </ItemGroup>
 </Project>
