@@ -7,8 +7,10 @@
 #include <SDL.h>
 
 class AnimationSystem: public System {
+
     public:
         AnimationSystem() {
+            
             RequireComponent<SpriteComponent>();
             RequireComponent<AnimationComponent>();
         }

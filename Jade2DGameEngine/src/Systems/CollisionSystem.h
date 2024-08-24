@@ -34,10 +34,7 @@ class CollisionSystem: public System {
                     Entity b = *j;
 
                     // Bypass if we are trying to test the same entity
-                    if ( a == b ) {
-
-                        continue;
-                    }
+                    if ( a == b ) { continue; }
 
                     auto bTransform = b.GetComponent<TransformComponent>();
                     auto bCollider = b.GetComponent<BoxColliderComponent>();
