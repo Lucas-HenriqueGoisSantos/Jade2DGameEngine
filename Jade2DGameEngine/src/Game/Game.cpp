@@ -236,12 +236,14 @@ void Game::LoadLevel( int level ) {
     truck.AddComponent<HealthComponent>( 100 );
 
     Entity treeA = registry->CreateEntity();
+    treeA.Group( "obstacles" );
     treeA.AddComponent<TransformComponent>( glm::vec2( 600.0, 495.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
     treeA.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
     treeA.AddComponent<SpriteComponent>( "tree-image", 16, 32, 2 );
     treeA.AddComponent<BoxColliderComponent>( 16, 32 );
 
     Entity treeB = registry->CreateEntity();
+    treeB.Group( "obstacles" );
     treeB.AddComponent<TransformComponent>( glm::vec2( 400.0, 495.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
     treeB.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
     treeB.AddComponent<SpriteComponent>( "tree-image", 16, 32, 2 );
@@ -276,6 +278,7 @@ void Game::Update() {
     eventBus->Reset();
 
     // Perform the subscription of the events for all systems
+    registry->GetSystem<MovementSystem>().SubscribeToEvents( eventBus );
     registry->GetSystem<DamageSystem>().SubscribeToEvents( eventBus );
     registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents( eventBus );
     registry->GetSystem<ProjectileEmitSystem>().SubscribeToEvents( eventBus );
