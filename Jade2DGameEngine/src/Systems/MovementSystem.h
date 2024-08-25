@@ -41,7 +41,7 @@ class MovementSystem: public System {
         }
 
 
-        /*void OnEnemyHitsObstacle(Entity enemy, Entity obstacle) {
+        void OnEnemyHitsObstacle( Entity enemy, Entity obstacle ) {
 
             if ( enemy.HasComponent<RigidBodyComponent>() ) {
 
@@ -51,22 +51,9 @@ class MovementSystem: public System {
 
                     rigidbody.velocity.x *= -1;
                 }
+
                 if ( rigidbody.velocity.y != 0 ) {
 
-                    rigidbody.velocity.y *= -1;
-                }
-            }
-        }*/
-
-        void OnEnemyHitsObstacle(Entity enemy, Entity obstacle) {
-            if (enemy.HasComponent<RigidBodyComponent>()) {
-                auto& rigidbody = enemy.GetComponent<RigidBodyComponent>();
-
-                if (rigidbody.velocity.x != 0) {
-                    rigidbody.velocity.x *= -1;
-                }
-
-                if (rigidbody.velocity.y != 0) {
                     rigidbody.velocity.y *= -1;
                 }
             }
