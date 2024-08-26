@@ -6,6 +6,7 @@
 #include "../Events/CollisionEvent.h"
 #include "../Components/TransformComponent.h"
 #include "../Components/RigidBodyComponent.h"
+#include "../Components/SpriteComponent.h"
 
 class MovementSystem: public System {
 
@@ -43,18 +44,21 @@ class MovementSystem: public System {
 
         void OnEnemyHitsObstacle( Entity enemy, Entity obstacle ) {
 
-            if ( enemy.HasComponent<RigidBodyComponent>() ) {
+            if ( enemy.HasComponent<RigidBodyComponent>() && enemy.HasComponent<SpriteComponent>() ) {
 
                 auto& rigidbody = enemy.GetComponent<RigidBodyComponent>();
+                auto& sprite = enemy.GetComponent<SpriteComponent>();
 
                 if ( rigidbody.velocity.x != 0 ) {
 
                     rigidbody.velocity.x *= -1;
+                    sprite.flip = ( sprite.flip == SDL_FLIP_NONE ) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
                 }
 
                 if ( rigidbody.velocity.y != 0 ) {
 
                     rigidbody.velocity.y *= -1;
+                    sprite.flip = ( sprite.flip == SDL_FLIP_NONE ) ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE;
                 }
             }
         }
