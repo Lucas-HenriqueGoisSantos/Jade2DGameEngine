@@ -78,10 +78,10 @@ class MovementSystem: public System {
 
                 if (entity.HasTag("player")) {
                     
-                    int paddingLeft = 10;
-                    int paddingRight = 10;
-                    int paddingTop = 50;
-                    int paddingBottom = 50;
+                    int paddingLeft = 16;
+                    int paddingRight = 16;
+                    int paddingTop = 16;
+                    int paddingBottom = 16;
 
                     transform.position.x = transform.position.x < paddingLeft ? paddingLeft : transform.position.x;
                     transform.position.x = transform.position.x > Game::mapWidth - paddingRight ? Game::mapWidth - paddingRight : transform.position.x;
