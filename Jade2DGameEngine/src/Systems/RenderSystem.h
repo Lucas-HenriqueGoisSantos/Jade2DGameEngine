@@ -37,6 +37,22 @@ class RenderSystem: public System {
                 RenderableEntity renderableEntity;
                 renderableEntity.spriteComponent = entity.GetComponent<SpriteComponent>();
                 renderableEntity.transformComponent = entity.GetComponent<TransformComponent>();
+                
+
+                // Culling entities that are outside the camera view
+                bool isEntityOutsideCameraView = (
+                    renderableEntity.transformComponent.position.x < camera.x ||
+                    renderableEntity.transformComponent.position.x > camera.x + camera.w ||
+                    renderableEntity.transformComponent.position.y < camera.y ||
+                    renderableEntity.transformComponent.position.y > camera.y +camera.h
+                );
+
+                if ( isEntityOutsideCameraView ) {
+
+                    continue;
+                }
+
+
                 renderableEntities.emplace_back( renderableEntity );
             }
 
