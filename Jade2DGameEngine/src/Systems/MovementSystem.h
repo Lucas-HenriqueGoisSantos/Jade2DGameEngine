@@ -76,7 +76,7 @@ class MovementSystem: public System {
                 transform.position.x += rigidbody.velocity.x * deltaTime; 
                 transform.position.y += rigidbody.velocity.y * deltaTime;
 
-                if ( entity.HasTag( "player" ) ) {
+                if (entity.HasTag("player")) {
                     
                     int paddingLeft = 10;
                     int paddingRight = 10;
