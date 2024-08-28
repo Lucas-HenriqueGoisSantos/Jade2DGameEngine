@@ -55,16 +55,20 @@ Game::~Game() {
 
 void Game::Initialize() {
 
+    // Testing the SDL Initialization
     if ( SDL_Init( SDL_INIT_EVERYTHING ) != 0 ) {
 
         Logger::Err( "Error initializing SDL." );
         return;
     }
+    // Testing the SDL TTF Initialization
     if ( TTF_Init() != 0 ) {
 
         Logger::Err( "Error initializing SDL TTF." );
         return;
     }
+
+    // Creating a SDL Window ------------------------------------------------------------ //
     SDL_DisplayMode displayMode;
     SDL_GetCurrentDisplayMode( 0, &displayMode );
     windowWidth = displayMode.w;
@@ -76,30 +80,37 @@ void Game::Initialize() {
         windowWidth,
         windowHeight,
         SDL_WINDOW_BORDERLESS
-     );
+    );
+    // Testing the SDL Window
     if ( !window ) {
 
         Logger::Err( "Error creating SDL window." );
         return;
     }
+
+    // Creating a SDL Window Renderer --------------------------------------------------- //
     renderer = SDL_CreateRenderer( window, -1, 0 );
+    // Testing the SDL Window Renderer
     if ( !renderer ) {
 
         Logger::Err( "Error creating SDL renderer." );
         return;
     }
 
-    // Initialize the ImGui context
+    // Initialize the ImGui context ----------------------------------------------------- //
     ImGui::CreateContext();
     ImGuiSDL::Initialize( renderer, windowWidth, windowHeight );
 
-    // Initialize the camera view with the entire screen area
+    // Initialize the camera view with the entire screen area --------------------------- //
     camera.x = 0;
     camera.y = 0;
     camera.w = windowWidth;
     camera.h = windowHeight;
 
+    // Turning the Window to Full Screen mode ------------------------------------------- //
     SDL_SetWindowFullscreen( window, SDL_WINDOW_FULLSCREEN );
+
+
     isRunning = true;
 }
 
@@ -111,6 +122,8 @@ void Game::ProcessInput() {
         // ImGui SDL input
         ImGui_ImplSDL2_ProcessEvent( &sdlEvent );
         ImGuiIO& io = ImGui::GetIO();
+
+        // SDL Mouse Input For ImGui
         int mouseX, mouseY;
         const int buttons = SDL_GetMouseState( &mouseX, &mouseY );
         io.MousePos = ImVec2( mouseX, mouseY );
@@ -125,14 +138,17 @@ void Game::ProcessInput() {
                 break;
                 
             case SDL_KEYDOWN:
+                // Quits with Esc
                 if ( sdlEvent.key.keysym.sym == SDLK_ESCAPE ) {
 
                     isRunning = false;
                 }
+                // Turn on debug mode with F1
                 if ( sdlEvent.key.keysym.sym == SDLK_F1 ) {
 
                     isDebug = !isDebug;
                 }
+                // Emitting key pressed events
                 eventBus->EmitEvent<KeyPressedEvent>( sdlEvent.key.keysym.sym );
                 break;
         }
@@ -141,7 +157,7 @@ void Game::ProcessInput() {
 
 void Game::LoadLevel( int level ) {
 
-    // Add the sytems that need to be processed in our game
+    // Adding Systems to the Level
     registry->AddSystem<MovementSystem>();
     registry->AddSystem<RenderSystem>();
     registry->AddSystem<AnimationSystem>();
@@ -156,7 +172,7 @@ void Game::LoadLevel( int level ) {
     registry->AddSystem<RenderHealthBarSystem>();
     registry->AddSystem<RenderGUISystem>();
 
-    // Adding assets to the asset store
+    // Adding assets to the Level
     assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
     assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
     assetStore->AddTexture( renderer, "chopper-image", "./assets/images/chopper-spritesheet.png" );
@@ -168,7 +184,7 @@ void Game::LoadLevel( int level ) {
     assetStore->AddFont( "pico8-font-5", "./assets/fonts/pico8.ttf", 5 );
     assetStore->AddFont( "pico8-font-10", "./assets/fonts/pico8.ttf", 10 );
 
-    // Load the tilemap
+    // Load the Level tilemap
     int tileSize = 32;
     double tileScale = 3.0;
     int mapNumCols = 25;
@@ -197,8 +213,11 @@ void Game::LoadLevel( int level ) {
     mapFile.close();
     mapWidth = mapNumCols * tileSize * tileScale;
     mapHeight = mapNumRows * tileSize * tileScale;
+    
 
-    // Create entities
+    // Create, tag and adds components to entities -------------------------------------- //
+    // ---------------------------------------------------------------------------------- //
+    // Player Chopper
     Entity chopper = registry->CreateEntity();
     chopper.Tag( "player" );
     chopper.AddComponent<TransformComponent>( glm::vec2( 360.0, 165.0 ), glm::vec2( 1.5, 1.5 ), 0.0 );
@@ -211,12 +230,14 @@ void Game::LoadLevel( int level ) {
     chopper.AddComponent<CameraFollowComponent>();
     chopper.AddComponent<HealthComponent>( 100 );
     
+    // UI Radar
     Entity radar = registry->CreateEntity();
     radar.AddComponent<TransformComponent>( glm::vec2( windowWidth - 74, 10.0 ), glm::vec2( 1.0, 1.0 ), 0.0 );
     radar.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
     radar.AddComponent<SpriteComponent>( "radar-image", 64, 64, 1, true );
     radar.AddComponent<AnimationComponent>( 8, 5, true );
     
+    // Enemy Tank
     Entity tank = registry->CreateEntity();
     tank.Group( "enemies" );
     tank.AddComponent<TransformComponent>( glm::vec2( 750.0, 750.0 ), glm::vec2( 1.5, 1.5 ), 0.0 );
@@ -226,6 +247,7 @@ void Game::LoadLevel( int level ) {
     tank.AddComponent<ProjectileEmitterComponent>( glm::vec2( 100.0, 0.0 ), 3000, 5000, 10, false );
     tank.AddComponent<HealthComponent>( 100 );
 
+    // Enemy Truck
     Entity truck = registry->CreateEntity();
     truck.Group( "enemies" );
     truck.AddComponent<TransformComponent>( glm::vec2( 180.0, 750.0 ), glm::vec2( 1.5, 1.5 ), 0.0 );
@@ -235,6 +257,7 @@ void Game::LoadLevel( int level ) {
     truck.AddComponent<ProjectileEmitterComponent>( glm::vec2( 0.0, -100.0 ), 2000, 5000, 10, false );
     truck.AddComponent<HealthComponent>( 100 );
 
+    // Obstacle Tree
     Entity treeA = registry->CreateEntity();
     treeA.Group( "obstacles" );
     treeA.AddComponent<TransformComponent>( glm::vec2( 900.0, 742.5 ), glm::vec2( 1.5, 1.5 ), 0.0 );
@@ -242,6 +265,7 @@ void Game::LoadLevel( int level ) {
     treeA.AddComponent<SpriteComponent>( "tree-image", 16, 32, 2 );
     treeA.AddComponent<BoxColliderComponent>( 16, 32 );
 
+    // Obstacle Tree
     Entity treeB = registry->CreateEntity();
     treeB.Group( "obstacles" );
     treeB.AddComponent<TransformComponent>( glm::vec2( 600.0, 742.5 ), glm::vec2( 1.5, 1.5 ), 0.0 );
@@ -249,6 +273,7 @@ void Game::LoadLevel( int level ) {
     treeB.AddComponent<SpriteComponent>( "tree-image", 16, 32, 2 );
     treeB.AddComponent<BoxColliderComponent>( 16, 32 );
 
+    // UI Label
     Entity label = registry->CreateEntity();
     SDL_Color green = { 0, 255, 0 };
     label.AddComponent<TextLabelComponent>( glm::vec2( windowWidth / 2 - 40, 10 ), "CHOPPER 1.0", "pico8-font-10", green, true );
@@ -261,6 +286,7 @@ void Game::Setup() {
 
 void Game::Update() {
 
+    // FPS Management ------------------------------------------------------------------- //
     // If we are too fast, waste some time until we reach the MILLISECS_PER_FRAME
     int timeToWait = MILLISECS_PER_FRAME - ( SDL_GetTicks() - millisecsPreviousFrame );
     if ( timeToWait > 0 && timeToWait <= MILLISECS_PER_FRAME ) {
@@ -273,7 +299,8 @@ void Game::Update() {
 
     // Store the "previous" frame time
     millisecsPreviousFrame = SDL_GetTicks();
-   
+    
+    // Event Bus Management ------------------------------------------------------------- //
     // Reset all event handlers for the current frame
     eventBus->Reset();
 
@@ -283,6 +310,7 @@ void Game::Update() {
     registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents( eventBus );
     registry->GetSystem<ProjectileEmitSystem>().SubscribeToEvents( eventBus );
 
+    // Systems Management --------------------------------------------------------------- //
     // Update the registry to process the entities that are waiting to be created/deleted
     registry->Update();
     
