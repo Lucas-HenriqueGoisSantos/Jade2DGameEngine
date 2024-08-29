@@ -39,3 +39,5 @@ function factorial( n )
 
     return n * factorial( n-1 )
 end
+
+print( "The cube of the number 3 is equal to".. cube( 3 ) )

@@ -3,12 +3,20 @@
 #include <iostream>
 
 
+int nativeCppCubeFunction( int n ) {
+
+    return n*n*n;
+}
+
+
 void TestLua() {
 
     // Creating the Lua state in with Sol
     sol::state lua;
     // Importing libs for Lua, all base Sol libs
     lua.open_libraries( sol::lib::base );
+    // Expose and bind a native C++ function to be used by the Lua script
+    lua[ "cube" ] = nativeCppCubeFunction;
     // Importing a Lua Script
     lua.script_file( "./assets/scripts/hello.lua" );
 
