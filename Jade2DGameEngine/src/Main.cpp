@@ -12,9 +12,18 @@ void TestLua() {
     // Importing a Lua Script
     lua.script_file( "./assets/scripts/hello.lua" );
 
-    // Importing Lua values to C++
+    // Importing a Lua var to C++
     int someVarInsideCpp = lua["some_variable"];
-    std::cout << "The value os some_variable in C++ is " << someVarInsideCpp << std::endl;
+    std::cout << "The value of some_variable in C++ is " << someVarInsideCpp << std::endl;
+
+    // Importing a value from Lua table to C++
+    bool isFullScreen = lua["config"]["fullscreen"];
+    // Importing a Lua table to C++
+    sol::table config = lua["config"];
+    int width = config["resolution"]["width"];
+    int height = config["resolution"]["height"];
+
+    std::cout << "The value of fullscreen in C++ is " << isFullScreen << ", width is " << width << " and height is " << height << std::endl;
 }
 
 
