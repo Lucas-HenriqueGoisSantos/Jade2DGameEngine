@@ -33,16 +33,9 @@ entities = {
 
 function factorial( n )
 
-    i = n;
-    result = 1;
-
-    while i >= 1 do
-        result = result * i;
-        i = i - 1;
+    if n == 1 then
+        return 1
     end
 
-    print( result );
+    return n * factorial( n-1 )
 end
-
-factorial( 5 )
-factorial( 7 )
