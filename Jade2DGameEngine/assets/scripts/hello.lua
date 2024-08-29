@@ -11,3 +11,22 @@ config = {
         height = 600
     }
 }
+
+entities = {
+
+    tank = {
+
+        tranform = {
+
+            position = { x = 300, y = 200 },
+            scale = { ... },
+        },
+        boxcollider = {
+            ...
+        },
+        projectile_emitter = {
+
+            angle = rand( 0, 360 ),
+        }
+    }
+}
