@@ -1443,6 +1443,7 @@
     <None Include="SDL2_ttf.dll" />
     <None Include="imgui.ini" />
     <None Include="libs\lua\lua54.dll" />
+    <None Include="assets\scripts\hello.lua" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libs\glm\detail\glm.cpp">
