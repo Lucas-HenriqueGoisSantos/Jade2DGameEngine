@@ -14,6 +14,6 @@ class LevelLoader {
 		LevelLoader();
 		~LevelLoader();
 
-		void LoadLevel( const std::unique_ptr<Registry>& registry, const std::unique_ptr<AssetStore>& assetStore, SDL_Renderer* renderer, int level );
+		void LoadLevel( const std::unique_ptr<Registry>& registry, const std::unique_ptr<AssetStore>& assetStore, SDL_Renderer* renderer, int levelNumber );
 };
 #endif // !LEVELLOADER_H
