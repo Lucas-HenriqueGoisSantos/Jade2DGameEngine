@@ -25,7 +25,22 @@ LevelLoader::~LevelLoader() {
 
 void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& registry, const std::unique_ptr<AssetStore>& assetStore, SDL_Renderer* renderer,  int levelNumber ) {
 
+    sol::load_result script = lua.load_file( "./assets/scripts/Level" + std::to_string( levelNumber ) + ".lua" );
+
+    // Checks the syntex of the script without executing it
+    if ( !script.valid() ) {
+
+        sol::error err = script;
+        std::string errorMessage = err.what();
+
+        Logger::Err( "Error loading the Lua script: " + errorMessage );
+
+        return;
+    }
+
     lua.script_file( "./assets/scripts/Level" + std::to_string( levelNumber ) + ".lua" );
+
+    
     // TODO: Load level from lua instead
 
     // // Adding assets to the Level
