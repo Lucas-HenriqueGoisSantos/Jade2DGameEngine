@@ -10,6 +10,7 @@
 #include "../Components/ProjectileEmitterComponent.h"
 #include "../Components/HealthComponent.h"
 #include "../Components/TextLabelComponent.h"
+#include <sol/sol.hpp>
 #include <fstream>
 
 LevelLoader::LevelLoader() {
@@ -22,6 +23,11 @@ LevelLoader::~LevelLoader() {
 }
 
 void LevelLoader::LoadLevel( const std::unique_ptr<Registry>& registry, const std::unique_ptr<AssetStore>& assetStore, SDL_Renderer* renderer,  int level ) {
+
+    sol::state lua;
+    lua.open_libraries( sol::lib::base );
+
+    // TODO: Load level from lua instead
 
     // Adding assets to the Level
     assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
