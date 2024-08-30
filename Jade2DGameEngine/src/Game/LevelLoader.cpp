@@ -23,9 +23,7 @@ LevelLoader::~LevelLoader() {
     Logger::Log( "LevelLoader destructor called" );
 }
 
-void LevelLoader::LoadLevel( const std::unique_ptr<Registry>& registry, const std::unique_ptr<AssetStore>& assetStore, SDL_Renderer* renderer,  int levelNumber ) {
-
-    lua.open_libraries( sol::lib::base );
+void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& registry, const std::unique_ptr<AssetStore>& assetStore, SDL_Renderer* renderer,  int levelNumber ) {
 
     lua.script_file( "./assets/scripts/Level" + std::to_string( levelNumber ) + ".lua" );
     // TODO: Load level from lua instead
