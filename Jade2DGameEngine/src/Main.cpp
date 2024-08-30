@@ -34,10 +34,10 @@ void TestLua() {
     std::cout << "The value of fullscreen in C++ is " << isFullScreen << ", width is " << width << " and height is " << height << std::endl;
 
     // Invoke a Lua function through Sol into C++
-    Sol::function functionFactorial = lua["factorial"];
+    sol::function functionFactorial = lua["factorial"];
     int functionResult = functionFactorial( 9 );
 
-    std::cout << "The Lua script calculated 5! as " << functionResult << std::endl;
+    std::cout << "The Lua script calculated 9! as " << functionResult << std::endl;
 }
 
 

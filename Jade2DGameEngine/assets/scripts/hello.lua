@@ -12,24 +12,6 @@ config = {
     }
 }
 
-entities = {
-
-    tank = {
-
-        tranform = {
-
-            position = { x = 300, y = 200 },
-            scale = { ... },
-        },
-        boxcollider = {
-            ...
-        },
-        projectile_emitter = {
-
-            angle = rand( 0, 360 ),
-        }
-    }
-}
 
 function factorial( n )
 
@@ -40,4 +22,4 @@ function factorial( n )
     return n * factorial( n-1 )
 end
 
-print( "The cube of the number 3 is equal to".. cube( 3 ) )
+print( "The cube of the number 3 is equal to ".. cube( 3 ) )
