@@ -25,7 +25,6 @@ LevelLoader::~LevelLoader() {
 
 void LevelLoader::LoadLevel( const std::unique_ptr<Registry>& registry, const std::unique_ptr<AssetStore>& assetStore, SDL_Renderer* renderer,  int levelNumber ) {
 
-    sol::state lua;
     lua.open_libraries( sol::lib::base );
 
     lua.script_file( "./assets/scripts/Level" + std::to_string( levelNumber ) + ".lua" );
