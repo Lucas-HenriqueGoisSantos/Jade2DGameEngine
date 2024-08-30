@@ -25,7 +25,7 @@ Level = {
         num_rows = 20,
         num_cols = 25,
         tile_size = 32,
-        scale = 2.0
+        scale = 3.0
     },
 
     ----------------------------------------------------
@@ -42,8 +42,8 @@ Level = {
 
                 transform = {
 
-                    position = { x = 242, y = 110 },
-                    scale = { x = 1.0, y = 1.0 },
+                    position = { x = 360.0, y = 165.0 },
+                    scale = { x = 1.5, y = 1.5 },
                     rotation = 0.0, -- degrees
                 },
                 rigidbody = {
@@ -104,8 +104,8 @@ Level = {
 
                 transform = {
 
-                    position = { x = 200, y = 497 },
-                    scale = { x = 1.0, y = 1.0 },
+                    position = { x = 750.0, y = 750.0 },
+                    scale = { x = 1.5, y = 1.5 },
                     rotation = 0.0, -- degrees
                 },
                 sprite = {
