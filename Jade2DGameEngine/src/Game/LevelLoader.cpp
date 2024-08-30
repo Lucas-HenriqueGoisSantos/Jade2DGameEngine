@@ -14,11 +14,11 @@
 
 LevelLoader::LevelLoader() {
 
-
+    Logger::Log( "LevelLoader constructor called" );
 }
 LevelLoader::~LevelLoader() {
 
-
+    Logger::Log( "LevelLoader destructor called" );
 }
 
 void LevelLoader::LoadLevel( const std::unique_ptr<Registry>& registry, const std::unique_ptr<AssetStore>& assetStore, SDL_Renderer* renderer,  int level ) {
