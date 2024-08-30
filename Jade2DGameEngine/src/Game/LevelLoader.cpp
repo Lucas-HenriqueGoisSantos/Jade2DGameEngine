@@ -40,7 +40,7 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
 
     lua.script_file( "./assets/scripts/Level" + std::to_string( levelNumber ) + ".lua" );
 
-    
+    sol::table level = lua["Level"];
     // TODO: Load level from lua instead
 
     // // Adding assets to the Level
