@@ -134,6 +134,89 @@ Level = {
                     friendly = false
                 }
             }
+        },
+        {
+
+            -- Truck
+            group = "enemies",
+            components = {
+
+                transform = {
+
+                    position = { x = 180.0, y = 750.0 },
+                    scale = { x = 1.5, y = 1.5 },
+                    rotation = 0.0, -- degrees
+                },
+                sprite = {
+
+                    texture_asset_id = "truck-texture",
+                    width = 32,
+                    height = 32,
+                    z_index = 2
+                },
+                boxcollider = {
+
+                    width = 20,
+                    height = 20,
+                    offset = { x = 5, y = 5 }
+                },
+                health = {
+
+                    health_percentage = 100
+                }
+            }
+        },
+        {
+
+            --TreeA
+            group = "obstacles",
+            components = {
+
+                transform = {
+
+                    position = { x = 900.0, y = 742.5 },
+                    scale = { x = 1.5, y = 1.5 },
+                    rotation = 0.0
+                },
+                sprite = {
+
+                    texture_asset_id = "tree-image",
+                    width = 16,
+                    height = 32,
+                    z_index = 2
+                },
+                boxcollider = {
+
+                    width = 16,
+                    height = 32
+                }
+            }
+        },
+        {
+
+            --TreeB
+            group = "obstacles",
+            components = {
+
+                transform = {
+
+                    position = { x = 600.0, y = 742.5 },
+                    scale = { x = 1.5, y = 1.5 },
+                    rotation = 0.0
+                },
+                sprite = {
+
+                    texture_asset_id = "tree-image",
+                    width = 16,
+                    height = 32,
+                    z_index = 2
+                },
+                boxcollider = {
+
+                    width = 16,
+                    height = 32
+                }
+            }
         }
     }
 }
