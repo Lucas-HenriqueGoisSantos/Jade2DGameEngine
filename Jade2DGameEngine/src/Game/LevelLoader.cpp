@@ -74,6 +74,42 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
         i++;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Read the level tilemap information
+    ///////////////////////////////////////////////////////////////////////////
+    sol::table map = level["tilemap"];
+    std::string mapFilePath = map["map_file"];
+    std::string mapTextureId = map["texture_asset_id"];
+    int mapNumRows = map["num_rows"];
+    int mapNumCols = map["num_cols"];
+    int tileSize = map["tile_size"];
+    double mapScale = map["scale"];
+
+    std::fstream mapFile;
+    mapFile.open( mapFilePath );
+    for ( int y = 0; y < mapNumRows; y++ ) {
+
+        for ( int x = 0; x < mapNumCols; x++ ) {
+
+            char ch;
+
+            mapFile.get( ch );
+            int srcRectY = std::atoi( &ch ) * tileSize;
+
+            mapFile.get( ch );
+            int srcRectX = std::atoi( &ch ) * tileSize;
+
+            mapFile.ignore();
+
+            Entity tile = registry->CreateEntity();
+            tile.AddComponent<TransformComponent>( glm::vec2( x * ( mapScale * tileSize ), y * ( mapScale * tileSize ) ), glm::vec2( tileScale, tileScale ), 0.0 );
+            tile.AddComponent<SpriteComponent>( mapTextureId, tileSize, tileSize, 0, false, srcRectX, srcRectY );
+        }
+    }
+    mapFile.close();
+    Game::mapWidth = mapNumCols * tileSize * tileScale;
+    Game::mapHeight = mapNumRows * tileSize * tileScale;
+
     // // Adding assets to the Level
     // assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
     // assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
