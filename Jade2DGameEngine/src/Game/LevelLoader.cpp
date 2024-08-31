@@ -110,6 +110,87 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
     Game::mapWidth = mapNumCols * tileSize * tileScale;
     Game::mapHeight = mapNumRows * tileSize * tileScale;
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Read the level entities and their components
+    ///////////////////////////////////////////////////////////////////////////
+    sol::table entities = level["entities"];
+
+    i = 0;
+    while ( true ) {
+
+        sol::optional<sol::table> hasEntity = entities[i];
+        if ( hasEntity == sol::nullopt ) {
+
+            break;
+        }
+
+        sol::table entity = entities[i];
+
+        Entity newEntity = registry->CreateEntity();
+
+        // Tag
+        sol::optional<std::string> tag = entity["tag"];
+        if ( tag != sol::nullopt ) {
+
+            newEntity.Tag( entity["tag"] );
+        }
+        // Group
+        sol::optional<std::string> group = entity["group"];
+        if ( group != sol::nullopt ) {
+
+            newEntity.Group( entity["group"] );
+        }
+
+        // Components
+        sol::optional<sol::table> hasComponent = entity["components"];
+        if ( hasComponent != sol::nullopt ) {
+
+            // Transform
+            sol::optional<sol::table> transform = entity["components"]["transform"];
+            if ( transform != sol::nullopt ) {
+
+                newEntity.AddComponent<TransformComponent>(
+                    glm::vec2(
+                        entity["components"]["transform"]["position"]["x"],
+                        entity["components"]["transform"]["position"]["y"]
+                    ),
+                    glm::vec2(
+                        entity["components"]["transform"]["scale"]["x"].get_or( 1.0 ),
+                        entity["components"]["transform"]["scale"]["y"].get_or( 1.0 )
+                    ),
+                    entity["components"]["transform"]["rotation"].get_or( 0.0 )
+                );
+            }
+
+            // Rigidbody
+            sol::optional<sol::table> rigidbody = entity["components"]["rigidbody"];
+            if ( rigidbody != sol::nullopt ) {
+
+                newEntity.AddComponent<RigidBodyComponent>(
+                    glm::vec2(
+                        entity["components"]["rigidbody"]["x"].get_or( 0.0 ),
+                        entity["components"]["rigidbody"]["y"].get_or( 0.0 )
+                    )
+                );
+            }
+
+            // Sprite
+            sol::optional<sol::table> sprite = entity["components"]["sprite"];
+            if ( sprite != sol::nullopt ) {
+
+                newEntity.AddComponent<SpriteComponent>(
+                    entity["components"]["sprite"]["texture_asset_id"],
+                    entity["components"]["sprite"]["width"],
+                    entity["components"]["sprite"]["height"],
+                    entity["components"]["sprite"]["z_index"].get_or( 1 ),
+                    entity["components"]["sprite"]["fixes"].get_or( false ),
+                    entity["components"]["sprite"]["src_rect_x"].get_or( 0 ),
+                    entity["components"]["sprite"]["src_rect_y"].get_or( 0 )
+                );
+            }
+        }
+    }
+
     // // Adding assets to the Level
     // assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
     // assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
@@ -121,36 +202,6 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
     // assetStore->AddFont( "charriot-font-20", "./assets/fonts/charriot.ttf", 20 );
     // assetStore->AddFont( "pico8-font-5", "./assets/fonts/pico8.ttf", 5 );
     // assetStore->AddFont( "pico8-font-10", "./assets/fonts/pico8.ttf", 10 );
-
-    // // Load the Level tilemap
-    // int tileSize = 32;
-    // double tileScale = 3.0;
-    // int mapNumCols = 25;
-    // int mapNumRows = 20;
-
-    // std::fstream mapFile;
-    // mapFile.open( "./assets/tilemaps/jungle.map" );
-
-    // for ( int y = 0; y < mapNumRows; y++ ) {
-
-    //     for ( int x = 0; x < mapNumCols; x++ ) {
-
-    //         char ch;
-    //         mapFile.get( ch );
-    //         int srcRectY = std::atoi( &ch ) * tileSize;
-    //         mapFile.get( ch );
-    //         int srcRectX = std::atoi( &ch ) * tileSize;
-    //         mapFile.ignore();
-
-    //         Entity tile = registry->CreateEntity();
-    //         tile.Group( "tiles" );
-    //         tile.AddComponent<TransformComponent>( glm::vec2( x * ( tileScale * tileSize ), y * ( tileScale * tileSize ) ), glm::vec2( tileScale, tileScale ), 0.0 );
-    //         tile.AddComponent<SpriteComponent>( "tilemap-image", tileSize, tileSize, 0, false, srcRectX, srcRectY );
-    //     }
-    // }
-    // mapFile.close();
-    // Game::mapWidth = mapNumCols * tileSize * tileScale;
-    // Game::mapHeight = mapNumRows * tileSize * tileScale;
 
 
     // // Create, tag and adds components to entities -------------------------------------- //
