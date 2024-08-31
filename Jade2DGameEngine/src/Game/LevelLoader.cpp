@@ -41,7 +41,29 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
     lua.script_file( "./assets/scripts/Level" + std::to_string( levelNumber ) + ".lua" );
 
     sol::table level = lua["Level"];
-    // TODO: Load level from lua instead
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Read the level assets
+    ///////////////////////////////////////////////////////////////////////////
+    sol::table assets = level["assets"];
+
+    int i = 0;
+    while ( true ) {
+
+        sol::optional<sol::table> hasAsset = assets[i];
+        if (hasAsset == sol::nullopt ) {
+
+            break;
+        }
+        sol::table asset = assets[i];
+
+        std::string assetType = asset["type"];
+        if ( assetType == "texture" ) {
+
+            assetStore->AddTexture( renderer, asset["id"], asset["file"] );
+        }
+        i++;
+    }
 
     // // Adding assets to the Level
     // assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
