@@ -188,6 +188,17 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
                     entity["components"]["sprite"]["src_rect_y"].get_or( 0 )
                 );
             }
+
+            // Animation
+            sol::optional<sol::table> animation = entity["components"]["animation"];
+            if ( animation != sol::nullopt ) {
+
+                newEntity.AddComponent<AnimationComponent>(
+                    entity["components"]["animation"]["num_frames"],
+                    entity["components"]["animation"]["speed_rate"]
+                    entity["components"]["animation"]["loop"].get_or( false );
+                );
+            }
         }
     }
 
