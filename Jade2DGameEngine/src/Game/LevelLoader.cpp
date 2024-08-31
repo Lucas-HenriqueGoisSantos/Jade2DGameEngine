@@ -57,11 +57,20 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
         }
         sol::table asset = assets[i];
 
+
         std::string assetType = asset["type"];
+
         if ( assetType == "texture" ) {
 
             assetStore->AddTexture( renderer, asset["id"], asset["file"] );
         }
+
+        if ( assetType == "font" ) {
+
+            assetStore->AddFont( asset["id"], asset["file"], asset["font_size"] );
+        }
+
+
         i++;
     }
 
