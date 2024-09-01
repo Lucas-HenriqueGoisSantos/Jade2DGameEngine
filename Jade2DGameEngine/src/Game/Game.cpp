@@ -28,6 +28,7 @@ int Game::windowWidth;
 int Game::windowHeight;
 int Game::mapWidth;
 int Game::mapHeight;
+double Game::globalRenderScale;
 
 Game::Game() {
 
@@ -97,6 +98,7 @@ void Game::Initialize() {
     camera.y = 0;
     camera.w = windowWidth;
     camera.h = windowHeight;
+    globalRenderScale = 1.5;
 
     // Turning the Window to Full Screen mode ------------------------------------------- //
     SDL_SetWindowFullscreen( window, SDL_WINDOW_FULLSCREEN );

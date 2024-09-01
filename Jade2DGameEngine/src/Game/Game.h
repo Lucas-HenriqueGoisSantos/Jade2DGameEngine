@@ -41,6 +41,7 @@ class Game {
         static int windowHeight;
         static int mapWidth;
         static int mapHeight;
+        static double globalRenderScale;
 };
 
 #endif
