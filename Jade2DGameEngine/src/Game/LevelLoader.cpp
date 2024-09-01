@@ -266,9 +266,7 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
             // Camera Follow
             sol::optional<sol::table> follow = entity["components"]["camera_follow"];
             if ( follow != sol::nullopt ) {
-                newEntity.AddComponent<CameraFollowComponent>(
-                    entity["components"]["camera_follow"]["follow"].get_or( true )
-                );
+                newEntity.AddComponent<CameraFollowComponent>();
             }
         }
     }
