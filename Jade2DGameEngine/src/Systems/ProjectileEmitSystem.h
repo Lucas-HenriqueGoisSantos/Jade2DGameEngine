@@ -48,6 +48,9 @@ class ProjectileEmitSystem: public System {
                             auto sprite = entity.GetComponent<SpriteComponent>();
                             projectilePosition.x += ( transform.scale.x * sprite.width / 2 );
                             projectilePosition.y += ( transform.scale.y * sprite.height / 2 );
+
+                            projectilePosition.x = projectilePosition.x / Game::globalRenderScale;
+                            projectilePosition.y = projectilePosition.y / Game::globalRenderScale;
                         }
 
                         // If parent entity direction is controlled by the keyboard keys, modify the direction of the projectile accordingly
@@ -97,6 +100,9 @@ class ProjectileEmitSystem: public System {
                         const auto sprite = entity.GetComponent<SpriteComponent>();
                         projectilePosition.x += ( transform.scale.x * sprite.width / 2 );
                         projectilePosition.y += ( transform.scale.y * sprite.height / 2 );
+
+                        projectilePosition.x = projectilePosition.x / Game::globalRenderScale;
+                        projectilePosition.y = projectilePosition.y / Game::globalRenderScale;
                     }
 
                     // Add a new projectile entity to the registry
