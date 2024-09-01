@@ -288,40 +288,7 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
     // radar.AddComponent<AnimationComponent>( 8, 5, true );
 
     // // Enemy Tank
-    // Entity tank = registry->CreateEntity();
-    // tank.Group( "enemies" );
-    // tank.AddComponent<TransformComponent>( glm::vec2( 750.0, 750.0 ), glm::vec2( 1.5, 1.5 ), 0.0 );
     // tank.AddComponent<RigidBodyComponent>( glm::vec2( 20.0, 0.0 ) );
-    // tank.AddComponent<SpriteComponent>( "tank-image", 32, 32, 1 );
-    // tank.AddComponent<BoxColliderComponent>( 25, 18, glm::vec2( 5, 7 ) );
-    // tank.AddComponent<ProjectileEmitterComponent>( glm::vec2( 100.0, 0.0 ), 3000, 5000, 10, false );
-    // tank.AddComponent<HealthComponent>( 100 );
-
-    // // Enemy Truck
-    // Entity truck = registry->CreateEntity();
-    // truck.Group( "enemies" );
-    // truck.AddComponent<TransformComponent>( glm::vec2( 180.0, 750.0 ), glm::vec2( 1.5, 1.5 ), 0.0 );
-    // truck.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
-    // truck.AddComponent<SpriteComponent>( "truck-image", 32, 32, 2 );
-    // truck.AddComponent<BoxColliderComponent>( 25, 20, glm::vec2( 5, 5 ) );
-    // truck.AddComponent<ProjectileEmitterComponent>( glm::vec2( 0.0, -100.0 ), 2000, 5000, 10, false );
-    // truck.AddComponent<HealthComponent>( 100 );
-
-    // // Obstacle Tree
-    // Entity treeA = registry->CreateEntity();
-    // treeA.Group( "obstacles" );
-    // treeA.AddComponent<TransformComponent>( glm::vec2( 900.0, 742.5 ), glm::vec2( 1.5, 1.5 ), 0.0 );
-    // treeA.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
-    // treeA.AddComponent<SpriteComponent>( "tree-image", 16, 32, 2 );
-    // treeA.AddComponent<BoxColliderComponent>( 16, 32 );
-
-    // // Obstacle Tree
-    // Entity treeB = registry->CreateEntity();
-    // treeB.Group( "obstacles" );
-    // treeB.AddComponent<TransformComponent>( glm::vec2( 600.0, 742.5 ), glm::vec2( 1.5, 1.5 ), 0.0 );
-    // treeB.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
-    // treeB.AddComponent<SpriteComponent>( "tree-image", 16, 32, 2 );
-    // treeB.AddComponent<BoxColliderComponent>( 16, 32 );
 
     // // UI Label
     // Entity label = registry->CreateEntity();
