@@ -222,6 +222,54 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
                     static_cast<int>( entity["components"]["health"]["health_percentage"].get_or( 100 ) )
                 );
             }
+
+            // Projectile Emitter
+            sol::optional<sol::table> emitter = entity["components"]["projectile_emitter"];
+            if ( emitter != sol::nullopt ) {
+
+                newEntity.AddComponent<ProjectileEmitterComponent>(
+                    glm::vec2(
+                        entity["components"]["projectile_emitter"]["projectile_velocity"]["x"],
+                        entity["components"]["projectile_emitter"]["projectile_velocity"]["y"]
+                    ),
+                    entity["components"]["projectile_emitter"]["projectile_duration"],
+                    entity["components"]["projectile_emitter"]["repeat_frequency"],
+                    entity["components"]["projectile_emitter"]["hit_percentage_damage"],
+                    entity["components"]["projectile_emitter"]["friendly"]
+                );
+            }
+
+            // Keyboard Controller
+            sol::optional<sol::table> keyboard = entity["components"]["keyboard_controller"];
+            if ( keyboard != sol::nullopt ) {
+
+                newEntity.AddComponent<KeyboardControlledComponent>(
+                    glm::vec2(
+                        entity["components"]["keyboard_controller"]["up_velocity"]["x"],
+                        entity["components"]["keyboard_controller"]["up_velocity"]["y"]
+                    ),
+                    glm::vec2(
+                        entity["components"]["keyboard_controller"]["right_velocity"]["x"],
+                        entity["components"]["keyboard_controller"]["right_velocity"]["y"]
+                    ),
+                    glm::vec2(
+                        entity["components"]["keyboard_controller"]["down_velocity"]["x"],
+                        entity["components"]["keyboard_controller"]["down_velocity"]["y"]
+                    ),
+                    glm::vec2(
+                        entity["components"]["keyboard_controller"]["left_velocity"]["x"],
+                        entity["components"]["keyboard_controller"]["left_velocity"]["y"]
+                    )
+                );
+            }
+
+            // Camera Follow
+            sol::optional<sol::table> follow = entity["components"]["camera_follow"];
+            if ( follow != sol::nullopt ) {
+                newEntity.AddComponent<CameraFollowComponent>(
+                    entity["components"]["camera_follow"]["follow"].get_or( true )
+                );
+            }
         }
     }
 
