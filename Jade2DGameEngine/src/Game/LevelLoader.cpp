@@ -269,6 +269,8 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
                 newEntity.AddComponent<CameraFollowComponent>();
             }
         }
+
+        i++;
     }
 
     // // Adding assets to the Level
