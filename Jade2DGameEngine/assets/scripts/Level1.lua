@@ -13,8 +13,10 @@ Level = {
         { type = "texture", id = "truck-texture",   file = "./assets/images/truck-ford-right.png" },
         { type = "texture", id = "bullet-texture",  file = "./assets/images/bullet.png" },
         { type = "texture", id = "tree-texture",    file = "./assets/images/tree.png" },
-        { type = "font"   , id = "pico8-font-5",    file = "./assets/fonts/pico8.ttf", font_size = 5 },
-        { type = "font"   , id = "pico8-font-10",   file = "./assets/fonts/pico8.ttf", font_size = 10 }
+        { type = "font"   , id = "pico8-font-5",    file = "./assets/fonts/pico8.ttf",    font_size = 5 },
+        { type = "font"   , id = "pico8-font-10",   file = "./assets/fonts/pico8.ttf",    font_size = 10 },
+        { type = "font"   , id = "charriot-font-20", file = "./assets/fonts/charriot.ttf", font_size = 20 },
+        --ERR: [31-Aug-2024 23:31:12]: Error loading the Lua script: ./assets/scripts/Level1.lua:16: '}' expected near 'file'
     },
 
     ----------------------------------------------------
@@ -110,6 +112,10 @@ Level = {
                     scale = { x = 1.5, y = 1.5 },
                     rotation = 0.0, -- degrees
                 },
+                rigidbody = {
+
+                    velocity = { x = 20.0, y = 0.0 }
+                },
                 sprite = {
 
                     texture_asset_id = "tank-texture",
@@ -182,7 +188,7 @@ Level = {
                 },
                 sprite = {
 
-                    texture_asset_id = "tree-image",
+                    texture_asset_id = "tree-texture",
                     width = 16,
                     height = 32,
                     z_index = 2
