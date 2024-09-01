@@ -194,9 +194,23 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
             if ( animation != sol::nullopt ) {
 
                 newEntity.AddComponent<AnimationComponent>(
-                    entity["components"]["animation"]["num_frames"],
-                    entity["components"]["animation"]["speed_rate"],
+                    entity["components"]["animation"]["num_frames"].get_or( 1 ),
+                    entity["components"]["animation"]["speed_rate"].get_or( 1 ),
                     entity["components"]["animation"]["loop"].get_or( false )
+                );
+            }
+
+            // BoxCollider
+            sol::optional<sol::table> collider = entity["components"]["boxcollider"];
+            if (collider != sol::nullopt ) {
+
+                newEntity.AddComponent<BoxColliderComponent>(
+                    entity["components"]["boxcollider"]["width"],
+                    entity["components"]["boxcollider"]["height"],
+                    glm::vec2(
+                        entity["components"]["boxcollider"]["offset"]["x"].get_or( 0 ),
+                        entity["components"]["boxcollider"]["offset"]["y"].get_or( 0 )
+                    )
                 );
             }
         }
