@@ -8,7 +8,7 @@ Level = {
 
         [0] =
         { type = "texture", id = "tilemap-texture", file = "./assets/tilemaps/jungle.png" },
-        { type = "texture", id = "chopper-texture", file = "./assets/images/chopper-green-spritesheet.png" },
+        { type = "texture", id = "chopper-texture", file = "./assets/images/chopper-spritesheet.png" },
         { type = "texture", id = "tank-texture",    file = "./assets/images/tank-tiger-up.png" },
         { type = "texture", id = "truck-texture",   file = "./assets/images/truck-ford-right.png" },
         { type = "texture", id = "bullet-texture",  file = "./assets/images/bullet.png" },
