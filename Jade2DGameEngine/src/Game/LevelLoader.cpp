@@ -102,13 +102,13 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
             mapFile.ignore();
 
             Entity tile = registry->CreateEntity();
-            tile.AddComponent<TransformComponent>( glm::vec2( x * ( mapScale * tileSize ), y * ( mapScale * tileSize ) ), glm::vec2( tileScale, tileScale ), 0.0 );
+            tile.AddComponent<TransformComponent>( glm::vec2( x * ( mapScale * tileSize ), y * ( mapScale * tileSize ) ), glm::vec2( mapScale, mapScale ), 0.0 );
             tile.AddComponent<SpriteComponent>( mapTextureId, tileSize, tileSize, 0, false, srcRectX, srcRectY );
         }
     }
     mapFile.close();
-    Game::mapWidth = mapNumCols * tileSize * tileScale;
-    Game::mapHeight = mapNumRows * tileSize * tileScale;
+    Game::mapWidth = mapNumCols * tileSize * mapScale;
+    Game::mapHeight = mapNumRows * tileSize * mapScale;
 
     ///////////////////////////////////////////////////////////////////////////
     // Read the level entities and their components
@@ -195,8 +195,8 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
 
                 newEntity.AddComponent<AnimationComponent>(
                     entity["components"]["animation"]["num_frames"],
-                    entity["components"]["animation"]["speed_rate"]
-                    entity["components"]["animation"]["loop"].get_or( false );
+                    entity["components"]["animation"]["speed_rate"],
+                    entity["components"]["animation"]["loop"].get_or( false )
                 );
             }
         }
