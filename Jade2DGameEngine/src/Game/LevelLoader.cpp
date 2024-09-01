@@ -213,6 +213,15 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
                     )
                 );
             }
+
+            // Health
+            sol::optional<sol::table> health = entity["components"]["health"];
+            if ( health != sol::nullopt ) {
+
+                newEntity.AddComponent<HealthComponent>(
+                    static_cast<int>( entity["components"]["health"]["health_percentage"].get_or( 100 ) )
+                );
+            }
         }
     }
 
