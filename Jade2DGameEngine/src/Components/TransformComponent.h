@@ -11,11 +11,11 @@ struct TransformComponent {
 
     TransformComponent( glm::vec2 position = glm::vec2( 0, 0 ), glm::vec2 scale = glm::vec2( 1, 1 ), double rotation = 0.0 ) {
 
-        position.x = position.x * Game::globalRenderScale;
-        position.y = position.y * Game::globalRenderScale;
+        position.x = position.x;
+        position.y = position.y;
         this->position = position;
-        scale.x = scale.x * Game::globalRenderScale;
-        scale.y = scale.y * Game::globalRenderScale;
+        scale.x = scale.x;
+        scale.y = scale.y;
         this->scale = scale;
         this->rotation = rotation;
     }

@@ -151,12 +151,12 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
 
                 newEntity.AddComponent<TransformComponent>(
                     glm::vec2(
-                        entity["components"]["transform"]["position"]["x"],
-                        entity["components"]["transform"]["position"]["y"]
+                        static_cast<float>( entity["components"]["transform"]["position"]["x"] ) * Game::globalRenderScale,
+                        static_cast<float>( entity["components"]["transform"]["position"]["y"] ) * Game::globalRenderScale
                     ),
                     glm::vec2(
-                        entity["components"]["transform"]["scale"]["x"].get_or( 1.0 ),
-                        entity["components"]["transform"]["scale"]["y"].get_or( 1.0 )
+                        static_cast<float>( entity["components"]["transform"]["scale"]["x"].get_or( 1.0 ) ) * Game::globalRenderScale,
+                        static_cast<float>( entity["components"]["transform"]["scale"]["y"].get_or( 1.0 ) ) * Game::globalRenderScale
                     ),
                     entity["components"]["transform"]["rotation"].get_or( 0.0 )
                 );

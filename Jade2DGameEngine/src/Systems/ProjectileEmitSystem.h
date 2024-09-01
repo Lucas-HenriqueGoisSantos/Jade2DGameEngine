@@ -49,8 +49,8 @@ class ProjectileEmitSystem: public System {
                             projectilePosition.x += ( transform.scale.x * sprite.width / 2 );
                             projectilePosition.y += ( transform.scale.y * sprite.height / 2 );
 
-                            projectilePosition.x = projectilePosition.x / Game::globalRenderScale;
-                            projectilePosition.y = projectilePosition.y / Game::globalRenderScale;
+                            projectilePosition.x = projectilePosition.x;
+                            projectilePosition.y = projectilePosition.y;
                         }
 
                         // If parent entity direction is controlled by the keyboard keys, modify the direction of the projectile accordingly
@@ -101,8 +101,8 @@ class ProjectileEmitSystem: public System {
                         projectilePosition.x += ( transform.scale.x * sprite.width / 2 );
                         projectilePosition.y += ( transform.scale.y * sprite.height / 2 );
 
-                        projectilePosition.x = projectilePosition.x / Game::globalRenderScale;
-                        projectilePosition.y = projectilePosition.y / Game::globalRenderScale;
+                        projectilePosition.x = projectilePosition.x;
+                        projectilePosition.y = projectilePosition.y;
                     }
 
                     // Add a new projectile entity to the registry
