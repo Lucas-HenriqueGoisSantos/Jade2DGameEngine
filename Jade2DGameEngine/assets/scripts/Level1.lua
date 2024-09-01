@@ -214,7 +214,7 @@ Level = {
                 },
                 sprite = {
 
-                    texture_asset_id = "tree-image",
+                    texture_asset_id = "tree-texture",
                     width = 16,
                     height = 32,
                     z_index = 2
