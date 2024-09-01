@@ -232,10 +232,10 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
                         entity["components"]["projectile_emitter"]["projectile_velocity"]["x"],
                         entity["components"]["projectile_emitter"]["projectile_velocity"]["y"]
                     ),
-                    entity["components"]["projectile_emitter"]["projectile_duration"],
-                    entity["components"]["projectile_emitter"]["repeat_frequency"],
-                    entity["components"]["projectile_emitter"]["hit_percentage_damage"],
-                    entity["components"]["projectile_emitter"]["friendly"]
+                    static_cast<int>( entity["components"]["projectile_emitter"]["repeat_frequency"].get_or( 1 ) ) * 1000,
+                    static_cast<int>( entity["components"]["projectile_emitter"]["projectile_duration"].get_or( 10000 ) ) * 1000,
+                    static_cast<int>( entity["components"]["projectile_emitter"]["hit_percentage_damage"].get_or( 10 ) ),
+                    static_cast<int>( entity["components"]["projectile_emitter"]["friendly"].get_or( false ) )
                 );
             }
 
