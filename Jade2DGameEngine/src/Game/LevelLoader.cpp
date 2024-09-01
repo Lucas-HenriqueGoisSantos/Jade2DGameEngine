@@ -274,32 +274,11 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
     }
 
     // // Adding assets to the Level
-    // assetStore->AddTexture( renderer, "tank-image", "./assets/images/tank-panther-right.png" );
-    // assetStore->AddTexture( renderer, "truck-image", "./assets/images/truck-ford-right.png" );
-    // assetStore->AddTexture( renderer, "chopper-image", "./assets/images/chopper-spritesheet.png" );
     // assetStore->AddTexture( renderer, "radar-image", "./assets/images/radar.png" );
-    // assetStore->AddTexture( renderer, "tilemap-image", "./assets/tilemaps/jungle.png" );
-    // assetStore->AddTexture( renderer, "bullet-image", "./assets/images/bullet.png" );
-    // assetStore->AddTexture( renderer, "tree-image", "./assets/images/tree.png" );
-    // assetStore->AddFont( "charriot-font-20", "./assets/fonts/charriot.ttf", 20 );
-    // assetStore->AddFont( "pico8-font-5", "./assets/fonts/pico8.ttf", 5 );
-    // assetStore->AddFont( "pico8-font-10", "./assets/fonts/pico8.ttf", 10 );
 
 
     // // Create, tag and adds components to entities -------------------------------------- //
     // // ---------------------------------------------------------------------------------- //
-    // // Player Chopper
-    // Entity chopper = registry->CreateEntity();
-    // chopper.Tag( "player" );
-    // chopper.AddComponent<TransformComponent>( glm::vec2( 360.0, 165.0 ), glm::vec2( 1.5, 1.5 ), 0.0 );
-    // chopper.AddComponent<RigidBodyComponent>( glm::vec2( 0.0, 0.0 ) );
-    // chopper.AddComponent<SpriteComponent>( "chopper-image", 32, 32, 1 );
-    // chopper.AddComponent<AnimationComponent>( 2, 15, true );
-    // chopper.AddComponent<BoxColliderComponent>( 32, 25, glm::vec2( 0, 5 ) );
-    // chopper.AddComponent<ProjectileEmitterComponent>( glm::vec2( 150.0, 150.0 ), 0, 10000, 10, true );
-    // chopper.AddComponent<KeyboardControlledComponent>( glm::vec2( 0, -50 ), glm::vec2( 50, 0 ), glm::vec2( 0, 50 ), glm::vec2( -50, 0 ) );
-    // chopper.AddComponent<CameraFollowComponent>();
-    // chopper.AddComponent<HealthComponent>( 100 );
 
     // // UI Radar
     // Entity radar = registry->CreateEntity();
