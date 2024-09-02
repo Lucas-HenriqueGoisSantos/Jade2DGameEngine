@@ -7,13 +7,12 @@
 
 struct ScriptComponent {
 
-    public:
-        sol::function func;
+    sol::function func;
 
-        ScriptComponent( sol::function func = sol::lua_nil ){
+    ScriptComponent( sol::function func = sol::lua_nil ){
 
-            this->func = func;
-        }
+        this->func = func;
+    }
 };
 
 
