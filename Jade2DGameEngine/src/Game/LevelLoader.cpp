@@ -10,6 +10,7 @@
 #include "../Components/ProjectileEmitterComponent.h"
 #include "../Components/HealthComponent.h"
 #include "../Components/TextLabelComponent.h"
+#include "../Components/ScriptComponent.h"
 #include <sol/sol.hpp>
 #include <fstream>
 
@@ -266,7 +267,16 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
             // Camera Follow
             sol::optional<sol::table> follow = entity["components"]["camera_follow"];
             if ( follow != sol::nullopt ) {
+
                 newEntity.AddComponent<CameraFollowComponent>();
+            }
+
+            // Script
+            sol::optional<sol::table> script = entity["components"]["on_update_script"];
+            if ( script != sol::nullopt ) {
+
+                sol::function func = entity["components"]["on_update_script"][0];
+                newEntity.AddComponent<ScriptComponent>(func);
             }
         }
 
