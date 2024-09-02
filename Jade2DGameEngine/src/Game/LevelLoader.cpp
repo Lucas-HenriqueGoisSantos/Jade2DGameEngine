@@ -276,7 +276,7 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
             if ( script != sol::nullopt ) {
 
                 sol::function func = entity["components"]["on_update_script"][0];
-                newEntity.AddComponent<ScriptComponent>(func);
+                newEntity.AddComponent<ScriptComponent>( func );
             }
         }
 
