@@ -2757,7 +2757,6 @@ Level = {
                 }
             }
         },
-        --[[
         {
             -- SU-27 fighter jet
             group = "enemies",
@@ -2871,7 +2870,6 @@ Level = {
                 }
             }
         }
-        --]]
     }
 }
 
