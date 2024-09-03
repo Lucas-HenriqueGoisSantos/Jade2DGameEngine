@@ -11,7 +11,7 @@ void SetEntityPosition( Entity entity, double posX, double posY) {
 
     if ( entity.HasComponent<TransformComponent>() ) {
 
-        auto transform = entity.GetComponent<TransformComponent>();
+        auto& transform = entity.GetComponent<TransformComponent>();
         transform.position.x = posX;
         transform.position.y = posY;
     } else {
