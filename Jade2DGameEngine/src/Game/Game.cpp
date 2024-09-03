@@ -167,6 +167,9 @@ void Game::Setup() {
     registry->AddSystem<RenderGUISystem>();
     registry->AddSystem<ScriptSystem>();
 
+    // Create the bindings between C++ and Lua
+    registry->GetSystem<ScriptSystem>().CreateLuaBindings( lua );
+
     LevelLoader loader;
 
     lua.open_libraries( sol::lib::base, sol::lib::math, sol::lib::os );
