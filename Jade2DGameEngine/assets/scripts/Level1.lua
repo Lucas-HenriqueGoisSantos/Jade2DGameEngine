@@ -2793,6 +2793,7 @@ Level = {
                     hit_percentage_damage = 10,
                     friendly = false
                 },
+                --[[
                 on_update_script = {
                     [0] =
                     function(entity, delta_time, ellapsed_time)
@@ -2819,6 +2820,7 @@ Level = {
                         end
                     end
                 }
+                --]]
             }
         },
         {
@@ -2860,7 +2862,7 @@ Level = {
                 on_update_script = {
                     [0] =
                     function(entity, delta_time, ellapsed_time)
-                        -- print("Executing BF-109 Lua script!")
+                        print("Executing BF-109 Lua script!")
 
                         -- change the position of the the airplane to follow a sine wave movement
                         local new_x = ellapsed_time * 0.09

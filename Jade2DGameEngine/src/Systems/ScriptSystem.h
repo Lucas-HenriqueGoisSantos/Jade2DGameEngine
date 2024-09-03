@@ -42,12 +42,12 @@ class ScriptSystem: public System {
             lua.set_function( "set_position", SetEntityPosition );
         }
 
-        void Update() {
+        void Update( double deltaTime, int ellapsedTime ) {
 
             for ( auto entity: GetSystemEntities() ) {
 
                 const auto script = entity.GetComponent<ScriptComponent>();
-                script.func();
+                script.func( entity, deltaTime, ellapsedTime );
             }
         }
 };

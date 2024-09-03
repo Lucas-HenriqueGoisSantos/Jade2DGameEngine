@@ -214,7 +214,7 @@ void Game::Update() {
     registry->GetSystem<ProjectileEmitSystem>().Update( registry );
     registry->GetSystem<CameraMovementSystem>().Update( camera );
     registry->GetSystem<ProjectileLifecycleSystem>().Update();
-    registry->GetSystem<ScriptSystem>().Update();
+    registry->GetSystem<ScriptSystem>().Update( deltaTime, SDL_GetTicks() );
 }
 
 void Game::Render() {
