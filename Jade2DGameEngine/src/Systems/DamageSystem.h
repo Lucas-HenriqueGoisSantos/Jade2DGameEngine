@@ -46,7 +46,7 @@ class DamageSystem: public System {
                 OnProjectileHitsEnemy( b, a );
             }
 
-            Logger::Log( "Collision event emitted: " + std::to_string( a.GetId() ) + " and " + std::to_string( b.GetId() ) );
+            //Logger::Log( "Collision event emitted: " + std::to_string( a.GetId() ) + " and " + std::to_string( b.GetId() ) );
         }
 
 

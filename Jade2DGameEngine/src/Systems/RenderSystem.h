@@ -5,7 +5,7 @@
 #include "../ECS/ECS.h"
 #include "../Components/TransformComponent.h"
 #include "../Components/SpriteComponent.h"
-#include "../Logger/Logger.h"
+#include "..///Logger///Logger.h"
 #include "../AssetStore/AssetStore.h"
 #include <SDL.h>
 #include <vector>
