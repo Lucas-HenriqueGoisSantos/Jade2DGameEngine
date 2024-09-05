@@ -17,7 +17,7 @@ struct LogEntry {
     std::string message;
 };
 
-class //Logger {
+class Logger {
     
     public:
         static std::vector<LogEntry> messages;
