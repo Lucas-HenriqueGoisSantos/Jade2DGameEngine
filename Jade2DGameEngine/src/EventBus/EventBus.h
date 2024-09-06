@@ -1,7 +1,7 @@
 #ifndef EVENTBUS_H
 #define EVENTBUS_H
 
-#include "..///Logger///Logger.h"
+#include "../Logger/Logger.h"
 #include "Event.h"
 #include <map>
 #include <typeindex>
@@ -53,9 +53,9 @@ class EventBus {
         std::map<std::type_index, std::unique_ptr<HandlerList>> subscribers;
 
     public:
-        EventBus() { //Logger::Log( "EventBus constructor called!" ); }
+        EventBus() { Logger::Log( "EventBus constructor called!" ); }
         
-        ~EventBus() { //Logger::Log( "EventBus destructor called!" ); }
+        ~EventBus() { Logger::Log( "EventBus destructor called!" ); }
 
         // Clears the subscribers list
         void Reset() { subscribers.clear(); }

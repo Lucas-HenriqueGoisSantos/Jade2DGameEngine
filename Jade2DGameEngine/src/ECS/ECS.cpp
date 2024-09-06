@@ -1,5 +1,5 @@
 #include "ECS.h"
-#include "..///Logger///Logger.h"
+#include "../Logger/Logger.h"
 #include <algorithm>
 
 int IComponent::nextId = 0;
@@ -79,7 +79,7 @@ Entity Registry::CreateEntity() {
     Entity entity( entityId );
     entity.registry = this;
     entitiesToBeAdded.insert( entity );
-    //Logger::Log( "Entity created with id " + std::to_string( entityId ) );
+    Logger::Log( "Entity created with id " + std::to_string( entityId ) );
 
     return entity;
 }
@@ -87,7 +87,7 @@ Entity Registry::CreateEntity() {
 void Registry::KillEntity( Entity entity ) {
 
     entitiesToBeKilled.insert( entity );
-    //Logger::Log( "Entity " + std::to_string( entity.GetId() ) + " was killed" );
+    Logger::Log( "Entity " + std::to_string( entity.GetId() ) + " was killed" );
 }
 
 void Registry::AddEntityToSystems( Entity entity ) {

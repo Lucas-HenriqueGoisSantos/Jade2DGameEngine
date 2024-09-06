@@ -1,10 +1,10 @@
-#include "//Logger.h"
+#include "Logger.h"
 #include <iostream>
 #include <string>
 #include <chrono>
 #include <ctime>
 
-std::vector<LogEntry> //Logger::messages;
+std::vector<LogEntry> Logger::messages;
 
 std::string CurrentDateTimeToString() {
 

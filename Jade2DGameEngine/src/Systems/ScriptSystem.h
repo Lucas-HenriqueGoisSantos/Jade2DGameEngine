@@ -19,7 +19,7 @@ std::tuple<double, double> GetEntityPosition( Entity entity ) {
         return std::make_tuple( transform.position.x, transform.position.y );
     } else {
 
-        //Logger::Err( "Trying to get the position of an entity that has no transform component" );
+        Logger::Err( "Trying to get the position of an entity that has no transform component" );
         
         return std::make_tuple( 0.0, 0.0 );
     }
@@ -34,7 +34,7 @@ std::tuple<double, double> GetEntityVelocity( Entity entity ) {
         return std::make_tuple( rigidbody.velocity.x, rigidbody.velocity.y );
     } else {
 
-        //Logger::Err( "Trying to get the velocity of an entity that has no rigidbody component" );
+        Logger::Err( "Trying to get the velocity of an entity that has no rigidbody component" );
         
         return std::make_tuple( 0.0, 0.0 );
     }
@@ -49,7 +49,7 @@ void SetEntityPosition( Entity entity, double x, double y ) {
         transform.position.y = y;
     } else {
 
-        //Logger::Err( "Trying to set the position of an entity that has no transform component" );
+        Logger::Err( "Trying to set the position of an entity that has no transform component" );
     }
 }
 
@@ -62,7 +62,7 @@ void SetEntityVelocity( Entity entity, double x, double y ) {
         rigidbody.velocity.y = y;
     } else {
 
-        //Logger::Err( "Trying to set the velocity of an entity that has no rigidbody component" );
+        Logger::Err( "Trying to set the velocity of an entity that has no rigidbody component" );
     }
 }
 
@@ -74,7 +74,7 @@ void SetEntityRotation( Entity entity, double angle ) {
         transform.rotation = angle;
     } else {
 
-        //Logger::Err( "Trying to set the rotation of an entity that has no transform component" );
+        Logger::Err( "Trying to set the rotation of an entity that has no transform component" );
     }
 }
 
@@ -86,7 +86,7 @@ void SetEntityAnimationFrame( Entity entity, int frame ) {
         animation.currentFrame = frame;
     } else {
 
-        //Logger::Err( "Trying to set the animation frame of an entity that has no animation component" );
+        Logger::Err( "Trying to set the animation frame of an entity that has no animation component" );
     }
 }
 
@@ -99,7 +99,7 @@ void SetProjectileVelocity( Entity entity, double x, double y ) {
         projectileEmitter.projectileVelocity.y = y;
     } else {
 
-        //Logger::Err( "Trying to set the projectile velocity of an entity that has no projectile emitter component" );
+        Logger::Err( "Trying to set the projectile velocity of an entity that has no projectile emitter component" );
     }
 }
 

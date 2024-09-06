@@ -17,11 +17,11 @@
 
 LevelLoader::LevelLoader() {
 
-    //Logger::Log( "LevelLoader constructor called" );
+    Logger::Log( "LevelLoader constructor called" );
 }
 LevelLoader::~LevelLoader() {
 
-    //Logger::Log( "LevelLoader destructor called" );
+    Logger::Log( "LevelLoader destructor called" );
 }
 
 void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& registry, const std::unique_ptr<AssetStore>& assetStore, SDL_Renderer* renderer,  int levelNumber ) {
@@ -34,7 +34,7 @@ void LevelLoader::LoadLevel( sol::state& lua, const std::unique_ptr<Registry>& r
         sol::error err = script;
         std::string errorMessage = err.what();
 
-        //Logger::Err( "Error loading the Lua script: " + errorMessage );
+        Logger::Err( "Error loading the Lua script: " + errorMessage );
 
         return;
     }

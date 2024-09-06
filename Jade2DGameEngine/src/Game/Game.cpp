@@ -1,6 +1,6 @@
 #include "./Game.h"
 #include "./LevelLoader.h"
-#include "..///Logger///Logger.h"
+#include "../Logger/Logger.h"
 #include "../ECS/ECS.h"
 #include "../Systems/MovementSystem.h"
 #include "../Systems/CameraMovementSystem.h"
@@ -38,12 +38,12 @@ Game::Game() {
     registry = std::make_unique<Registry>();
     assetStore = std::make_unique<AssetStore>();
     eventBus = std::make_unique<EventBus>();
-    //Logger::Log( "Game constructor called!" );
+    Logger::Log( "Game constructor called!" );
 }
 
 Game::~Game() {
 
-    //Logger::Log( "Game destructor called!" );   
+    Logger::Log( "Game destructor called!" );   
 }
 
 void Game::Initialize() {
@@ -51,13 +51,13 @@ void Game::Initialize() {
     // Testing the SDL Initialization
     if ( SDL_Init( SDL_INIT_EVERYTHING ) != 0 ) {
 
-        //Logger::Err( "Error initializing SDL." );
+        Logger::Err( "Error initializing SDL." );
         return;
     }
     // Testing the SDL TTF Initialization
     if ( TTF_Init() != 0 ) {
 
-        //Logger::Err( "Error initializing SDL TTF." );
+        Logger::Err( "Error initializing SDL TTF." );
         return;
     }
 
@@ -77,7 +77,7 @@ void Game::Initialize() {
     // Testing the SDL Window
     if ( !window ) {
 
-        //Logger::Err( "Error creating SDL window." );
+        Logger::Err( "Error creating SDL window." );
         return;
     }
 
@@ -86,7 +86,7 @@ void Game::Initialize() {
     // Testing the SDL Window Renderer
     if ( !renderer ) {
 
-        //Logger::Err( "Error creating SDL renderer." );
+        Logger::Err( "Error creating SDL renderer." );
         return;
     }
 
